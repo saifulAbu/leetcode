@@ -30,7 +30,7 @@ def two_sum(nums, target)
   return []
 end
 
-nums = [3, 6, 4]
-target = 6
+#nums = [3, 6, 4]
+#target = 10
 
-p two_sum(nums, target)
+#p two_sum(nums, target)
