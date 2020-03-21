@@ -1,4 +1,10 @@
 def find_median_sorted_arrays(nums1, nums2)
+  if nums1.nil?
+    return find_median_sorted_array(nums2)
+  elsif nums2.nil?
+    return find_median_sorted_array(nums1)
+  end
+
   size1 = nums1.size
   size2 = nums2.size
   size_is_odd = ((size1 + size2) % 2 == 1)
@@ -27,6 +33,23 @@ def find_median_sorted_arrays(nums1, nums2)
     val2 = nums2[result_index]
   end
 
+  return (val1 + val2) / 2.0
+end
+
+def find_median_sorted_array(arr)
+  size = arr.size
+  size_is_odd = ((size % 2) == 1)
+
+  val1 = 0
+  val2 = 0
+
+  median1_index = ((size) / 2.0).ceil - 1
+  median2_index = median1_index + 1
+
+  val1 = arr[median1_index]
+  return val1 / 1.0 if size_is_odd
+
+  val2 = arr[median2_index]
   return (val1 + val2) / 2.0
 end
 
@@ -71,3 +94,9 @@ def find_rank(arr, val)
   return (start + 1) if arr[start] < val
   return start
 end
+
+
+arr1 = [1,2]
+arr2 = [1,2]
+
+puts find_median_sorted_arrays arr1, arr2
