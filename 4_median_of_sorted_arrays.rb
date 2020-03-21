@@ -1,7 +1,7 @@
 def find_median_sorted_arrays(nums1, nums2)
-  if nums1.nil?
+  if nums1.empty?
     return find_median_sorted_array(nums2)
-  elsif nums2.nil?
+  elsif nums2.empty?
     return find_median_sorted_array(nums1)
   end
 
@@ -98,5 +98,8 @@ end
 
 arr1 = [1,2]
 arr2 = [1,2]
+
+puts find_index_of_rank(arr1, arr2, 2)
+puts find_index_of_rank(arr2, arr1, 1)
 
 puts find_median_sorted_arrays arr1, arr2
