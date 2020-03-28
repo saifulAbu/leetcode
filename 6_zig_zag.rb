@@ -19,5 +19,3 @@ for i = 0 i < max val
 i = i + step
 
 =end
-
-
