@@ -18,4 +18,11 @@ step = (num_rows - 1) + (num_rows - 2) = 2 * num_rows - 2
 for i = 0 i < max val
 i = i + step
 
+## more thoughts
+create sequences for row 0
+
+create sequences for in between rows
+
+create sequences for NUM_ROWS - 1
+
 =end
