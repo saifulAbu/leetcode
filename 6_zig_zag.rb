@@ -2,8 +2,32 @@
 # @param {Integer} num_rows
 # @return {String}
 def convert(s, num_rows)
+  str_len = s.size
 
+  result_str = ""
+
+  #generate first row
+  step_size = 2 * num_rows - 2
+  (0...str_len).step(step_size).each do |index|
+    result_str << s[index]
+  end
+
+  #generate intermediate rows
+  (1...(num_rows-1)).each do |cur_row|
+    puts cur_row
+  end
+
+  #generate last row
+  if str_len >= num_rows
+    ((num_rows-1)...str_len).step(step_size).each do |index|
+      result_str << s[index]
+    end
+  end
+
+  result_str
 end
+
+puts convert("paypalishiring", 2)
 
 =begin
 |0| |4| |8 |
