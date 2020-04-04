@@ -2,8 +2,9 @@
 # @param {Integer} num_rows
 # @return {String}
 def convert(s, num_rows)
-  str_len = s.size
+  return s if s.empty? or num_rows == 1
 
+  str_len = s.size
   result_str = ""
 
   #generate first row
@@ -12,9 +13,25 @@ def convert(s, num_rows)
     result_str << s[index]
   end
 
+  go_down = true
   #generate intermediate rows
   (1...(num_rows-1)).each do |cur_row|
-    puts cur_row
+    cur_val = cur_row
+    down_up_inc =  2 * (num_rows - cur_row - 1)
+    up_down_inc = 2 * (cur_row)
+    go_down_up = true
+    while cur_val < str_len
+      result_str << s[cur_val]
+      #print cur_val, " "
+      if go_down_up
+        go_down_up = false
+        cur_val = cur_val + down_up_inc
+      else
+        go_down_up = true
+        cur_val = cur_val + up_down_inc
+      end
+    end
+    #puts ""
   end
 
   #generate last row
@@ -27,7 +44,7 @@ def convert(s, num_rows)
   result_str
 end
 
-puts convert("paypalishiring", 2)
+puts convert("A", 1)
 
 =begin
 |0| |4| |8 |
