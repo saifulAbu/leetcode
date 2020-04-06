@@ -40,3 +40,4 @@ head = ListNode.new(-1)
 end
 
 p middle_node head.next
+
