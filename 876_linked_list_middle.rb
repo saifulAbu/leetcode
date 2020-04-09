@@ -1,17 +1,17 @@
 # Definition for singly-linked list.
- class ListNode
-     attr_accessor :val, :next
-     def initialize(val)
-         @val = val
-         @next = nil
-     end
+class ListNode
+   attr_accessor :val, :next
+   def initialize(val)
+       @val = val
+       @next = nil
+   end
 
-     def add(val)
-      node = ListNode.new val
-      node.next = @next
-      @next = node
-     end
- end
+   def add(val)
+    node = ListNode.new val
+    node.next = @next
+    @next = node
+   end
+end
 
 # @param {ListNode} head
 # @return {ListNode}
