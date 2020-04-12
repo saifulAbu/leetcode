@@ -32,3 +32,4 @@ def insert(stones, val)
 end
 
 p last_stone_weight [1, 1, 1]
+
