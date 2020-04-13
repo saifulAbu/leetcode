@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/diameter_binary_tree.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/last_stone_weight.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backspace_string_compare.rb" beforeDir="false" afterPath="$PROJECT_DIR$/844_backspace_string_compare.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/min_stack.rb" beforeDir="false" afterPath="$PROJECT_DIR$/155_min_stack.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
