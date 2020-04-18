@@ -10,35 +10,25 @@ def min_path_sum(grid)
     cost << row
   end
 
-  queue = Queue.new
-  queue.enq [grid[0][0], 0, 0]
-  until queue.empty?
-    elem = queue.deq
-    cur_cost = elem[0]
-    r = elem[1]
-    c = elem[2]
-    if cost[r][c] > cur_cost
-      cost[r][c] = cur_cost
-
-      #enq child to the right
-      if c + 1 < col_len
-        cost_to_child = cur_cost + grid[r][c+1]
-        if cost[r][c+1] > cost_to_child
-          queue.enq [cost_to_child, r, c+1]
-        end
-      end
-
-      #enq child to the right
-      if r + 1 < row_len
-        cost_to_child = cur_cost + grid[r+1][c]
-        if cost[r+1][c] > cost_to_child
-          queue.enq [cost_to_child, r+1, c]
-        end
-      end
-    end
+  cost[0][0] = grid[0][0]
+  # fill column 0
+  for row in 1..(row_len - 1) do
+    cost[row][0] = cost[row-1][0] + grid[row][0]
   end
 
+  # fil row 0
+  for col in 1..(col_len - 1) do
+    cost[0][col] = cost[0][col-1] + grid[0][col]
+  end
+
+  for row in 1..(row_len - 1) do
+    for col in 1..(col_len - 1) do
+      min_parent = [cost[row-1][col], cost[row][col-1]].min
+      cost[row][col] = grid[row][col] + min_parent
+    end
+  end
   cost[-1][-1]
+  #cost
 end
 
 sample =  [
