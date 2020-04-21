@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/678_valid_parenthesis_string.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bst_from_preorder.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1008_bst_from_preorder.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contiguous_array.rb" beforeDir="false" afterPath="$PROJECT_DIR$/525_contiguous_array.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/count_elements.rb" beforeDir="false" afterPath="$PROJECT_DIR$/counting_elements.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter_binary_tree.rb" beforeDir="false" afterPath="$PROJECT_DIR$/543_diameter_binary_tree.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/last_stone_weight.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1046_last_stone_weight.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minimum_path_sum.rb" beforeDir="false" afterPath="$PROJECT_DIR$/64_minimum_path_sum.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/number_island.rb" beforeDir="false" afterPath="$PROJECT_DIR$/200_number_island.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product_except_self.rb" beforeDir="false" afterPath="$PROJECT_DIR$/238_product_except_self.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search_rotated_sorted_array.rb" beforeDir="false" afterPath="$PROJECT_DIR$/33_search_rotated_sorted_array.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/678_valid_parenthesis_string.rb" beforeDir="false" afterPath="$PROJECT_DIR$/678_valid_parenthesis_string.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
