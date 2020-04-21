@@ -36,6 +36,8 @@ def check_valid_string(s)
       end
     end
   end
-  p dp
+  #p dp
   dp[0][str_len-1] == 1
 end
+
+p check_valid_string "()(())"
