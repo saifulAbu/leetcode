@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry-nav'
+
 # @param {String} s
 # @return {Boolean}
 def check_valid_string(s)
@@ -26,10 +29,11 @@ def check_valid_string(s)
           for k in ((i+1)..(j-2)) do
             if (s[k] == "*" or s[k] == "(")
               if (dp[i][k-1] == 1 and dp[k+1][j-1] == 1)
-                dp[i][j] == 1
+                dp[i][j] = 1
               end
             end
           end
+          puts
         end
       else
         dp[i][j] = 0
