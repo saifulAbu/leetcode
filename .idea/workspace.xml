@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/left_most_column_with_one.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sub_array_sum_eql_k.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,19 +88,19 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586215908928">
+    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587592391039">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.797@0.23.1440.797" timestamp="1586215908928" />
+    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.797@0.23.1440.797" timestamp="1587592391039" />
     <state x="319" y="98" key="SettingsEditor" timestamp="1583503579927">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="319" y="98" key="SettingsEditor/0.23.1440.797@0.23.1440.797" timestamp="1583503579927" />
     <state x="397" y="170" key="SettingsEditor/0.23.1792.1017@0.23.1792.1017" timestamp="1582405787873" />
-    <state x="378" y="57" width="683" height="729" key="find.popup" timestamp="1587438965324">
+    <state x="378" y="57" width="683" height="729" key="find.popup" timestamp="1587592380543">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="378" y="57" width="683" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1587438965324" />
+    <state x="378" y="57" width="683" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1587592380543" />
     <state x="97" y="44" key="new project wizard" timestamp="1583325951317">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
