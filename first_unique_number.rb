@@ -55,3 +55,4 @@ obj.add(2)
 puts obj.show_first_unique()
 obj.add(3)
 puts obj.show_first_unique()
+
