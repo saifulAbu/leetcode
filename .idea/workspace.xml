@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="" />
+    <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/plus_one.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maximal_square_tle_0.rb" beforeDir="false" afterPath="$PROJECT_DIR$/221_maximal_square_tle_0.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maximal_square_trial_0.rb" beforeDir="false" afterPath="$PROJECT_DIR$/221_maximal_square.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/perform_string_shift.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1427_perform_string_shift.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove_duplicates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/26_remove_duplicates.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotate_array.rb" beforeDir="false" afterPath="$PROJECT_DIR$/189_rotate_array.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotate_array_tle.rb" beforeDir="false" afterPath="$PROJECT_DIR$/189_rotate_array_tle.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sub_array_sum_eql_k.rb" beforeDir="false" afterPath="$PROJECT_DIR$/560_sub_array_sum_eql_k.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
