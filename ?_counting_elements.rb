@@ -1,5 +1,5 @@
 require 'set'
-
+# how many elements has x we have such that array contains x+1
 # @param {Integer[]} arr
 # @return {Integer}
 def count_elements(arr)
@@ -9,7 +9,7 @@ def count_elements(arr)
   count = 0
   arr.each do
     |elem|
-    count += 1if set.include? (elem + 1)
+    count += 1 if set.include? (elem + 1)
     set.add elem
   end
   return count

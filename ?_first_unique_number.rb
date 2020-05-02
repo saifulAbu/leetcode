@@ -1,5 +1,7 @@
 require 'set'
 
+# design a data structure that returns the first unique number of its list
+
 class FirstUnique
 
 =begin

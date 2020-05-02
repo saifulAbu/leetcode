@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/contains_duplicate.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/350_intersection_of_two_arrays.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitwise_and_of_range_numbers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/201_bitwise_and_of_range_numbers.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common" beforeDir="false" afterPath="$PROJECT_DIR$/0__common" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contains_duplicate.rb" beforeDir="false" afterPath="$PROJECT_DIR$/217_contains_duplicate.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/counting_elements.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_bad_version.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_unique_number.rb" beforeDir="false" afterPath="$PROJECT_DIR$/?_first_unique_number.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/is_valid_sequence.rb" beforeDir="false" afterPath="$PROJECT_DIR$/?_is_valid_sequence.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jump_game.rb" beforeDir="false" afterPath="$PROJECT_DIR$/55_jump_game.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/left_most_column_with_one.rb" beforeDir="false" afterPath="$PROJECT_DIR$/?_left_most_column_with_one.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/longest_common_subsequence.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1143_longest_common_subsequence.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lru_cache.rb" beforeDir="false" afterPath="$PROJECT_DIR$/146_lru_cache.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
