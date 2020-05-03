@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/1_two_sum_improved.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/36_valid_sudoku.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ransom_note.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/48_rotate_image.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plus_one.rb" beforeDir="false" afterPath="$PROJECT_DIR$/66_plus_one.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ransom_note.rb" beforeDir="false" afterPath="$PROJECT_DIR$/383_ransom_note.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,10 +93,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587592391039">
+    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588523600786">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.797@0.23.1440.797" timestamp="1587592391039" />
+    <state x="440" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.797@0.23.1440.797" timestamp="1588523600786" />
     <state x="319" y="98" key="SettingsEditor" timestamp="1583503579927">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
