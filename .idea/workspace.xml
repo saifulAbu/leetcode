@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/125_valid_palindrome.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/993_cousin_in_binary_tree.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/check_straight_line.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/valid_perfect_square.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0__common" beforeDir="false" afterPath="$PROJECT_DIR$/0__common" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/valid_histogram.rb" beforeDir="false" afterPath="$PROJECT_DIR$/242_valid_anagram.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_straight_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1232_check_straight_line.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
