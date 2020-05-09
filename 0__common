@@ -1,5 +1,9 @@
 require 'pry'
 require 'pry-nav'
 
-
 binding.pry
+
+## os struct
+require "ostruct"
+australia = OpenStruct.new(:country => "Australia", :capital => "Canberra")
+
