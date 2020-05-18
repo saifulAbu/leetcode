@@ -1,3 +1,4 @@
+# favorite
 # @param {String} num
 # @param {Integer} k
 # @return {String}
