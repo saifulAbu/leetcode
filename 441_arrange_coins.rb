@@ -2,8 +2,15 @@
 # @param {Integer} n
 # @return {Integer}
 def arrange_coins(n)
-
+  x = (Math.sqrt(2 * n)).floor
+  if x * (x + 1) > 2 * n
+    return x - 1
+  else
+    return x
+  end
 end
+
+puts arrange_coins(8)
 
 =begin
 general strategy
