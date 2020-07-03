@@ -10,3 +10,6 @@ australia = OpenStruct.new(:country => "Australia", :capital => "Canberra")
 begin
 
 end while condition
+
+# hashmap
+map = Hash.new() {|k| []}
