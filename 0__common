@@ -13,3 +13,7 @@ end while condition
 
 # hashmap
 map = Hash.new() {|k| []}
+
+## set
+require 'set'
+s = Set.new

@@ -1,9 +1,45 @@
+require 'set'
+
 # @param {Integer[]} cells
 # @param {Integer} n
 # @return {Integer[]}
 def prison_after_n_days(cells, n)
+  map = {}
+  set = Set.new
+  map[0] = cells
+  set.add(cells)
 
+  period = 1
+  cur_day = cells
+ # p cur_day
+  while true
+    cur_day = next_day(cur_day)
+    if set.include? cur_day
+      break
+    end
+    #p cur_day
+    map[period] = cur_day
+    set.add(cur_day)
+    period += 1
+  end
+  n = n % period
+  #p map
+  map[n]
 end
+
+def next_day(prev_day)
+  res = Array.new(8) {0}
+  1.upto(6) do
+    |i|
+    if (prev_day[i-1] == 0 and prev_day[i+1] == 0) or (prev_day[i-1] == 1 and prev_day[i+1] == 1)
+      res[i] = 1
+    end
+  end
+  res
+end
+
+start = [1,0,0,1,0,0,1,0]
+p prison_after_n_days(start, 15)
 
 
 =begin
