@@ -5,28 +5,32 @@ require 'set'
 # @return {Integer[]}
 def prison_after_n_days(cells, n)
   map = {}
+  cell_day_map = {}
   set = Set.new
   map[0] = cells
+  cell_day_map[cells] = 0
   set.add(cells)
-
-  period = 1
-  cur_day = cells
-  p cur_day
+  cur_day = 0
+  period = 0
+  day_rep_began = 0
+  cur_cell = cells
   while true
-    cur_day = next_day(cur_day)
-    p cur_day
-    if set.include? cur_day
-      puts "cycle"
+    cur_day += 1
+    cur_cell = next_day(cur_cell)
+    #p cur_cell
+    if set.include? cur_cell
+      day_rep_began = cell_day_map[cur_cell]
+      period = cur_day - day_rep_began
       break
     end
     #p cur_day
-    map[period] = cur_day
-    set.add(cur_day)
-    period += 1
+    map[cur_day] = cur_cell
+    cell_day_map[cur_cell] = cur_day
+    set.add(cur_cell)
   end
-  n = n % period
+  final_index = (n - day_rep_began) % period + day_rep_began
   #p map
-  map[n]
+  map[final_index]
 end
 
 def next_day(prev_day)
@@ -40,8 +44,8 @@ def next_day(prev_day)
   res
 end
 
-start = [0,0,0,0,0,0,0,0]
-prison_after_n_days(start, 15)
+start = [1,0,0,1,0,0,1,0]
+p prison_after_n_days(start, 1000000000)
 
 
 =begin
