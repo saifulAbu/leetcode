@@ -21,3 +21,8 @@ p check_possibility(nums)
 
 nums = [4, 2, 1]
 p check_possibility(nums)
+
+=begin
+may be on first pass make a modification
+on second pass make sure it's ascending in nature
+=end
