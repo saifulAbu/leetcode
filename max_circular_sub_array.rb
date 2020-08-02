@@ -15,5 +15,5 @@ a valid sub subarray, s cannot contain same a[i] twice
 
 s = c[i], c[i+1], ... such that c[i] = a[j] does not appear twice
 
-
+day 1: little clue
 =end
