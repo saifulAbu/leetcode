@@ -1,15 +1,23 @@
+## debugging syntax
 require 'pry'
 require 'pry-nav'
-
 binding.pry
 
-## os struct
+## ruby syntax
+# os struct
 require "ostruct"
 australia = OpenStruct.new(:country => "Australia", :capital => "Canberra")
 
+# loop
 begin
 
 end while condition
+
+for i in (0..10) do
+end
+
+for i in [1, 2, 3] do
+end
 
 # hashmap
 map = Hash.new() {|k| []}
@@ -18,4 +26,10 @@ map = Hash.new() {|k| []}
 require 'set'
 s = Set.new
 
-He
+# queue
+queue = Queue.new
+queue.enq
+queue.deq
+queue.empty?
+queue.size
+
