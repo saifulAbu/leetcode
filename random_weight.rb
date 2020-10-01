@@ -13,6 +13,7 @@ class Solution
     lower_bound = 0.0
     upper_bound = 0.0
     for i in (0..(w.size-1)) do
+      upper_bound = lower_bound + (w[i] / total_sum)
       @range_bucket[i] = [lower_bound, upper_bound]
       lower_bound = upper_bound
     end
@@ -30,7 +31,7 @@ class Solution
       m = s + (e - s) / 2
      # puts "s: #{s}, m:#{m}, e:#{e}"
       cur_bound = @range_bucket[m]
-      if(rand_num >= cur_bound[0] and rand_num <= cur_bound[1])
+      if(rand_num > cur_bound[0] and rand_num <= cur_bound[1])
         index = m
         break
       elseif (rand_num < cur_bound[0])
@@ -39,13 +40,13 @@ class Solution
         s = m + 1
       end
     end
-    puts index
+    puts "rand_num: #{rand_num}, index: #{index}, bound: #{@range_bucket[index]} "
     return index
   end
 end
 
 # Your Solution object will be instantiated and called as such:
-w = [1, 2, 3]
+w = [3, 14, 1, 7]
 obj = Solution.new(w)
 param_1 = obj.pick_index()
 param_1 = obj.pick_index()
