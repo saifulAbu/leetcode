@@ -27,7 +27,7 @@ def change(amount, coins)
   dp[i][j]
 end
 
-amount = 10
-coins = []
+amount = 6
+coins = [1, 2, 5]
 
-change(amount, coins)
+p change(amount, coins)
