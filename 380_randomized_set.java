@@ -40,7 +40,6 @@ public class RandomizedSet {
       return true;
     }
     int elemIndex = indexMap.get(val);
-    indexMap.remove(val);
     int lastElem = set.get(set.size() - 1);
     set.set(elemIndex, lastElem);
     indexMap.put(lastElem, elemIndex);
