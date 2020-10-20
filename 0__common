@@ -36,3 +36,5 @@ queue.deq
 queue.empty?
 queue.size
 
+#sort
+sorted = arr.sort
