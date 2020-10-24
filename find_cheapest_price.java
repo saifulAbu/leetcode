@@ -4,3 +4,4 @@ class Solution {
 
   }
 }
+// i have pseudo code
