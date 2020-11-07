@@ -7,6 +7,10 @@ binding.pry
 # multi dimensinoal array
 arr1 = Array.new(3) { Array.new(3)}
 
+# array with default value
+arr1 = Array.new(3, false)
+
+
 # os struct
 require "ostruct"
 australia = OpenStruct.new(:country => "Australia", :capital => "Canberra")
