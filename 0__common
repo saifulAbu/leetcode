@@ -32,6 +32,8 @@ map = Hash.new() {|k| []}
 ## set
 require 'set'
 s = Set.new
+s.add(elem)
+s.include?(elem)
 
 # queue
 queue = Queue.new
