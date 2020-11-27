@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0__common" beforeDir="false" afterPath="$PROJECT_DIR$/0__common" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/longest_duplicate_substring.rb" beforeDir="false" afterPath="$PROJECT_DIR$/longest_duplicate_substring.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
