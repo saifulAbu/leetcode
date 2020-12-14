@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/787_find_cheapest_price.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sum_to_root.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/?_counting_elements.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1426_counting_elements.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/?_find_anagram_attempt_1.rb" beforeDir="false" afterPath="$PROJECT_DIR$/438_find_anagram.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coin_exchange_2.rb" beforeDir="false" afterPath="$PROJECT_DIR$/518_coin_exchange_2.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_cheapest_price.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flood_fill.rb" beforeDir="false" afterPath="$PROJECT_DIR$/733_flood_fill.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implement_trie.rb" beforeDir="false" afterPath="$PROJECT_DIR$/208_implement_trie.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/longest_duplicate_substring.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1044_longest_duplicate_substring.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/max_product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/1464_max_product.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/non_decreasing_array.rb" beforeDir="false" afterPath="$PROJECT_DIR$/665_non_decreasing_array_[wrong].rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prison_cell.rb" beforeDir="false" afterPath="$PROJECT_DIR$/957_prison_cell.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random_weight.rb" beforeDir="false" afterPath="$PROJECT_DIR$/528_random_weight.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_element_sorted_array.rb" beforeDir="false" afterPath="$PROJECT_DIR$/540_single_element_sorted_array.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
