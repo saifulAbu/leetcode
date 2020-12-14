@@ -35,10 +35,3 @@ def find_anagrams(s, p)
 
   res
 end
-
-s = "dwtcaxzsnifvhmoueklpyq"
-p = "yqrbgjdwtcaxzsnifvhmou"
-
-p find_anagrams(s,p)
-
-
