@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/unique_binary_search_tree.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find_duplicate.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,23 +92,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="569" y="316" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1599190420766">
-      <screen x="0" y="23" width="1440" height="794" />
-    </state>
-    <state x="569" y="316" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1440.794@0.23.1440.794" timestamp="1599190420766" />
     <state x="332" y="121" key="NewModule_or_Project.wizard" timestamp="1600652191301">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="332" y="121" key="NewModule_or_Project.wizard/0.23.1440.794@0.23.1440.794" timestamp="1600652191301" />
-    <state x="385" y="202" key="run.anything.popup" timestamp="1599526568924">
+    <state x="385" y="202" key="run.anything.popup" timestamp="1607961934833">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="385" y="202" key="run.anything.popup/0.23.1440.794@0.23.1440.794" timestamp="1599526568924" />
+    <state x="385" y="202" key="run.anything.popup/0.23.1440.794@0.23.1440.794" timestamp="1607961934833" />
     <state x="385" y="144" width="670" height="674" key="search.everywhere.popup" timestamp="1601949687039">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="385" y="144" width="670" height="674" key="search.everywhere.popup/0.23.1440.794@0.23.1440.794" timestamp="1601949687039" />
-    <state x="385" y="144" width="670" height="676" key="search.everywhere.popup/0.23.1440.797@0.23.1440.797" timestamp="1596397311394" />
   </component>
   <component name="masterDetails">
     <states>
