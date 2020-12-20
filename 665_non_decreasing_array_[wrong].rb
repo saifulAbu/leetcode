@@ -2,32 +2,33 @@
 # @return {Boolean}
 def check_possibility(nums)
   n = nums.size
-  return true if n == 1
-  modification_done = false
-  for i in (1..(n-1))
-    if nums[i-1] > nums[i]
-      if modification_done
-        break
-      else
-        min = [nums[i], nums[i-1]].min
-        nums[i] = min
-        nums[i-1] = min
-        modification_done = true
-      end
-    end
+  return true if n < 3
+  violation_count = 0
+
+  if nums[0] > nums[1]
+    nums[0] = nums[1]
+    violation_count += 1
   end
 
-  for i in (1..(n-1))
-    if nums[i-1] > nums[i]
-      if modification_done
-        return false
+  for i in (2..(n-1))
+    b = nums[i-1]
+    c = nums[i]
+    if b > c
+      violation_count += 1
+      return false if violation_count > 1
+      a = nums[i-2]
+      if a <= c
+        nums[i-1] = a
+      else
+        nums[i] = b
       end
     end
   end
+  return false if violation_count > 1
   return true
 end
 
-nums = [3, 4, 2, 3]
+nums = [5, 7, 1, 8]
 p check_possibility(nums)
 
 =begin
