@@ -1,9 +1,9 @@
 package array_and_string;
 
+//https://leetcode.com/problems/two-sum/
 import java.util.HashMap;
-import java.util.HashSet;
 
-public class TwoSum_1 {
+public class TwoSum_1_1 {
   public static void main(String args[]) {
 
   }
