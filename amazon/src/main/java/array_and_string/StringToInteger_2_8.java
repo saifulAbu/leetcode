@@ -6,44 +6,36 @@ public class StringToInteger_2_8 {
   public int myAtoi(String s) {
     int res = 0;
 
-    int maxValidNumericStringLen = 10; //max part len without the + or - sign
-
-    char[] digits = s.toCharArray();
+    char[] num = s.toCharArray();
     int i = 0;
-    //ignore leading white space
-    while(digits[i] == ' ') {
+    while(i < num.length && num[i] == ' ') {
       i++;
     }
-    if(i == digits.length) {
-      return res;
-    }
-
     int sign = 1;
-    if(digits[i] == '-') {
-      sign = -1;
-      i++;
-    } else if(digits[i] == '+') {
-      sign = 1;
-      i++;
+    if(i < num.length && (num[i] == '+' || num[i] == '-')) {
+      if(num[i++] == '+') {
+        sign = 1;
+      } else {
+        sign = -1;
+      }
     }
 
-    if(i == digits.length) {
-      return res;
+    while(i < num.length && Character.isDigit(num[i])) {
+      int curDigit = num[i++] - '0';
+      if(res > Integer.MAX_VALUE / 10
+              || (res == Integer.MAX_VALUE / 10 && curDigit > Integer.MAX_VALUE % 10)
+      ) {
+        return (sign == 1) ?  Integer.MAX_VALUE : Integer.MIN_VALUE;
+      }
+      res = res * 10 + curDigit;
     }
 
-    int digitCount = 0;
-    int maxDigit = (int) Math.ceil(Math.log10(Math.pow(2, 31) - 1));
-
-    while(Character.isDigit(digits[i])) {
-      res = res * 10 + (digits[i] - '0');
-    }
-
-    return res;
+    return res * sign;
   }
 
   public static void main(String [] args) {
     StringToInteger_2_8 sol = new StringToInteger_2_8();
-    int res = sol.myAtoi("19");
+    int res = sol.myAtoi("42");
     System.out.println(res);
   }
 }
