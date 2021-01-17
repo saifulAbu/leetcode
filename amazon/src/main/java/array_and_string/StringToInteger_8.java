@@ -2,7 +2,7 @@ package array_and_string;
 
 //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2962/
 
-public class StringToInteger_2_8 {
+public class StringToInteger_8 {
   public int myAtoi(String s) {
     int res = 0;
 
@@ -34,7 +34,7 @@ public class StringToInteger_2_8 {
   }
 
   public static void main(String [] args) {
-    StringToInteger_2_8 sol = new StringToInteger_2_8();
+    StringToInteger_8 sol = new StringToInteger_8();
     int res = sol.myAtoi("42");
     System.out.println(res);
   }

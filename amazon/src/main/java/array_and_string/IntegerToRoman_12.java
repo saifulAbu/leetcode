@@ -1,6 +1,6 @@
 package array_and_string;
 
-public class IntegerToRoman {
+public class IntegerToRoman_12 {
   public String intToRoman(int num) {
     String res = "";
     while(num > 0) {
@@ -49,7 +49,7 @@ public class IntegerToRoman {
   }
 
   public static void main(String [] args) {
-    IntegerToRoman itr = new IntegerToRoman();
-    System.out.println(itr.intToRoman(3999));
+    IntegerToRoman_12 itr = new IntegerToRoman_12();
+    System.out.println(itr.intToRoman(1994));
   }
 }
