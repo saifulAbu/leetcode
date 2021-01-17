@@ -1,0 +1,9 @@
+package array_and_string;
+
+public class ContainerWithMostWater_11 {
+
+  public static void main(String args[]) {
+    XX sol = new XX();
+    System.out.println(sol.YY());
+  }
+}
