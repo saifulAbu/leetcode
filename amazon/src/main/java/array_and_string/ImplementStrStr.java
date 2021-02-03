@@ -1,7 +1,6 @@
 package array_and_string;
 
 public class ImplementStrStr {
-  class Solution {
     public int strStr(String haystack, String needle) {
       if(needle.equals("")) {
         return 0;
@@ -49,7 +48,6 @@ public class ImplementStrStr {
     private int intVal(char c) {
       return c - 'a' + 1;
     }
-  }
 
   public static void main(String args[]) {
     ImplementStrStr sol = new ImplementStrStr();
