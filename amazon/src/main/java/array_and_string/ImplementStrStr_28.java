@@ -1,6 +1,6 @@
 package array_and_string;
 
-public class ImplementStrStr {
+public class ImplementStrStr_28 {
     public int strStr(String haystack, String needle) {
       if(needle.equals("")) {
         return 0;
@@ -50,7 +50,7 @@ public class ImplementStrStr {
     }
 
   public static void main(String args[]) {
-    ImplementStrStr sol = new ImplementStrStr();
+    ImplementStrStr_28 sol = new ImplementStrStr_28();
     System.out.println(sol.strStr("hello", "ha"));
   }
 
