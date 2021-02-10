@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 public class MinimumWindowSubstring {
   public String minWindow(String s, String t) {
+    if(s.length() == 0 || t.length() == 0 || (s.length() < t.length())) {
+      return "";
+    }
     HashMap<Character, Integer> tMap = new HashMap<>();
     for(Character c : t.toCharArray()) {
       tMap.putIfAbsent(c, 0);
@@ -16,16 +19,10 @@ public class MinimumWindowSubstring {
     int tail, head;
     tail = 0;
     head = 0;
+    int resHead = Integer.MAX_VALUE;
+    int resTail = 0;
 
     while(head < s.length()) {
-      while(tail < head && charTypeMatchedT >= charTypeInT) {
-        char c = s.charAt(tail);
-        if(tMap.get(c) != null && movingSMap.get(c) != null && tMap.get(c) == movingSMap.get(c)) {
-          charTypeMatchedT--;
-        }
-        movingSMap.put(c, movingSMap.get(c) - 1);
-        tail++;
-      }
       char c = s.charAt(head);
       if(tMap.get(c) != null) {
         movingSMap.putIfAbsent(c, 0);
@@ -34,21 +31,36 @@ public class MinimumWindowSubstring {
           charTypeMatchedT++;
         }
       }
-      if(charTypeMatchedT == charTypeInT) {
-        System.out.println(s.substring(tail, head));
+
+      while(tail <= head && charTypeMatchedT >= charTypeInT) {
+        if(head - tail < (resHead - resTail)) {
+          resHead = head;
+          resTail = tail;
+        }
+        c = s.charAt(tail);
+        if(tMap.get(c) != null) {
+          if (tMap.get(c) == movingSMap.get(c)) {
+            charTypeMatchedT--;
+          }
+          movingSMap.put(c, movingSMap.get(c) - 1);
+        }
+        tail++;
       }
       head++;
+
     }
 
-
-
-    return "";
+    if(resHead == Integer.MAX_VALUE) {
+      return "";
+    }
+    return s.substring(resTail, resHead+1);
   }
 
   public static void main(String[] args) {
-    String s = "abcda";
-    String t = "ad";
+    String s = "a";
+    String t = "b";
     MinimumWindowSubstring m = new MinimumWindowSubstring();
-    m.minWindow(s, t);
+    String res = m.minWindow(s, t);
+    System.out.println(res);
   }
 }
