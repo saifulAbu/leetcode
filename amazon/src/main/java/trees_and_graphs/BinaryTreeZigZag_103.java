@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BinaryTreeZigZag {
+public class BinaryTreeZigZag_103 {
   public static class TreeNode {
     int val;
     TreeNode left;
@@ -64,7 +64,7 @@ public class BinaryTreeZigZag {
     n2.left = n5;
     n2.right = n6;
 
-    BinaryTreeZigZag btz = new BinaryTreeZigZag();
+    BinaryTreeZigZag_103 btz = new BinaryTreeZigZag_103();
     List<List<Integer>> result = btz.zigzagLevelOrder(n0);
     return;
   }

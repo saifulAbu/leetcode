@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BinaryTreeLevelOrderTraversal {
+public class BinaryTreeLevelOrderTraversal_102 {
   public static class TreeNode {
     int val;
     TreeNode left;
