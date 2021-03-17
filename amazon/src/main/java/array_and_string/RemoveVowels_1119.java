@@ -1,4 +1,4 @@
-package adhoc.adhoc;
+package array_and_string;
 
 public class RemoveVowels_1119 {
   public String removeVowels(String s) {

@@ -1,4 +1,4 @@
-package adhoc.linked_list;
+package linkedlist;
 
 public class CycleCheckList_141 {
   public boolean hasCycle(ListNode head) {
