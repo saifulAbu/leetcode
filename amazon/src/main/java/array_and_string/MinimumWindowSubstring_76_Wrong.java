@@ -2,7 +2,7 @@ package array_and_string;
 
 import java.util.HashMap;
 
-public class MinimumWindowSubstring {
+public class MinimumWindowSubstring_76_Wrong {
   public String minWindow(String s, String t) {
     if(s.length() == 0 || t.length() == 0 || (s.length() < t.length())) {
       return "";
@@ -59,7 +59,7 @@ public class MinimumWindowSubstring {
   public static void main(String[] args) {
     String s = "a";
     String t = "b";
-    MinimumWindowSubstring m = new MinimumWindowSubstring();
+    MinimumWindowSubstring_76_Wrong m = new MinimumWindowSubstring_76_Wrong();
     String res = m.minWindow(s, t);
     System.out.println(res);
   }

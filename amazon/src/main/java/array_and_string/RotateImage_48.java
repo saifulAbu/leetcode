@@ -1,6 +1,6 @@
 package array_and_string;
 
-public class RotateImage {
+public class RotateImage_48 {
   public void rotate(int[][] matrix) {
     reflect(transpose(matrix));
   }
@@ -35,7 +35,7 @@ public class RotateImage {
             {4, 5, 6},
             {7, 8, 9}
     };
-    RotateImage ri = new RotateImage();
+    RotateImage_48 ri = new RotateImage_48();
     ri.rotate(matrix);
   }
 }

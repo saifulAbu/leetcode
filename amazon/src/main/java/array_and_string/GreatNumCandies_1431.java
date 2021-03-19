@@ -3,7 +3,7 @@ package array_and_string;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GreatestNumCandies {
+public class GreatNumCandies_1431 {
   public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
     List<Boolean> res = new ArrayList<>();
     int maxCandy = 0;

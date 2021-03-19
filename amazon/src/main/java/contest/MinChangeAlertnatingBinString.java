@@ -1,7 +1,5 @@
 package contest;
 
-import array_and_string.MinimumWindowSubstring;
-
 public class MinChangeAlertnatingBinString {
   public int minOperations(String s) {
     return Math.min(getFlips(s, 0), getFlips(s, 1));
