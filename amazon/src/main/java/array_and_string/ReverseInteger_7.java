@@ -1,4 +1,4 @@
-public class ReverseInteger_6 {
+public class ReverseInteger_7 {
     public int reverse(int x) {
         
     }
