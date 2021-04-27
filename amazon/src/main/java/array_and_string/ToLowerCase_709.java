@@ -2,12 +2,19 @@ package array_and_string;
 
 public class ToLowerCase_709 {
   public String toLowerCase(String str) {
-    System.out.println(isUpperCase('A'));
-    System.out.println(isUpperCase('Z'));
-    System.out.println(isUpperCase('a'));
-    System.out.println(isUpperCase('c'));
-    System.out.println(isUpperCase('1'));
-    return "";
+    char [] input = str.toCharArray();
+
+    for (int i = 0; i < input.length; i++) {
+      if (isUpperCase(input[i])) {
+        input[i] = convertLower(input[i]);
+      }
+    }
+
+    return new String(input);
+  }
+
+  private char convertLower(char c) {
+    return (char) ('a' + (c - 'A'));
   }
 
   private boolean isUpperCase(char c) {
