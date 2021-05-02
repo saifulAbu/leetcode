@@ -4,4 +4,5 @@ public class MinimumVisiting_1266 {
   public int minTimeToVisitAllPoints(int[][] points) {
 
   }
+  //no idea yet
 }
