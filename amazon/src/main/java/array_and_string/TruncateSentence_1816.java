@@ -10,7 +10,7 @@ public class TruncateSentence_1816 {
         spaceCount++;
       }
       if (spaceCount == k) {
-        break;;
+        break;
       }
     }
     return s.substring(0, i);
