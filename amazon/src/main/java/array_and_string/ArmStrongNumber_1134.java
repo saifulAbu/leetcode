@@ -18,3 +18,5 @@ public class ArmStrongNumber_1134 {
     return false;
   }
 }
+
+//Dummy
