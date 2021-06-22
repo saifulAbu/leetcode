@@ -6,3 +6,4 @@ public class LengthOfLastWord_58 {
   }
 }
 //dummy commit
+//dummy commit
