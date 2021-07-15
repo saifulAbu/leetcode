@@ -12,3 +12,4 @@ public class ConcatenationArray_1929 {
 }
 
 //dummy
+//dummy
