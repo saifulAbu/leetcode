@@ -18,3 +18,5 @@ public class SameTree_100 {
       return isSameTree(p.right, q.right);
   }
 }
+
+// dummy
