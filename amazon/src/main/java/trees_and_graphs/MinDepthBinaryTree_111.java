@@ -26,3 +26,5 @@ public class MinDepthBinaryTree_111 {
     return Math.min(left, right) + 1;
   }
 }
+
+// dummy
