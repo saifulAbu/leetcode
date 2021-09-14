@@ -43,3 +43,4 @@ p bst_from_preorder([8,5,1,7,10,12])
 # patience
 # help
 # ok
+# ok
