@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/amazon/src/main/java/linkedlist/ReverseNodesInKGroups.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon/src/main/java/dynamic_programing/KnapSack_01_recursive.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/src/main/java/dynamic_programing/KnapSack_01_recursive.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1mxHScA44H0KgX6RKq4pBZqG4jt" />
   <component name="ProjectViewState">
@@ -26,7 +33,6 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9aaab4b6-d26a-4507-8332-d311b867b9d7" name="Default Changelist" comment="" />
       <created>1610428322846</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
