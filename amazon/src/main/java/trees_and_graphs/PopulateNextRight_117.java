@@ -2,7 +2,7 @@ package trees_and_graphs;
 
 import java.util.LinkedList;
 
-public class PopulateNextRight_116 {
+public class PopulateNextRight_117 {
   public Node connect(Node root) {
     if(root == null) {
       return null;
