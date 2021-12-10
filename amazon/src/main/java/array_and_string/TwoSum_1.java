@@ -19,9 +19,10 @@ public class TwoSum_1 {
     for(int i = 0; i < nums.length; i++) {
       int num0 = nums[i];
       int num1 = target - num0;
-      if(map.containsKey(num1)) {
+      if(map.containsKey(num1) && map.get(num1) != i) {
         res[0] = i;
         res[1] = map.get(num1);
+        return res;
       }
     }
 
