@@ -1,4 +1,4 @@
-package array_and_string;
+package sorting_searching;
 
 public class MergeSortedArray_88 {
   public void merge(int[] a0, int m, int[] a1, int n) {
@@ -15,15 +15,3 @@ public class MergeSortedArray_88 {
     }
   }
 }
-// false
-//dummy commit for today
-// more dummy commit
-// more dummy commit
-// more dummy commit
-// more dummy commit
-// more dummy commit
-// dummy initial
-// just a thing on wheel
-// keep the wheel moving
-// hello
-// hello

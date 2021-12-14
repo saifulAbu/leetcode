@@ -16,8 +16,3 @@ public class ConvertSortedArray_108 {
     return r;
   }
 }
-
-
-//keep the wheel moving
-// keep the wheel moving
-// keep the wheel moving
