@@ -6,7 +6,6 @@ public class FindNumbersEvenDigit_1295 {
 
     for(int num : nums) {
       if((Math.floor(Math.log10(num)) + 1) % 2 ==  0) {
-        System.out.println("has even digits");
         res++;
       }
     }
