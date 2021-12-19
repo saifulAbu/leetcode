@@ -15,4 +15,8 @@ public class PascalTriangleII_119 {
     }
     return res;
   }
+
+  public static void main(String [] a) {
+
+  }
 }
