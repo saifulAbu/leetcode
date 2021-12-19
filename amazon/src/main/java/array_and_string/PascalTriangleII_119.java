@@ -17,6 +17,7 @@ public class PascalTriangleII_119 {
   }
 
   public static void main(String [] a) {
-
+    int b = 0;
+    int c;
   }
 }
