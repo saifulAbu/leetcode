@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f37c76f5-e3ef-4113-835a-4e77e22319c6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/src/main/java/array_and_string/RemoveElements_27.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/src/main/java/array_and_string/RemoveElements_27.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +40,13 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="561" y="258" width="670" height="676" key="search.everywhere.popup" timestamp="1638246846843">
+    <state x="568" y="338" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1639154512131">
       <screen x="0" y="25" width="1792" height="1002" />
     </state>
-    <state x="561" y="258" width="670" height="676" key="search.everywhere.popup/0.25.1792.1002@0.25.1792.1002" timestamp="1638246846843" />
+    <state x="568" y="338" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1792.1002@0.25.1792.1002" timestamp="1639154512131" />
+    <state x="561" y="258" width="670" height="676" key="search.everywhere.popup" timestamp="1639081371378">
+      <screen x="0" y="25" width="1792" height="1002" />
+    </state>
+    <state x="561" y="258" width="670" height="676" key="search.everywhere.popup/0.25.1792.1002@0.25.1792.1002" timestamp="1639081371378" />
   </component>
 </project>
