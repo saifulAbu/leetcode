@@ -1,6 +1,12 @@
 package linkedlist;
 
 public class FlattenMultiLevel_430 {
+  private  static class Node {
+    public int val;
+    public Node prev;
+    public Node next;
+    public Node child;
+  };
   public Node flatten(Node head) {
     if (head == null) {
       return null;
