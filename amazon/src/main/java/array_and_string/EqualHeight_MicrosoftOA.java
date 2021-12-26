@@ -23,3 +23,5 @@ public class EqualHeight_MicrosoftOA {
       System.out.println(new EqualHeight_MicrosoftOA().minSteps(testcase));
   }
 }
+//dummy to comver
+//dummy commt cover
