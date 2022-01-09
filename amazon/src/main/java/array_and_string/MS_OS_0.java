@@ -4,30 +4,33 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class MS_OS_0 {
-  public boolean solution(int[] A) {
-    // write your code in Java SE 8
-    if (A.length < 2) {
-      return false;
-    }
-    HashMap<Integer, Integer> freqMap = new HashMap<>();
-    for (int num : A) {
-      freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
-    }
 
-    for (int freq : freqMap.values()) {
-      //if any number occurs odd number of times, it's not possible to form a pair
-      if (freq % 2 != 0) {
-        return false;
+  public int[] solution(int N) {
+    // write your code in Java SE 8
+    int[] res = new int[N];
+    res[0] = Integer.MIN_VALUE;
+    return res;
+  }
+
+  int find_min(int[] A) {
+    int ans = 0;
+    for (int i = 1; i < A.length; i++) {
+      if (ans > A[i]) {
+        ans = A[i];
       }
     }
-
-    return true;
+    return ans;
   }
   public static void main(String args []) {
       int[] a = {1};
       MS_OS_0 sol = new MS_OS_0();
-      System.out.println(sol.solution(a));
-      System.out.println(Integer.MAX_VALUE);
+      System.out.println(sol.find_min(sol.solution(1)));
+    System.out.println(sol.find_min(sol.solution(2)));
+    System.out.println(sol.find_min(sol.solution(3)));
+    System.out.println(sol.find_min(sol.solution(4)));
+    System.out.println(sol.find_min(sol.solution(1000)));
+
+      //System.out.println(Integer.MAX_VALUE);
 
   }
 }
