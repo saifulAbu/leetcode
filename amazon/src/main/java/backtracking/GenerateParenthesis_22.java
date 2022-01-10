@@ -3,23 +3,30 @@ package backtracking;
 import java.util.*;
 
 public class GenerateParenthesis_22 {
-  public List<String> generateParenthesis(int n) {
-    List<String> res = new LinkedList<String>(helper(n));
-    Collections.sort(res);
+
+  static public List<String> generateParenthesis(int n) {
+    List<String> res = new LinkedList<String>();
+    helper(res, new char[2 * n], 0, 0, 0, n);
     return res;
   }
 
-  private Set<String> helper(int n) {
-    if (n == 0) {
-      return new HashSet<String>((Arrays.asList("")));
+  static private void helper(List<String> res, char [] builder, int i, int openCount, int closeCount,  int n) {
+    if (i == 2 * n) {
+       res.add(new String(builder));
+       return;
     }
-    Set<String> prev = helper(n - 1);
-    Set<String> cur = new HashSet<String>();
-    for (String p : prev) {
-      cur.add("()" + p);
-      cur.add(p + "()");
-      cur.add("(" + p + ")");
+    if (openCount < n) {
+      builder[i] = '(';
+      helper(res, builder, i + 1, openCount + 1, closeCount, n);
     }
-    return cur;
+
+    if (openCount > closeCount) {
+      builder[i] = ')';
+      helper(res, builder, i + 1, openCount, closeCount+1, n);
+    }
+  }
+
+  public static void main(String args[]) {
+    generateParenthesis(2);
   }
 }
