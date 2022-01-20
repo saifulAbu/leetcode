@@ -1,4 +1,6 @@
-package trees_and_graphs;
+package trees;
+
+import trees_and_graphs.TreeNode;
 
 public class BalancedBinaryTree_110 {
   public boolean isBalanced(TreeNode root) {
