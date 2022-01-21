@@ -8,7 +8,7 @@ public class RevWordsInString_151 {
   static public String reverseWords(String s) {
     List<String> list = Arrays.asList(s.split("\\s+"));
     Collections.reverse(list);
-    return String.join(" ", list);
+    return String.join(" ", list).trim();
   }
 
   public static void main(String [] args) {
