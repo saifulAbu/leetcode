@@ -41,12 +41,3 @@ public class MinDepthBinaryTree_111 {
     return Math.min(left, right) + 1;
   }
 }
-
-// dummy
-// keep the wheel moving
-// keep the wheel moving
-// keep the wheel moving
-// keep the wheel moving
-// keep the wheel moving
-// keep it up
-// tomorrow never dies
