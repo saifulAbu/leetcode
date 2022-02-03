@@ -17,6 +17,9 @@ public class ExcelSheet_168 {
       int rem = columnNumber % 26;
       sb.append(map.get(rem));
       columnNumber /= 26;
+      if (rem == 0) {
+        columnNumber--;
+      }
     }
     return sb.reverse().toString();
   }
