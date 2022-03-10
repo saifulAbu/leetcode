@@ -5,7 +5,7 @@ class DisjoinSet {
   int size;
   int numCompoonents;
 
-  public DisjoinSet(int size) {
+  DisjoinSet(int size) {
     this.size = size;
     parent = new int[size];
     numCompoonents = size;
