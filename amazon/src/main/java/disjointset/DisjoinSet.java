@@ -1,6 +1,6 @@
 package disjointset;
 
-class DisjoinSet {
+public class DisjoinSet {
   int [] rank, parent;
   int size;
   int numCompoonents;
