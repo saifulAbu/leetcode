@@ -5,6 +5,33 @@ import java.util.*;
 public class CheapestFlight_787 {
   public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
     HashMap<Integer, List<int[]>> graph = buildAdjList(flights);
+    int[] curCost = new int[n];
+    int[] nextCost = new int[n];
+    Arrays.fill(curCost, Integer.MAX_VALUE);
+    Arrays.fill(nextCost, Integer.MAX_VALUE);
+    curCost[src] = nextCost[src] = 0;
+    for (int i = 0; i < k + 1; i++) {
+      for (int curSrc = 0; curSrc < n; curSrc++) {
+        if (!graph.containsKey(curSrc) || curCost[curSrc] == Integer.MAX_VALUE) {
+          continue;
+        }
+        for (int[] nEdge : graph.get(curSrc)) {
+          int neighbor = nEdge[0];
+          int curCostToNeighbor = nEdge[1] + curCost[curSrc];
+          if (curCostToNeighbor < nextCost[neighbor]) {
+            nextCost[neighbor] = curCostToNeighbor;
+          }
+        }
+      }
+      int [] t = curCost;
+      curCost = nextCost;
+      nextCost = t;
+    }
+    return curCost[dst] == Integer.MAX_VALUE? -1 : curCost[dst];
+  }
+
+  public int findCheapestPrice1(int n, int[][] flights, int src, int dst, int k) {
+    HashMap<Integer, List<int[]>> graph = buildAdjList(flights);
     int[] cost = new int[n];
     Arrays.fill(cost, Integer.MAX_VALUE);
     Queue<Integer> q = new ArrayDeque<>();
