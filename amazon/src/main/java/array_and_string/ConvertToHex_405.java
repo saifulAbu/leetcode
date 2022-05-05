@@ -2,35 +2,38 @@ package array_and_string;
 
 public class ConvertToHex_405 {
   public String toHex(int num) {
-    if(num < 0) {
-      num = twosComp(num);
+    if(num == 0) {
+      return "0";
     }
+    long longNum = num;
+    if(num < 0) {
+      longNum = twosComp(num);
+    }
+    System.out.println(longNum);
     String res = "";
-    while(num > 0) {
-      res = getDigit(num % 16) + res;
-      num = num / 16;
+    while(longNum > 0) {
+      res = getDigit(longNum % 16) + res;
+      longNum /= 16;
     }
     return res;
   }
 
-  private int twosComp(int num) {
-    return Integer.MAX_VALUE - Math.abs(num) + 1;
+  private long twosComp(int num) {
+    return (0xffffffffL + 1) - Math.abs((long)num) ;
   }
 
-  private char getDigit(int num) {
+  private char getDigit(long num) {
     if(num < 10) {
       return (char) (num + '0');
-    } else if (num == 10) {
+    } else if (num == 10L) {
       return 'a';
-    } else if (num == 11) {
+    } else if (num == 11L) {
       return 'b';
-    } else if (num == 12) {
+    } else if (num == 12L) {
       return 'c';
-    } else if (num == 13) {
+    } else if (num == 13L) {
       return 'd';
-    } else if (num == 14) {
-      return 'd';
-    } else if (num == 15) {
+    } else if (num == 14L) {
       return 'e';
     } else {
       return 'f';
