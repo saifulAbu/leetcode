@@ -29,6 +29,10 @@ public class PathWithMinEffort_1631 {
     q.offer(0);
     while(!q.isEmpty()) {
       int curId = q.poll();
+      System.out.println("cur id " + curId);
+      if(curId == 5) {
+        System.out.println("cur id 5");
+      }
       getRC(curId);
       int curR = rc[0];
       int curC = rc[1];
@@ -59,7 +63,7 @@ public class PathWithMinEffort_1631 {
   }
 
   int getId(int r, int c) {
-    return r * R + c;
+    return r * C + c;
   }
 
   void getRC(int id) {
@@ -77,6 +81,12 @@ public class PathWithMinEffort_1631 {
 
   boolean isInQ(int id) {
     return inQ.contains(id);
+  }
+
+  public static void main(String args[]) {
+    int [][] trail = {{5,5,9,2}, {9,7,5,6}};
+    PathWithMinEffort_1631 ptw = new PathWithMinEffort_1631();
+    System.out.println(ptw.minimumEffortPath(trail));
   }
 
 }
