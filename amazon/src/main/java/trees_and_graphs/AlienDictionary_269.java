@@ -3,14 +3,11 @@ package trees_and_graphs;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class AlienDictionary_269 {
-  public String alienOrder(String[] words) {
-    return "";
+  public static String alienOrder(String[] words) {
+    return toString(topologicalSort(words));
   }
 
   private static int findMisMatchedIndex(String str0, String str1) {
@@ -32,6 +29,9 @@ public class AlienDictionary_269 {
       String w1 = words[i];
       int k = findMisMatchedIndex(w0, w1);
       if(k == -1) {
+        if(w0.length() > w1.length()) {
+          return null;
+        }
         continue;
       }
       char pred = w0.charAt(k);
@@ -57,17 +57,58 @@ public class AlienDictionary_269 {
     return res;
   }
 
-  private static HashMap<Character, Integer> getIndegree(HashMap<Character, Set<Character>> map) {
+  private static HashMap<Character, Integer> getIndegree(HashMap<Character, Set<Character>> graph) {
     HashMap<Character, Integer> indegree = new HashMap<>();
-    for(char ch : map.keySet()) {
+    for(char ch : graph.keySet()) {
       indegree.put(ch, 0);
     }
-    for(Set<Character> edges : map.values()) {
+    for(Set<Character> edges : graph.values()) {
       for(char ch : edges) {
         indegree.put(ch, indegree.get(ch) + 1);
       }
     }
     return indegree;
+  }
+
+  private static List<Character> topologicalSort(String [] words) {
+    HashMap<Character, Set<Character>> graph = getGraph(words);
+    if(graph == null) {
+      return null;
+    }
+    HashMap<Character, Integer> indegree = getIndegree(graph);
+    Queue<Character> q = new ArrayDeque<>();
+    for(char ch : indegree.keySet()) {
+      if(indegree.get(ch) == 0) {
+        q.offer(ch);
+      }
+    }
+    List<Character> res = new ArrayList<>();
+    while(!q.isEmpty()) {
+      char cur = q.poll();
+      res.add(cur);
+      for(char n : graph.get(cur)) {
+        indegree.put(n, indegree.get(n) - 1);
+        if(indegree.get(n) == 0) {
+          q.offer(n);
+        }
+      }
+    }
+    if(res.size() == indegree.size()) {
+      return res;
+    } else {
+      return null;
+    }
+  }
+
+  private static String toString(List<Character> list) {
+    String res = "";
+    if(list == null) {
+      return "";
+    }
+    for(char ch : list) {
+      res = res + ch;
+    }
+    return res;
   }
 
   public static void main(String [] args) {
@@ -76,12 +117,16 @@ public class AlienDictionary_269 {
     assertEquals(findMisMatchedIndex("abc", "abf"), 2);
     assertEquals(findMisMatchedIndex("abc", "abcdef"), -1);
 
-    String [] words = {"wrt","wrf","er","ett","rftt"};
+    //String [] words = {"wrt","wrf","er","ett","rftt"};
+    String [] words = {"z","x", "z"};
+    //String [] words = {"wrt","wrf","er","ett","rftt"};
+
 
     char [] res = getAlphabet(words);
     HashMap<Character, Set<Character>> graph = getGraph(words);
     HashMap<Character, Integer> indegree = getIndegree(graph);
-    System.out.println("hola");
+    System.out.println(alienOrder(words));
+    System.out.println();
   }
 
 }
