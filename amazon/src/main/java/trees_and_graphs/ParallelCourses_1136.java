@@ -6,10 +6,18 @@ import java.util.Queue;
 
 public class ParallelCourses_1136 {
   public int minimumSemesters(int n, int[][] relations) {
-    return topologicalSort(n, relations);
+    return topologicalSort(n, transformZeroBased(relations));
   }
 
-  private int topologicalSort(int n, int[][] relations) {
+  private int[][] transformZeroBased(int[][] relations) {
+    for(int [] edge : relations) {
+      edge[0]--;
+      edge[1]--;
+    }
+    return relations;
+  }
+
+  public int topologicalSort(int n, int[][] relations) {
     List<Integer>[] graph = buildGraph(n, relations);
     int [] indegree = buildIndegree(graph);
     int numprocessed = 0;
@@ -36,7 +44,7 @@ public class ParallelCourses_1136 {
     return -1;
   }
 
-  private void populateQueue(Queue<Integer> q, int[] indegree) {
+  public void populateQueue(Queue<Integer> q, int[] indegree) {
     for(int i = 0; i < indegree.length; i++) {
       if(indegree[i] == 0) {
         q.add(i);
@@ -44,7 +52,7 @@ public class ParallelCourses_1136 {
     }
   }
 
-  private List<Integer>[] buildGraph(int n, int[][] relations) {
+  public List<Integer>[] buildGraph(int n, int[][] relations) {
     List<Integer>[] graph = new List[n];
     for(int i = 0; i < n; i++) {
       graph[i] = new LinkedList<>();
@@ -57,7 +65,7 @@ public class ParallelCourses_1136 {
     return graph;
   }
 
-  private int[] buildIndegree(List<Integer>[] graph) {
+  public int[] buildIndegree(List<Integer>[] graph) {
     int n = graph.length;
     int[] inDegree = new int[n];
     for(int v0 = 0; v0 < n; v0++) {
@@ -66,5 +74,14 @@ public class ParallelCourses_1136 {
       }
     }
     return inDegree;
+  }
+
+  public static void main(String args[]) {
+    ParallelCourses_1136 pr = new ParallelCourses_1136();
+    int n = 3;
+    int[][] edges = {{1, 2}, {2, 3}};
+    //List<Integer>[] graph = pr.buildGraph(n, edges);
+    int l = pr.minimumSemesters(n, edges);
+    System.out.println("hello, world!");
   }
 }
