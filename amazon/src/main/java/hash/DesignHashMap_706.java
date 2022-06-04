@@ -95,3 +95,5 @@ class MyHashMap {
  * int param_2 = obj.get(key);
  * obj.remove(key);
  */
+
+// an opening for a new day!
