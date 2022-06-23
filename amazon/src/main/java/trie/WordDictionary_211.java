@@ -22,7 +22,31 @@ public class WordDictionary_211 {
   }
 
   public boolean search(String word) {
-    return true;
+    return searchH(root, word, 0);
+  }
+
+  private boolean searchH(TrieNode root, String word, int i) {
+    if(i >= word.length()) {
+      if(root.isWord) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    char ch = word.charAt(i);
+    if(ch == '.') {
+      for(char w : root.map.keySet()) {
+        if(searchH(root.map.get(w), word, i+1)) {
+          return true;
+        }
+      }
+      return false;
+    } else {
+        if(root.map.get(ch) == null) {
+          return false;
+        }
+        return searchH(root.map.get(ch), word, i+1);
+    }
   }
 
   public static void main(String args[]) {
@@ -33,6 +57,8 @@ public class WordDictionary_211 {
     wd.addWord("a");
     //wd.addWord("aaa");
     //
+    boolean b = wd.search("a.a");
+    b = wd.search("ata");
     System.out.println("hola, mundo!");
   }
 }
