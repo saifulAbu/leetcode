@@ -5,7 +5,106 @@ import java.util.HashSet;
 public class ValidSudoku_36 {
   char[][] board;
   int LEN = 9;
+
+  private int getBoard(int r, int c) {
+    char cur = board[r][c];
+    if(cur == '.') {
+      return 0;
+    }
+    return cur - '0';
+  }
+
+  private boolean validateRow(int r) {
+    HashSet<Integer> set = new HashSet<>();
+    for(int c = 0; c < LEN; c++) {
+      int curVal = getBoard(r, c);
+      if(curVal == 0) {
+        continue;
+      }
+      if(set.contains(curVal)) {
+        return false;
+      }
+      set.add(curVal);
+    }
+    return true;
+  }
+
+  private boolean validateRows() {
+    for(int r = 0; r < LEN; r++) {
+      if(validateRow(r) == false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private boolean validateColumn(int c) {
+    HashSet<Integer> set = new HashSet<>();
+    for(int r = 0; r < LEN; r++) {
+      int curVal = getBoard(r, c);
+      if(curVal == 0) {
+        continue;
+      }
+      if(set.contains(curVal)) {
+        return false;
+      }
+      set.add(curVal);
+    }
+    return true;
+  }
+
+  private boolean validateColumns() {
+    for(int c = 0; c < LEN; c++) {
+      if(validateColumn(c) == false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private boolean validateBox(int rOffSet, int cOffSet) {
+    //System.out.println("rOffSet: " + rOffSet + " , cOffSet: " + cOffSet);
+    HashSet<Integer> set = new HashSet<>();
+    for(int rBegin = 0; rBegin < 3; rBegin++) {
+      for(int cBegin = 0; cBegin < 3; cBegin++) {
+        int r = rBegin + rOffSet;
+        int c = cBegin + cOffSet;
+
+        System.out.print("(" + r + "," + c + ")");
+
+        int curVal = getBoard(r, c);
+        if(curVal == 0) {
+          continue;
+        }
+        if(set.contains(curVal)) {
+          return false;
+        }
+        set.add(curVal);
+      }
+      System.out.println();
+    }
+    return true;
+  }
+
+  private boolean validateBoxes() {
+    for(int rOffset = 0; rOffset < 9; rOffset += 3) {
+      for(int cOffset = 0; cOffset < 9; cOffset += 3) {
+        System.out.println("rOffSet: " + rOffset + " , cOffSet: " + cOffset);
+        if(validateBox(rOffset, cOffset) == false) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   public boolean isValidSudoku(char[][] board) {
+    this.board = board;
+    return validateRows() && validateColumns() && validateBoxes();
+  }
+
+  /******/
+  public boolean isValidSudoku0(char[][] board) {
     this.board = board;
     //check rows
     for (int r = 0; r < LEN; r++) {

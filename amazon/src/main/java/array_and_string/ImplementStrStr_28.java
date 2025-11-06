@@ -1,7 +1,77 @@
 package array_and_string;
 
 public class ImplementStrStr_28 {
+
   public int strStr(String haystack, String needle) {
+    if(needle.length() == 0) {
+      return 0;
+    }
+
+    if(haystack.length() == 0) {
+      return -1;
+    }
+
+    if(haystack.length() < needle.length()) {
+      return -1;
+    }
+
+    int [] kmp = generateKMP(needle);
+    int i = 0;
+    int matchedSubStr = 0;
+
+    while(i <= (haystack.length() - needle.length())) {
+      if(haystack.charAt(i) == needle.charAt(matchedSubStr)) {
+        i++;
+        matchedSubStr++;
+      } else if (matchedSubStr > 0) {
+        matchedSubStr = kmp[matchedSubStr-1];
+      } else {
+        i++;
+      }
+
+      if(matchedSubStr == needle.length()) {
+        return (i - needle.length());
+      }
+    }
+
+    return -1;
+  }
+
+  private int[] generateKMP(String needle) {
+    int [] kmp = new int[needle.length()];
+    int i = 1;
+    int matchedSubStrLen = 0;
+
+    while(i < needle.length()) {
+      if(needle.charAt(i) == needle.charAt(matchedSubStrLen)) {
+        matchedSubStrLen++;
+        kmp[i] = matchedSubStrLen;
+        i++;
+      } else if (matchedSubStrLen > 0) {
+        matchedSubStrLen = kmp[matchedSubStrLen - 1];
+      } else {
+        kmp[i] = 0;
+        i++;
+      }
+    }
+    return kmp;
+  }
+
+  public int strStr1(String haystack, String needle) {
+    for(int i = 0; i <= (haystack.length() - needle.length()); i++) {
+      boolean found = true;
+      for(int j = 0; j < needle.length(); j++) {
+        if(needle.charAt(j) != haystack.charAt(i+j)) {
+          found = false;
+          break;
+        }
+      }
+      if(found == true) {return i;}
+    }
+    return -1;
+  }
+
+  public int strStr0(String haystack, String needle) {
     if(needle.equals("")) {
       return 0;
     }
@@ -12,7 +82,6 @@ public class ImplementStrStr_28 {
       return -1;
     }
     return kmpSearch(haystack, needle);
-
   }
 
   private int kmpSearch(String h, String n) {

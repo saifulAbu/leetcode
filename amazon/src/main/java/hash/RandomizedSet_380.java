@@ -35,6 +35,7 @@ public class RandomizedSet_380 {
       i++;
     }
     return v;
+
   }
 
   public static int randInt(int min, int max) {

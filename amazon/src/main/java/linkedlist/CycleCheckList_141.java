@@ -2,6 +2,30 @@ package linkedlist;
 
 public class CycleCheckList_141 {
   public boolean hasCycle(ListNode head) {
+    if(head == null) {
+      return false;
+    }
+
+    ListNode slowtPtr = head;
+    ListNode fastPtr = slowtPtr.next;
+
+    while(slowtPtr != null && fastPtr != null) {
+      if(slowtPtr == fastPtr) {
+        return true;
+      }
+      slowtPtr = slowtPtr.next;
+
+      //fastPrt moves 2 leap forward
+      fastPtr = fastPtr.next;
+      if(fastPtr == null) {
+        break;
+      }
+      fastPtr = fastPtr.next;
+    }
+    return false;
+  }
+
+  public boolean hasCycle0(ListNode head) {
     ListNode slowPointer = head;
     ListNode fastPointer = head;
 

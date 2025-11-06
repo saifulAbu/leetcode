@@ -1,7 +1,53 @@
 package array_and_string;
 
 public class DiagonalTraverse_498 {
+  int R, C;
+
   public int[] findDiagonalOrder(int[][] mat) {
+    R = mat.length;
+    C = mat[0].length;
+
+    int size = R * C;
+    int [] res = new int[size];
+    int dir = 1;
+    int r = 0, c = 0;
+
+    for(int i = 0; i < size; i++) {
+      res[i] = mat[r][c];
+      if(dir == 1) { // upward direction
+        if(isValid(r - 1, c + 1)) { // diag-up
+          r = r - 1;
+          c = c + 1;
+          continue;
+        } else if (isValid(r, c + 1)) { // right
+          c = c + 1;
+        } else { //down
+          r = r + 1;
+        }
+      } else {
+        if(isValid(r + 1, c - 1)) { // diag down
+          r = r + 1;
+          c = c - 1;
+          continue;
+        } else if(isValid(r + 1, c)) { // down
+          r = r + 1;
+        } else { // right
+          c = c + 1;
+        }
+      }
+
+      dir *= -1;
+    }
+
+    return res;
+  }
+
+  private boolean isValid(int r, int c) {
+    if (r < 0 || r >= R || c < 0 || c >= C) return false;
+    return true;
+  }
+
+  public int[] findDiagonalOrder0(int[][] mat) {
     int m = mat.length;
     int n = mat[0].length;
 

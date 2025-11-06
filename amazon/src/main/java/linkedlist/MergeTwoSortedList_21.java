@@ -1,7 +1,34 @@
 package linkedlist;
 
 public class MergeTwoSortedList_21 {
+
   public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    ListNode head = new ListNode(Integer.MIN_VALUE), tail = head;
+
+    while(l1 != null && l2 != null) {
+      ListNode cur;
+      if(l1.val <= l2.val) {
+        cur = l1;
+        l1 = l1.next;
+      } else {
+        cur = l2;
+        l2 = l2.next;
+      }
+      tail.next = cur;
+      tail = cur;
+      tail.next = null;
+    }
+
+    ListNode remaining = l1;
+    if(remaining == null) {
+      remaining = l2;
+    }
+    tail.next = remaining;
+
+    return head.next;
+  }
+
+  public ListNode mergeTwoLists0(ListNode l1, ListNode l2) {
     ListNode head = new ListNode(Integer.MIN_VALUE);
     ListNode tail = head;
 

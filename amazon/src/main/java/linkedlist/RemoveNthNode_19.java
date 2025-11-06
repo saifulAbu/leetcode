@@ -1,6 +1,33 @@
 package linkedlist;
 
+/*
+* for linked list problems, it is beneficial to create a dummyHead = new ListNode(0, head);
+* saves special cases for null and makes solution easier
+* */
+
 public class RemoveNthNode_19 {
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummyHead = new ListNode(Integer.MIN_VALUE, head);
+
+    //skip forward n steps
+    ListNode front = head;
+    for(int i = 0; i < n; i++) {
+      front = front.next;
+    }
+
+    // find the targeted parent node to remove target node
+    ListNode targetParent = dummyHead;
+    while(front != null) {
+      front = front.next;
+      targetParent = targetParent.next;
+    }
+
+    //remove the node
+    ListNode deleteNode = targetParent.next;
+    targetParent.next = deleteNode.next;
+    return dummyHead.next;
+  }
+
   public ListNode removeNthFromEnd1(ListNode head, int n) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
@@ -21,7 +48,7 @@ public class RemoveNthNode_19 {
     return dummy.next;
   }
 
-  public ListNode removeNthFromEnd(ListNode head, int n) {
+  public ListNode removeNthFromEnd0(ListNode head, int n) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
 

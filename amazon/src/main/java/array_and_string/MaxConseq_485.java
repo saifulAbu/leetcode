@@ -7,6 +7,21 @@ public class MaxConseq_485 {
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] == 1) {
         curConseq++;
+      } else {
+        max = (max > curConseq ? max : curConseq);
+        curConseq = 0;
+      }
+    }
+    max = (max > curConseq ? max : curConseq);
+    return max;
+  }
+
+  public int findMaxConsecutiveOnes0(int[] nums) {
+    int max = Integer.MIN_VALUE;
+    int curConseq = 0;
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] == 1) {
+        curConseq++;
         if (max < curConseq) {
           max = curConseq;
         }
@@ -16,4 +31,6 @@ public class MaxConseq_485 {
     }
     return max;
   }
+
+
 }

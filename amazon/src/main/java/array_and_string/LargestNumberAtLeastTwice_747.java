@@ -2,6 +2,27 @@ package array_and_string;
 
 public class LargestNumberAtLeastTwice_747 {
   public int dominantIndex(int[] nums) {
+    int maxIndex = -1;
+    int firstMax = Integer.MIN_VALUE;
+    int secondMax = Integer.MIN_VALUE;
+
+    // find the first and second max
+    for(int i = 0; i < nums.length; i++) {
+      int cur = nums[i];
+      if(cur > firstMax) {
+        secondMax = firstMax;
+        firstMax = cur;
+        maxIndex = i;
+
+      } else if (cur > secondMax) {
+        secondMax = cur;
+      }
+    }
+
+    return (firstMax >= secondMax * 2) ? maxIndex : -1;
+  }
+
+  public int dominantIndex0(int[] nums) {
     int mi = -1;
     int max = Integer.MIN_VALUE;
     for (int i = 0; i < nums.length; i++) {

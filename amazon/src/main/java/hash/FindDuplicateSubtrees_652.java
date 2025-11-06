@@ -19,9 +19,40 @@ public class FindDuplicateSubtrees_652 {
       }
   }
 
+  HashMap<String, List<TreeNode>> rootMap = new HashMap<>();
+  public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+    process(root);
+    return extractDups();
+  }
+
+  private String process(TreeNode root) {
+    if(root == null) {
+      return "n";
+    }
+    String key = "m:" + root.val + "l:" + process(root.left) + "r:" + process(root.right);
+    if(!rootMap.containsKey(key)) {
+      rootMap.put(key, new LinkedList<>());
+    }
+    List<TreeNode> roots = rootMap.get(key);
+    roots.add(root);
+    return key;
+  }
+
+  private List<TreeNode> extractDups() {
+    List<TreeNode> dups = new LinkedList<>();
+    for(List<TreeNode> value : rootMap.values()) {
+      if(value.size() > 1) {
+        dups.add(value.get(0));
+      }
+    }
+    return dups;
+  }
+
+  /******************************/
+
   HashMap<String, List<TreeNode>> map = new HashMap<>();
 
-  public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+  public List<TreeNode> findDuplicateSubtrees0(TreeNode root) {
     populateHashMap(root);
     return filterList();
   }

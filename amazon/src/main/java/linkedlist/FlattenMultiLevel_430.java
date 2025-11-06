@@ -7,7 +7,49 @@ public class FlattenMultiLevel_430 {
     public Node next;
     public Node child;
   };
+
   public Node flatten(Node head) {
+    if(head == null) {
+      return head;
+    }
+    getFlattenedNodeTail(head);
+    return head;
+  }
+
+  // returns tail of the flattened list
+  // h is guaranteed to be not null
+  private Node getFlattenedNodeTail(Node h) {
+    Node tail = h;
+
+    while(h != null) {
+      Node cur = h, childHead = cur.child;
+      h = h.next;
+
+      if(childHead != null) {
+        Node childTail = getFlattenedNodeTail(childHead);
+        cur.next = childHead;
+        childHead.prev = cur;
+        cur.child = null;
+        childTail.next = h;
+
+        if(h != null) {
+          h.prev = childTail;
+        } else {
+          tail = childTail;
+          break;
+        }
+      } else {
+        if(h == null) {
+          tail = cur;
+          break;
+        }
+      }
+    }
+
+    return tail;
+  }
+
+  public Node flatten0(Node head) {
     if (head == null) {
       return null;
     }
