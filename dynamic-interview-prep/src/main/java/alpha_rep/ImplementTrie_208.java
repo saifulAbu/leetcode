@@ -1,4 +1,4 @@
-package leetcode;
+package alpha_rep;
 
 import java.util.HashMap;
 
