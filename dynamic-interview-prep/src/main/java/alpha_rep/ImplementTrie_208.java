@@ -3,6 +3,29 @@ package alpha_rep;
 import java.util.HashMap;
 
 public class ImplementTrie_208 {
+
+  /*
+   * TrieNode contract
+   *    contains(ch)
+   *    put(ch, trieNode)
+   *    get(ch) => returns trieNode
+   *    setIsWord()
+   *
+   * Trie contract
+   *    insert(str)
+   *    search(str)
+   *    startsWith(str)
+   *
+   * privates in Trie
+   *    root = new TrieNode()
+   *
+   *    // this will be used from search and startsWith methods
+   *    traverseWord(str) => TrieNode
+   *
+   *
+   * */
+
+  /*
   class TrieNode {
    HashMap<Character, TrieNode> nextLevel = new HashMap<>();
    boolean isWord = false;
@@ -61,6 +84,65 @@ public class ImplementTrie_208 {
   public boolean startsWith(String prefix) {
     TrieNode endNode = traverseWord(prefix);
     return endNode != null;
+  }
+   */
+
+  class TrieNode {
+    HashMap<Character, TrieNode> node = new HashMap<>();
+    boolean isWord = false;
+
+    boolean contains(Character ch) {
+      return node.containsKey(ch);
+    }
+
+    void put(Character ch, TrieNode nextNode) {
+      node.put(ch, nextNode);
+    }
+
+    TrieNode get(Character ch) {
+      return node.get(ch);
+    }
+
+    void setWord() {
+      isWord = true;
+    }
+
+    boolean isWord() {
+      return isWord;
+    }
+  }
+
+  TrieNode root = new TrieNode();
+
+  public void insert(String word) {
+    TrieNode curRoot = root;
+    for(Character ch : word.toCharArray()) {
+      if(!curRoot.contains(ch)) {
+        curRoot.put(ch, new TrieNode());
+      }
+      curRoot = curRoot.get(ch);
+    }
+    curRoot.setWord();
+  }
+
+  public boolean search(String word) {
+    TrieNode bottomNode = traverseWord(word);
+    return (bottomNode != null) && bottomNode.isWord();
+  }
+
+  public boolean startsWith(String prefix) {
+    return (traverseWord(prefix) != null);
+  }
+
+  private TrieNode traverseWord(String word) {
+    TrieNode curRoot = root;
+    for(Character ch : word.toCharArray()) {
+      curRoot = curRoot.get(ch);
+      if(curRoot == null) {
+        return null;
+      }
+    }
+    return curRoot;
   }
 }
 
