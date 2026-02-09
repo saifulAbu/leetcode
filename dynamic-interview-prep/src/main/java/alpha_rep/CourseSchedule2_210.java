@@ -1,12 +1,67 @@
-package leetcode;
+package alpha_rep;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class CourseSchedule2_210 {
-  static public int[] findOrder(int numCourses, int[][] prerequisites) {
+
+  /*
+  * classic topological sort problem
+  * we are given a list of edges
+  *
+  * implement the following
+  * buildAdjGraph
+  * getInDegree
+  * runTopologicalSort
+  * */
+
+  int[] findOrder(int numCourses, int[][] prerequisites) {
+    //build graph and in degree
+    List<Integer>[] graph = new List[numCourses];
+    int[] inDegree = new int[numCourses];
+
+    for(int i = 0; i < numCourses; i++) {
+      graph[i] = new LinkedList<>();
+    }
+
+    for(int[] edge : prerequisites) {
+      int dst = edge[0], src = edge[1];
+      graph[src].add(dst);
+      inDegree[dst]++;
+    }
+
+    Queue<Integer> queue = new LinkedList<>();
+    for(int i = 0; i < numCourses; i++) {
+      if(inDegree[i] == 0) {
+        queue.offer(i);
+      }
+    }
+
+    int[] courseOrder = new int[numCourses];
+    int orderedCourseCount = 0;
+
+    while(!queue.isEmpty()) {
+      int curCourse = queue.poll();
+      // exceeding course count, one course that has been processed is coming again, might be a cycle
+      if(orderedCourseCount == numCourses) {
+        return new int[0];
+      }
+      courseOrder[orderedCourseCount++] = curCourse;
+      for(int dst : graph[curCourse]) {
+        inDegree[dst]--;
+        if(inDegree[dst] == 0) {
+          queue.add(dst);
+        }
+      }
+    }
+
+    if(orderedCourseCount == numCourses) {
+      return courseOrder;
+    } else {
+      return new int[0];
+    }
+  }
+
+  static public int[] findOrder0(int numCourses, int[][] prerequisites) {
     List<Integer>[] graph = getAdjList(numCourses, prerequisites);
     int[] indegs = getIndegree(graph);
     Queue<Integer> q = new ArrayDeque<>();

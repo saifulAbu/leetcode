@@ -1,10 +1,120 @@
-package leetcode;
+package alpha_rep;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
 class NumberOfIslands_200 {
+
+  class DisjointSet {
+    int s[];
+    int numSets;
+    DisjointSet(int n) {
+      numSets = 0;
+      s = new int[n];
+      for(int i = 0; i < n; i++) {
+        s[i] = -2; //-2 represents water
+      }
+    }
+
+    void markSet(int a) {
+      numSets++;
+      s[a] = -1; // -1 represents soil
+    }
+    void union(int a, int b) {
+      int ra = find(a), rb = find(b);
+      if(ra == rb) {
+        return;
+      }
+      s[rb] = ra;
+      numSets--;
+    }
+
+    int find(int a) {
+      if(s[a] == -1) {
+        return a;
+      }
+      return s[a] = find(s[a]);
+    }
+
+    int getNumSets() {
+      return numSets;
+    }
+  }
+
+  int getId(int r, int c, int C) {
+    return r * C + c;
+  }
+
+  boolean isValid(int r, int c, int R, int C) {
+    return r >= 0 && r < R && c >= 0 && c < C;
+  }
+
+  public int numIslands(char[][] grid) {
+    /*
+    * will use a modified disjoint set forest to solve this problem.
+    * initiallay we will mark all s[i] as -2 to mark as water
+    * then we will mark earth by
+    * for(r = 0; r< R; r++)
+    *  for(c = 0; c < C; c++)
+    *     disjointSet.markEarth(getId(r, c))
+    *
+    * for(r = 0; r < R; r++)
+    *   for(c = 0; c < C; c++)
+    *     if(grid[r][c] == 0)
+    *       continue;
+    *     //check if up cell has a 1
+    *     if(isValid(r-1, c) && grid[r-1][c] == 1)
+    *       disjointSet.union(getId(r, c), getId(r-1, c))
+    *    //check left cell
+    *     if(isValid(r, c-1) && grid[r][c-1] == 1)
+    *       disjointSet.union(getId(r, c), getId(r, c-1))
+    *   end for
+    * end for
+    *
+    * return disJointSet.numSets()
+    *
+    * getId(r, c, R)
+    *   return r * R + c;
+    *
+    * isValid(r, c, R, C)
+    *   return r >= 0 && r < R && c >= 0 && c < C;
+    *
+    * */
+    int R = grid.length, C = grid[0].length;
+    char WATER = '0', LAND = '1';
+
+    DisjointSet disjointSet = new DisjointSet(R * C);
+
+    for(int r = 0; r < R; r++) {
+      for(int c = 0; c < C; c++) {
+        if(grid[r][c] == LAND) {
+          disjointSet.markSet(getId(r, c, C));
+        }
+      }
+    }
+
+    for(int r = 0; r < R; r++) {
+      for(int c = 0; c < C; c++) {
+        if(grid[r][c] == WATER) {
+          continue;
+        }
+
+        //check if up cell has a 1
+        if(isValid(r-1, c, R, C) && grid[r-1][c] == LAND) {
+           disjointSet.union(getId(r, c, C), getId(r-1, c, C));
+        }
+        //check left cell
+        if(isValid(r, c-1, R, C) && grid[r][c-1] == LAND) {
+          disjointSet.union(getId(r, c, C), getId(r, c-1, C));
+        }
+      }
+    }
+
+    return disjointSet.getNumSets();
+  }
+
+
   private int[] DIRECTIONS = {0, 0, -1, +1}; // THIS NEEDS TO BE UPDATED LATER PART OF THE CODE
   Stack<Integer> blockStack = new Stack<>();
   int NUM_BLOCKS;
@@ -48,7 +158,7 @@ class NumberOfIslands_200 {
     return block >= 0 && block < NUM_BLOCKS;
   }
 
-  public int numIslands(char[][] grid) {
+  public int numIslands_0(char[][] grid) {
     flattenGrid(grid);
     int numIsland = 0;
 

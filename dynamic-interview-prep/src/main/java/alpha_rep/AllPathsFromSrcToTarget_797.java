@@ -1,4 +1,4 @@
-package leetcode;
+package alpha_rep;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,44 @@ import java.util.Queue;
 public class AllPathsFromSrcToTarget_797 {
 
   public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+    /*
+    * we will apply dfs on the graph
+    * dfs(graph, curNode, curPath, allPath)
+    *   curPath.addLast(curNode)
+    *   targetNode = graph.len - 1;
+    *   if(targetNode == curNode)
+    *     allPath.add(curPath.copy())
+    *   for(dst in graph[curNode])
+    *     dfs(graph, dst, curPath, allPath)
+    *   curPath.removeLast()
+    *
+    *  cost analysis:
+    *   if we have currently k paths in a graph, if we add a new node, we can have 2k paths. just having all the k paths,
+    *  plus adding the new node infront of the k paths. with each addition of path, we will multiply our count by 2.
+    *  so there will be total of O(2 ^ n) paths. to build each paths, we have to do O(n) amount of work.
+    *
+    *  so total complexity is O(n * (2 ^ n)).
+    *
+    * */
+
+    List<List<Integer>> allPaths = new LinkedList<>();
+    dfs(graph, 0, new LinkedList<>(), allPaths);
+    return allPaths;
+  }
+
+  private void dfs(int[][] graph, int curNode, LinkedList<Integer> curPath, List<List<Integer>> allPaths) {
+    curPath.addLast(curNode);
+    int targetNode = graph.length - 1;
+    if(curNode == targetNode) {
+      allPaths.add((List<Integer>) curPath.clone());
+    }
+    for(int nextNode : graph[curNode]) {
+      dfs(graph, nextNode, curPath, allPaths);
+    }
+    curPath.removeLast();
+  }
+
+  public List<List<Integer>> allPathsSourceTarget_0(int[][] graph) {
     int N = graph.length, target = N - 1, source = 0;
     List<List<Integer>> paths = new LinkedList<>();
     List<Integer> path = new LinkedList<>();

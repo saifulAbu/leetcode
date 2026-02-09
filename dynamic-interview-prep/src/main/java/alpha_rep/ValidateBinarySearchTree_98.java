@@ -1,8 +1,23 @@
-package leetcode;
+package alpha_rep;
 
 public class ValidateBinarySearchTree_98 {
 
   public boolean isValidBST(TreeNode root) {
+    /**
+     * Integer.MIN_Value is a valid node value so it we need to use long instead
+     *
+     */
+    return isValidHelper_2_9(root, Long.MIN_VALUE, Long.MAX_VALUE);
+  }
+
+  private boolean isValidHelper_2_9(TreeNode root, Long min, Long max) {
+    if(root == null) {
+      return true;
+    }
+    return root.val >= min && root.val <= max && isValidHelper_2_9(root.left, min,  (long)root.val - 1) && isValidHelper_2_9(root.right, (long)root.val + 1, max);
+  }
+
+  public boolean isValidBST_1(TreeNode root) {
     return isValidBST1(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
   }
 

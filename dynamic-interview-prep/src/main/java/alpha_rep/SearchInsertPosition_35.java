@@ -1,8 +1,7 @@
-package binary_search;
+package alpha_rep;
 
-public class BinarySearch_704 {
-
-  public int search(int[] nums, int target) {
+public class SearchInsertPosition_35 {
+  public int searchInsert(int[] nums, int target) {
     /*
      * we will apply binary search
      * l = 0, h = len - 1
@@ -16,8 +15,9 @@ public class BinarySearch_704 {
      *    l = mid + 1;
      *  }
      * }
-     *
+     * return l; // this is the point when l == h happens.
      * */
+
     int l = 0, h = nums.length - 1;
     while(l <= h) {
       int m = (l + h) / 2;
@@ -30,21 +30,6 @@ public class BinarySearch_704 {
         l = m + 1;
       }
     }
-    return -1;
-  }
-
-  public int search_0(int[] nums, int target) {
-    int l = 0, r = nums.length - 1;
-    while (l <= r) {
-      int m = l + (r - l) / 2;
-      if (nums[m] == target) {
-        return m;
-      } else if (nums[m] < target) {
-        l = m + 1;
-      } else {
-        r = m - 1;
-      }
-    }
-    return -1;
+    return l;
   }
 }

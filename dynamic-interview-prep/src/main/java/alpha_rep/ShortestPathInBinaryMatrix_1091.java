@@ -1,11 +1,63 @@
-package leetcode;
+package alpha_rep;
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class ShortestPathInBinaryMatrix_1091 {
+  int[][] grid;
+  int R, C;
+  boolean[][] seen;
+
+  int[][] neighbors = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}};
+
+  public int shortestPathBinaryMatrix(int[][] grid) {
+    /*
+     * we will apply bfs here, will stop once we arrive to the destination node
+     *
+     *
+     * */
+    R = grid.length;
+    C = grid[0].length;
+    if(grid[0][0] != 0 || grid[R-1][C-1] != 0) {
+      return -1;
+    }
+
+    if(R == 1  && C == 1) {
+      return 1;
+    }
+
+    seen = new boolean[R][C];
+
+    int pathLen = 1;
+    Deque<int[]> q = new LinkedList<>();
+    q.offer(new int[]{0, 0});
+    seen[0][0] = true;
+
+    while(!q.isEmpty()) {
+      int curQSize = q.size();
+      for(int i = 0; i < curQSize; i++) {
+        int[] curPos = q.poll();
+        for(int[] neighbor : neighbors) {
+          int nR = curPos[0] + neighbor[0], nC = curPos[1] + neighbor[1];
+          if(isValid(nR, nC) && !seen[nR][nC] && grid[nR][nC] == 0) {
+            if(nR == R -1 && nC == C - 1) {
+              return pathLen + 1;
+            }
+            q.offer(new int[] {nR, nC});
+            seen[nR][nC] = true;
+          }
+        }
+      }
+      pathLen++;
+    }
+    return -1;
+  }
+
+  private boolean isValid(int r, int c) {
+    return r >= 0 && r < R && c >= 0 && c < C;
+  }
+
+
+  /*
   int R = 0;
   int C = 0;
   int [][] directions = {
@@ -74,4 +126,5 @@ public class ShortestPathInBinaryMatrix_1091 {
     }
     return true;
   }
+   */
 }

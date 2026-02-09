@@ -1,4 +1,4 @@
-package leetcode;
+package alpha_rep;
 
 class TreeNode {
   int val;

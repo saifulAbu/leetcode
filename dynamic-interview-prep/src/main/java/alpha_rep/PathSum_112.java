@@ -1,8 +1,34 @@
-package leetcode;
+package alpha_rep;
 
 public class PathSum_112 {
 
-  public boolean hasPathSum(TreeNode curNode, int targetSum) {
+  public boolean hasPathSum(TreeNode root, int targetSum) {
+    /*
+    * hasPathSum(root, target)
+    *   if(root == null) {
+    *     return true;
+    *   }
+    *
+    *   // check if it is a leaf, return true or false based on that
+    *   // if(isLeaf(root) && node.val == targetSum)
+    *         return true
+    *   return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+    * */
+
+    if(root == null) {
+      return false;
+    }
+
+    if(root.left == null && root.right == null && root.val == targetSum) {
+      return true;
+    }
+
+    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+  }
+
+
+
+  public boolean hasPathSum_0(TreeNode curNode, int targetSum) {
     if(curNode == null) {
       return false;
     }

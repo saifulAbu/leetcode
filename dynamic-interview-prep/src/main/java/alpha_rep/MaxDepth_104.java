@@ -1,8 +1,19 @@
-package leetcode;
+package alpha_rep;
 
 public class MaxDepth_104 {
 
   public int maxDepth(TreeNode curNode) {
+    /*
+    * check depth on the left and right, return the max depth + 1
+    * */
+    if(curNode == null) {
+      return 0;
+    }
+    return Math.max(maxDepth(curNode.left), maxDepth(curNode.right)) + 1;
+  }
+
+
+  public int maxDepth_0(TreeNode curNode) {
     if(curNode == null) {
       return 0;
     }
