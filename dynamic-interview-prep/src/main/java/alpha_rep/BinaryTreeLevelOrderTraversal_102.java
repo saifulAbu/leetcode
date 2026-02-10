@@ -1,9 +1,44 @@
-package leetcode;
+package alpha_rep;
 
 import java.util.*;
 
 public class BinaryTreeLevelOrderTraversal_102 {
+
   public List<List<Integer>> levelOrder(TreeNode root) {
+    /*
+    * level order traversal is asked so we will use BFS here
+    * */
+
+    List<List<Integer>> resultList = new LinkedList<>();
+
+    if(root == null) {
+      return resultList;
+    }
+
+    Deque<TreeNode> q = new LinkedList<>();
+    q.offer(root);
+
+    while(!q.isEmpty()) {
+      int curQSize = q.size();
+
+      List<Integer> curList = new LinkedList<>();
+      for(int i = 0; i < curQSize; i++) {
+        TreeNode curNode = q.poll();
+        if(curNode.left != null) {
+          q.offer(curNode.left);
+        }
+        if(curNode.right != null) {
+          q.offer(curNode.right);
+        }
+        curList.add(curNode.val);
+      }
+      resultList.add(curList);
+    }
+
+    return resultList;
+  }
+
+  public List<List<Integer>> levelOrder_02(TreeNode root) {
     List<List<Integer>> levels = new LinkedList<>();
     if(root == null) {
       return levels;

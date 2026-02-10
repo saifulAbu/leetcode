@@ -1,8 +1,30 @@
-package leetcode;
+package alpha_rep;
 
 public class SymmetricTree_101 {
 
   public boolean isSymmetric(TreeNode root) {
+    return isSymmetricHelper_2_10(root.left, root.right);
+  }
+
+  private boolean isSymmetricHelper_2_10(TreeNode leftRoot, TreeNode rightRoot) {
+    //both of them are null
+    if(leftRoot == null && rightRoot == null) {
+      return true;
+    }
+
+    // one of them is null
+    if(leftRoot == null || rightRoot == null) {
+      return false;
+    }
+
+    //both of them are not null
+    return (leftRoot.val == rightRoot.val) &&
+            isSymmetricHelper_2_10(leftRoot.left, rightRoot.right) &&
+            isSymmetricHelper_2_10(leftRoot.right, rightRoot.left);
+  }
+
+
+  public boolean isSymmetric_02(TreeNode root) {
     return checkSymmetry_01(root.left, root.right);
   }
 
