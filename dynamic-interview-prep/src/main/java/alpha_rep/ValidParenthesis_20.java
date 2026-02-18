@@ -1,10 +1,41 @@
-package array_and_string;
+package alpha_rep;
 
 import java.util.HashMap;
 import java.util.Stack;
 
 public class ValidParenthesis_20 {
 
+  HashMap<Character, Integer> parenthesisMap = new HashMap<>();
+
+
+  public boolean isValid(String s) {
+    parenthesisMap.put('(', 1);
+    parenthesisMap.put(')', -1);
+
+    parenthesisMap.put('{', 2);
+    parenthesisMap.put('}', -2);
+
+    parenthesisMap.put('[', 3);
+    parenthesisMap.put(']', -3);
+
+    Stack<Integer> stack = new Stack<>();
+
+    for(Character ch : s.toCharArray()) {
+      int parenthesisId = parenthesisMap.get(ch);
+      if(parenthesisId > 0) {
+        stack.push(parenthesisId);
+      }  else {
+        if(stack.isEmpty() || stack.peek() + parenthesisId != 0) {
+          return false;
+        }
+        stack.pop();
+      }
+    }
+
+    return stack.isEmpty();
+  }
+
+  /*
   HashMap<Character, Integer> parenthesisMap = new HashMap<>();
   private void initializeParentheisMap() {
     parenthesisMap.put('(', 1);
@@ -72,4 +103,6 @@ public class ValidParenthesis_20 {
     }
     return count == 0;
   }
+  /
+   */
 }

@@ -1,4 +1,4 @@
-package heap;
+package alpha_rep;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -6,6 +6,45 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class TopKFrequent_347 {
+
+  public int[] topKFrequent(int[] nums, int k) {
+    /*
+    * we are going to create an hashmap freq [element, count]
+    * then build a heap with the comparator that will use an element and its frequency from the map to sort
+    *   comparator(int i0, int i1)
+    *     return freq.get(i1) - freq.get(i0) // ensuring descending order, higher frequency is higher up
+    *
+    * remove k element from the heap
+    * */
+
+    int[] kElems = new int[k];
+
+    //build frequency map
+    HashMap<Integer, Integer> freq = new HashMap<>();
+
+    for(int num : nums) {
+      freq.put(num, freq.getOrDefault(num, 0) + 1);
+    }
+
+    //build a heap based on frequency of the elem
+    PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+      @Override
+      public int compare(Integer t0, Integer t1) {
+        return freq.get(t1) - freq.get(t0); // descending order
+      }
+    });
+
+    for(int key : freq.keySet()) {
+      pq.offer(key);
+    }
+
+    for(int i = 0; i < k; i++) {
+      kElems[i] = pq.poll();
+    }
+
+
+    return kElems;
+  }
 
   private HashMap<Integer, Integer> createHistogram (int[] nums) {
     HashMap<Integer, Integer> histogram = new HashMap<>();
@@ -48,7 +87,7 @@ public class TopKFrequent_347 {
     return topK;
   }
 
-  public int[] topKFrequent(int[] nums, int k) {
+  public int[] topKFrequent_01(int[] nums, int k) {
     return getTopKFrequent(createReverseHistogram(createHistogram(nums)), nums.length, k);
   }
 

@@ -1,8 +1,38 @@
-package array_and_string;
+package alpha_rep;
 
 import java.util.*;
 
 public class GroupAnagram_49 {
+
+  private String buildKey_2_18(String str) {
+    int[] freq = new int[26];
+    for(char ch : str.toCharArray()) {
+      freq[ch - 'a']++;
+    }
+
+    StringBuilder sb = new StringBuilder(100);
+    for(int i = 0; i < 26; i++) {
+      char ch = (char) (i + 'a');
+      int count = freq[i];
+      sb.append(ch);
+      sb.append(count);
+      sb.append('#');
+    }
+    return sb.toString();
+  }
+
+  public List<List<String>> groupAnagrams(String[] strs) {
+    HashMap<String, List<String>> group = new HashMap<>();
+    for(String str : strs) {
+      String key = buildKey_2_18(str);
+      if(!group.containsKey(key)) {
+        group.put(key, new LinkedList<>());
+      }
+      group.get(key).add(str);
+    }
+    return new LinkedList<>(group.values());
+  }
+
   int[] histogram = new int[26];
   private void buildHistogram(String str) {
     //reset array
@@ -16,7 +46,7 @@ public class GroupAnagram_49 {
   }
 
   StringBuilder sb = new StringBuilder();
-  private String buildKey(String str) {
+  private String buildKey_2_19(String str) {
     sb.setLength(0);
     buildHistogram(str);
 
@@ -29,7 +59,7 @@ public class GroupAnagram_49 {
 
   HashMap<String, List<String>> groupedMap = new HashMap<>();
   private void addToMap(String str) {
-    String key = buildKey(str);
+    String key = buildKey_2_19(str);
     List<String> list = groupedMap.get(key);
     if(list == null) {
       list = new LinkedList<>();
@@ -49,7 +79,7 @@ public class GroupAnagram_49 {
   }
 
 
-  public List<List<String>> groupAnagrams(String[] strs) {
+  public List<List<String>> groupAnagrams_old_01(String[] strs) {
     buildMap(strs);
     return extractValues();
   }

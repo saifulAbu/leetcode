@@ -1,4 +1,4 @@
-package linkedlist;
+package alpha_rep;
 
 /*
 * 0 - 1 - 2 - 3
@@ -17,8 +17,48 @@ package linkedlist;
 *   4. intersection, one list is bigger another smaller
 * */
 public class IntersectionOfTwoLL_160 {
+
+  private int size_2_18(ListNode head) {
+    if(head == null) {
+      return 0;
+    }
+    int count = 0;
+    while(head != null) {
+      head = head.next;
+      count++;
+    }
+    return count;
+  }
+
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    int sizeA = getSize(headA), sizeB = getSize(headB);
+    int sizeA = size_2_18(headA), sizeB = size_2_18(headB);
+    if(sizeA == 0 || sizeB == 0) {
+      return null;
+    }
+
+    ListNode bigHead = headA, smallHead = headB;
+    if(sizeA < sizeB) {
+      bigHead = headB;
+      smallHead = headA;
+    }
+
+    //advance big list forward for difference in size time
+    for(int i = 0; i < Math.abs(sizeA - sizeB); i++) {
+      bigHead = bigHead.next;
+    }
+
+    while(bigHead != null && smallHead != null) {
+      if(bigHead == smallHead) {
+        return bigHead;
+      }
+      bigHead = bigHead.next;
+      smallHead = smallHead.next;
+    }
+    return null;
+  }
+
+  public ListNode getIntersectionNode_0(ListNode headA, ListNode headB) {
+    int sizeA = getSize_0(headA), sizeB = getSize_0(headB);
     if(sizeA == 0 || sizeB == 0) {
       return null;
     }
@@ -45,7 +85,7 @@ public class IntersectionOfTwoLL_160 {
     return null;
   }
 
-  private int getSize(ListNode head) {
+  private int getSize_0(ListNode head) {
     int size = 0;
     while(head != null) {
       head = head.next;

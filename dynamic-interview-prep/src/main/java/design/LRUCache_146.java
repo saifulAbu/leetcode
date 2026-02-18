@@ -1,7 +1,61 @@
 package design;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.TreeMap;
 
+public class LRUCache_146 {
+
+  int capacity;
+  TreeMap<Integer, Integer> keyTimeStamp = new TreeMap<>();
+  HashMap<Integer, Integer> keyVal = new HashMap<>();
+  int curTimeStamp = 0;
+  int curCapacity;
+
+  //public LRUCache(int capacity) {
+  public LRUCache_146(int capacity)  {
+    /*
+    * this is not O(1) solution, but rather O(logN) solution
+    * we are using treeMap, we should use doubly linkedList and hashmap to remove that node in O(1) time
+    *
+    * treeMap will have (key, timestamp) it will be sorted ascending order based on key
+    * when we want to delete something, we look into treeMap
+    * */
+
+    this.capacity = capacity;
+  }
+
+  public int get(int key) {
+    curTimeStamp++;
+    if(!keyVal.containsKey(key)) {
+      return -1;
+    }
+    keyTimeStamp.put(key, curTimeStamp);
+    return keyVal.get(key);
+  }
+
+  public void put(int key, int value) {
+    curTimeStamp++;
+    if(keyVal.containsKey(key)) {
+      keyVal.put(key, value);
+      // should we update the curTimeStamp here?
+    }
+
+    if(curCapacity < capacity) {
+      curCapacity++;
+    } else {
+      int lruKey = keyTimeStamp.firstKey();
+      keyVal.remove(lruKey);
+      keyTimeStamp.remove(lruKey);
+    }
+
+    keyVal.put(key, value);
+    keyTimeStamp.put(key, curTimeStamp);
+
+  }
+}
+
+/*
 public class LRUCache_146 {
   private static class Node {
     Node prev;
@@ -90,9 +144,4 @@ public class LRUCache_146 {
   }
 }
 
-/*
-*
-["LRUCache","put","put","get","put","get","put","get","get","get"]
-[[2],[1,0],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]
-*
-* */
+*/

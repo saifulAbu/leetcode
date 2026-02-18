@@ -1,5 +1,6 @@
-package heap;
+package alpha_rep;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -12,6 +13,20 @@ public class LastStoneWeight_1046 {
   });
 
   public int lastStoneWeight(int[] stones) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+    for(int stone : stones) {
+      pq.offer(stone);
+    }
+
+    while(pq.size() > 1) {
+      pq.offer(pq.poll() - pq.poll());
+    }
+
+    return pq.poll();
+  }
+
+  public int lastStoneWeight_01(int[] stones) {
     for (int stone : stones) {
       pq.add(stone);
     }

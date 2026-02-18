@@ -1,4 +1,4 @@
-package linkedlist;
+package alpha_rep;
 
 /*
 * cases to consider.
@@ -9,7 +9,29 @@ package linkedlist;
 * */
 
 public class RemoveLinkedListElement_203 {
+
   public ListNode removeElements(ListNode head, int val) {
+    /*
+    * we will take advantage of using a dummy head
+    * if dummy.next.val == target val
+    *   do something to delete that node
+    *
+    * */
+    ListNode dummyHead = new ListNode(-1, head);
+    ListNode curNode = dummyHead;
+    while(curNode != null && curNode.next != null) {
+      ListNode nextNode = curNode.next;
+      if(nextNode.val == val) {
+        curNode.next = nextNode.next;
+        nextNode.next = null;
+      } else {
+        curNode = curNode.next;
+      }
+    }
+    return dummyHead.next;
+  }
+
+  public ListNode removeElements1(ListNode head, int val) {
     ListNode dummyHead = new ListNode(0, head), parent = dummyHead;
     while(parent != null) {
       ListNode child = parent.next;
