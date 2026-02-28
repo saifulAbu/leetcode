@@ -6,6 +6,22 @@ import java.util.Map;
 
 public class TwoSum_1 {
   public int[] twoSum(int[] nums, int target) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      int need = target - nums[i];
+
+      if (map.containsKey(need)) {
+        return new int[] { map.get(need), i };
+      }
+
+      map.put(nums[i], i);
+    }
+
+    return null;
+  }
+
+  public int[] twoSum_0(int[] nums, int target) {
     Map<Integer, Integer> numIndexMap = new HashMap<>();
     int[] res = new int[2];
     for(int i = 0; i < nums.length; i++) {

@@ -4,6 +4,22 @@ import java.util.HashMap;
 
 public class FirstUniqueChar_387 {
   public int firstUniqChar(String s) {
+    HashMap<Character, Integer> freqs = new HashMap<>();
+    for(int i = 0; i < s.length(); i++) {
+      char curChar = s.charAt(i);
+      freqs.put(curChar, freqs.getOrDefault(curChar, 0) + 1);
+    }
+
+    for(int i = 0; i < s.length(); i++) {
+      char curChar = s.charAt(i);
+      if(freqs.get(curChar) == 1) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+  public int firstUniqChar_01(String s) {
     HashMap<Character, Integer> charCount = new HashMap<>();
     char[] charArr = s.toCharArray();
 

@@ -1,4 +1,4 @@
-package stack_queue;
+package alpha_rep;
 
 import java.util.Stack;
 
@@ -28,6 +28,21 @@ public class DailyTemperature_739 {
   *   we see current top of stack is 0, temperature at that index is 30
   *   we repeat the step above to update result for that index
   * */
+  public int[] dailyTemperatures_drona(int[] temperatures) {
+    Stack<Integer> s = new Stack<>();
+    int n = temperatures.length;
+    int wait[] = new int[n];
+
+    for(int i = 0; i < n; i++) {
+      while(!s.empty() && temperatures[i] > temperatures[s.peek()]) {
+        int prev = s.pop();
+        wait[prev] = i - prev;
+      }
+      s.push(i);
+    }
+    return wait;
+  }
+
   public int[] dailyTemperatures(int[] temperatures) {
     int NUM_DAYS = temperatures.length;
     Stack<Integer> waitingTemperatures = new Stack<>();
@@ -67,4 +82,42 @@ public class DailyTemperature_739 {
     }
     return res;
   }
+
+  public int[] dailyTemperatures_2(int[] temperatures) {
+    Stack<Integer> s = new Stack<>();
+    int n = temperatures.length;
+    int wait[] = new int[n];
+
+    for(int i = 0; i < n; i++) {
+      while(!s.empty() && temperatures[i] > temperatures[s.peek()]) {
+        int prev = s.pop();
+        wait[prev] = i - prev;
+      }
+      s.push(i);
+    }
+    return wait;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

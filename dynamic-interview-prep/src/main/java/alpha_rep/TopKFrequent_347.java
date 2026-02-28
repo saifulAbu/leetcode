@@ -1,12 +1,33 @@
 package alpha_rep;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class TopKFrequent_347 {
 
+  public int[] topKFrequent_drona(int[] nums, int k) {
+    Map<Integer, Integer> freqs = new HashMap<>();
+    for (int num : nums) {
+      freqs.put(num, freqs.getOrDefault(num, 0) + 1);
+    }
+
+    // min-heap: keeps only k largest frequencies
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>(
+            (a, b) -> Integer.compare(freqs.get(a), freqs.get(b))
+    );
+
+    for (int num : freqs.keySet()) {
+      minHeap.offer(num);
+      if (minHeap.size() > k) {
+        minHeap.poll(); // remove least frequent
+      }
+    }
+
+    int[] result = new int[k];
+    for (int i = k - 1; i >= 0; i--) {
+      result[i] = minHeap.poll();
+    }
+    return result;
+  }
   public int[] topKFrequent(int[] nums, int k) {
     /*
     * we are going to create an hashmap freq [element, count]

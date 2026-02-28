@@ -40,4 +40,20 @@ public class RemoveDuplicates_83 {
     }
     return head;
   }
+
+  public ListNode deleteDuplicates_1(ListNode head) {
+    if(head == null) {
+      return null;
+    }
+
+    ListNode curNode = head;
+    while(curNode != null && curNode.next != null) {
+      if(curNode.val == curNode.next.val) {
+        curNode.next = curNode.next. next;
+      } else {
+        curNode = curNode.next;
+      }
+    }
+    return head;
+  }
 }

@@ -2,7 +2,23 @@ package array_and_string;
 
 public class RemoveDuplicatedSorted_26 {
 
-  public int removeDuplicates(int[] nums) {
+  public int removeDuplicates_drona(int[] nums) {
+    int n = nums.length;
+    if (n == 0) return 0;
+
+    int write = 1;  // slow pointer
+
+    for (int read = 1; read < n; read++) {
+      if (nums[read] != nums[read - 1]) {
+        nums[write] = nums[read];
+        write++;
+      }
+    }
+
+    return write;
+  }
+
+  public int removeDuplicates_0(int[] nums) {
     int l = 0, r = 0;
     while(r < nums.length && r < nums.length) {
       while(nums[l] == nums[r]) {

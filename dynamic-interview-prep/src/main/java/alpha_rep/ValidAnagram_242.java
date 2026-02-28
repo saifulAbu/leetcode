@@ -4,7 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ValidAnagram_242 {
+  public boolean isAnagram_drona(String s, String t) {
+    if (s.length() != t.length()) return false;
 
+    Map<Character, Integer> freqs = new HashMap<>();
+    for (char c : s.toCharArray()) {
+      freqs.put(c, freqs.getOrDefault(c, 0) + 1);
+    }
+
+    for (char c : t.toCharArray()) {
+      if (!freqs.containsKey(c)) return false;
+      freqs.put(c, freqs.get(c) - 1);
+      if (freqs.get(c) == 0) freqs.remove(c);
+    }
+
+    return freqs.isEmpty();
+  }
 
   public boolean isAnagram(String s, String t) {
     HashMap<Character, Integer> freq = new HashMap<>();

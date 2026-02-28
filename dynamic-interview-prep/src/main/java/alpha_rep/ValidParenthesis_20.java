@@ -1,14 +1,59 @@
 package alpha_rep;
 
-import java.util.HashMap;
-import java.util.Stack;
+import java.awt.*;
+import java.util.*;
 
 public class ValidParenthesis_20 {
 
-  HashMap<Character, Integer> parenthesisMap = new HashMap<>();
+  public boolean isValid_drona(String s) {
+    Map<Character, Character> map = new HashMap<>();
+    map.put(')', '(');
+    map.put('}', '{');
+    map.put(']', '[');
 
+    Stack<Character> stack = new Stack<>();
+    for (char c : s.toCharArray()) {
+      if (!map.containsKey(c)) {
+        stack.push(c);  // opening bracket
+      } else {
+        if (stack.isEmpty() || stack.peek() != map.get(c)) {
+          return false;
+        }
+        stack.pop();
+      }
+    }
+    return stack.isEmpty();
+  }
 
   public boolean isValid(String s) {
+    HashMap<Character, Integer> parenthesisIdMap = new HashMap<>();
+    parenthesisIdMap.put('(', 1);
+    parenthesisIdMap.put(')', -1);
+
+    parenthesisIdMap.put('{', 2);
+    parenthesisIdMap.put('}', -2);
+
+    parenthesisIdMap.put('[', 3);
+    parenthesisIdMap.put(']', -3);
+
+    Stack<Integer> stack = new Stack<>();
+    for(Character ch : s.toCharArray()) {
+      int curId = parenthesisIdMap.get(ch);
+      if(curId > 0) {
+        stack.push(curId);
+      } else {
+        if(stack.isEmpty() || (stack.peek() + curId != 0)) {
+          return false;
+        }
+        stack.pop();
+      }
+    }
+    return stack.isEmpty();
+  }
+
+  public boolean isValid_0(String s) {
+    HashMap<Character, Integer> parenthesisMap = new HashMap<>();
+
     parenthesisMap.put('(', 1);
     parenthesisMap.put(')', -1);
 
@@ -32,6 +77,34 @@ public class ValidParenthesis_20 {
       }
     }
 
+    return stack.isEmpty();
+  }
+
+  public boolean isValid_3(String s) {
+    HashMap<Character, Integer> parenthesisMap = new HashMap<>();
+    parenthesisMap.put('(', 1);
+    parenthesisMap.put(')', -1);
+
+    parenthesisMap.put('{', 2);
+    parenthesisMap.put('}', -2);
+
+    parenthesisMap.put('[', 3);
+    parenthesisMap.put(']', -3);
+
+    Stack<Integer> stack = new Stack<>();
+
+    for(Character ch : s.toCharArray()) {
+      int curVal = parenthesisMap.get(ch);
+      if(curVal > 0) {
+        stack.push(curVal);
+      } else {
+        if(!stack.isEmpty() && stack.peek() + curVal == 0) {
+          stack.pop();
+        } else {
+          return false;
+        }
+      }
+    }
     return stack.isEmpty();
   }
 

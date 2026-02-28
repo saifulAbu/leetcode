@@ -56,26 +56,15 @@ public class ValidateBinarySearchTree_98 {
     return false;
   }
 
-  public static void main(String args[]) {
-    ValidateBinarySearchTree_98 vbt = new ValidateBinarySearchTree_98();
-
-    TreeNode n1, n2, n3, n4, n5, n6;
-    n1 = new TreeNode(1);
-    n2 = new TreeNode(2);
-    n3 = new TreeNode(3);
-    n4 = new TreeNode(4);
-    n5 = new TreeNode(5);
-    n6 = new TreeNode(2147483647);
-    n6 = new TreeNode(0);
-
-    n4.left = n1;
-    n4.right = n5;
-    //n5.left = n3;
-    n5.right = n6;
-
-
-    System.out.println(vbt.isValidBST(n6));
+  public boolean isValidBST_2(TreeNode root) {
+    return isValidBST_helper_2_28(root, (long)(Integer.MIN_VALUE) - 1, (long)(Integer.MAX_VALUE) + 1);
   }
+
+  boolean isValidBST_helper_2_28(TreeNode root, long l, long h) {
+    if(root == null) return true;
+    return (l < root.val && root.val < h && isValidBST_helper_2_28(root.left, l, root.val) && isValidBST_helper_2_28(root.right, root.val, h));
+  }
+
 }
 
 

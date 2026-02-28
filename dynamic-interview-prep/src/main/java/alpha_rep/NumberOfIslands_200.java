@@ -6,6 +6,33 @@ import java.util.Stack;
 
 class NumberOfIslands_200 {
 
+  public int numIslands(char[][] grid) {
+    int R = grid.length, C = grid[0].length;
+    boolean[][] visited = new boolean[R][C];
+    int islandCount = 0;
+
+    for(int r = 0; r < R; r++) {
+      for(int c = 0; c < C; c++) {
+        if(grid[r][c] == '1' && !visited[r][c]) {
+          islandCount++;
+          dfs_2_22_26(r, c, R, C, grid, visited);
+        }
+      }
+    }
+    return islandCount;
+  }
+
+  private void dfs_2_22_26(int r, int c, int R, int C, char[][] grid, boolean[][] visited) {
+    int[][] dirs = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+    visited[r][c] = true;
+    for(int[] dir : dirs) {
+      int nr = r + dir[0], nc = c + dir[1];
+      if(nr >= 0 && nr < R && nc >= 0 && nc < C && !visited[nr][nc] && grid[nr][nc] == '1') {
+        dfs_2_22_26(nr, nc, R, C, grid, visited);
+      }
+    }
+  }
+
   class DisjointSet {
     int s[];
     int numSets;
@@ -50,7 +77,7 @@ class NumberOfIslands_200 {
     return r >= 0 && r < R && c >= 0 && c < C;
   }
 
-  public int numIslands(char[][] grid) {
+  public int numIslands_1(char[][] grid) {
     /*
     * will use a modified disjoint set forest to solve this problem.
     * initiallay we will mark all s[i] as -2 to mark as water

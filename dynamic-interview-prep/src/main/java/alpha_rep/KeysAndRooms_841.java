@@ -3,10 +3,11 @@ package alpha_rep;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class KeysAndRooms_841 {
 
-  public boolean canVisitAllRooms(List<List<Integer>> keys) {
+  public boolean canVisitAllRooms_01(List<List<Integer>> keys) {
     /*
     * we will use BFS to solve this problem
     * we will maintain a queue that will have keys at hand
@@ -77,7 +78,7 @@ class KeysAndRooms_0_841 {
   boolean[] visited;
   List<List<Integer>> rooms;
   int visitedCount = 0;
-  public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+  public boolean canVisitAllRooms_02(List<List<Integer>> rooms) {
     this.rooms = rooms;
     visited = new boolean[rooms.size()];
     dfs(0);
@@ -92,5 +93,29 @@ class KeysAndRooms_0_841 {
         dfs(neighbor);
       }
     }
+  }
+
+  public boolean canVisitAllRooms(List<List<Integer>> keys) {
+    Queue<Integer> q = new LinkedList<>();
+    int visitedCount = 0;
+    int n = keys.size();
+    boolean[] visited = new boolean[n];
+
+    q.offer(0);
+    visitedCount++;
+    visited[0] = true;
+
+    while(!q.isEmpty() && (visitedCount < n)) {
+      int curRoom = q.poll();
+      List<Integer> curKeys = keys.get(curRoom);
+      for(int keyOfRoom : curKeys) {
+        if(!visited[keyOfRoom]) {
+          visited[keyOfRoom] = true;
+          visitedCount++;
+          q.offer(keyOfRoom);
+        }
+      }
+    }
+    return visitedCount == n;
   }
 }

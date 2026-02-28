@@ -1,6 +1,38 @@
 package alpha_rep;
 
 public class TwoSum_II_167 {
+
+  public int[] twoSum_bruteforce(int[] numbers, int target) {
+    int n = numbers.length;
+
+    for (int i = 0; i < n - 1; i++) {
+      for (int j = i + 1; j < n; j++) {
+        if (numbers[i] + numbers[j] == target) {
+          return new int[] { i + 1, j + 1 };  // 1-indexed
+        }
+      }
+    }
+
+    return null;
+  }
+
+  public int[] twoSum_canonical(int[] numbers, int target) {
+    int n = numbers.length;
+    int left = 0, right = n - 1;
+    while(left < right) {
+      int curSum = numbers[left] + numbers[right];
+      if(curSum > target) {
+        right--;
+      } else if(curSum < target) {
+        left++;
+      } else {
+        return new int[] {left+1, right + 1};
+      }
+    }
+    return null;
+  }
+
+
   public int[] twoSum(int[] numbers, int target) {
     // array sorted in increasing order
     // there is guarranted one unique solution
@@ -23,7 +55,20 @@ public class TwoSum_II_167 {
     return new int[] {l+1, r+1};
   }
 
-
+  public int[] twoSum_1(int[] numbers, int target) {
+    int b = 0, f = numbers.length - 1;
+    while(b < f) {
+      int curSum = numbers[b] + numbers[f];
+      if(curSum > target) {
+        f--;
+      } else if(curSum < target) {
+        b++;
+      } else {
+        break;
+      }
+    }
+    return new int[] {b+1, f+1};
+  }
 
 
 

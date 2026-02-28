@@ -2,6 +2,22 @@ package alpha_rep;
 
 public class ContainerWithMostWater_11 {
 
+  public int maxArea_bruteforce_drona(int[] height) {
+    int n = height.length;
+    int maxArea = 0;
+
+    for (int left = 0; left < n - 1; left++) {
+      for (int right = left + 1; right < n; right++) {
+        int width = right - left;
+        int h = Math.min(height[left], height[right]);
+        int area = width * h;
+        maxArea = Math.max(maxArea, area);
+      }
+    }
+    return maxArea;
+  }
+
+
   public int maxArea(int[] height) {
     /*
     * b         f
@@ -54,4 +70,24 @@ public class ContainerWithMostWater_11 {
 
     return maxWater;
   }
+
+  public int maxArea_drona(int[] height) {
+    int n = height.length;
+    int maxArea = 0;
+
+    int left = 0, right = n - 1;
+    while(left < right) {
+      int leftHeight = height[left], rightHeight = height[right];
+      int curArea = (right - left) * Math.min(leftHeight, rightHeight);
+      maxArea = Math.max(curArea, maxArea);
+      if(leftHeight > rightHeight) {
+        right--;
+      } else {
+        left++;
+      }
+    }
+
+    return maxArea;
+  }
+
 }

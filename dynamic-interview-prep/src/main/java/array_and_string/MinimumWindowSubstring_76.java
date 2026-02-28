@@ -61,5 +61,88 @@ public class MinimumWindowSubstring_76 {
     System.out.println(a);
   }
 
+  public String minWindow_bruteForce(String s, String t) {
+    if(t.length() > s.length()) {
+      return "";
+    } else if(s.equals(t)) {
+      return s;
+    }
+    HashMap<Character, Integer> freqT = new HashMap<>();
 
+    for(char ch : t.toCharArray()) {
+      freqT.put(ch, freqT.getOrDefault(ch, 0) + 1);
+    }
+
+    int min0 = 0, min1 = s.length() - 1;
+    boolean found = false;
+
+    for(int i = 0; i <= (s.length() - t.length()); i++) {
+      HashMap<Character, Integer> targetFreq = new HashMap<>(freqT);
+      int charToMatch = targetFreq.size();
+      for(int j = i; j < s.length(); j++) {
+        char cur = s.charAt(j);
+        if(targetFreq.containsKey(cur)) {
+          targetFreq.put(cur, targetFreq.get(cur) - 1);
+          if(targetFreq.get(cur) == 0) {
+            charToMatch--;
+          }
+          if(charToMatch == 0) {
+            found = true;
+            if(min1 - min0 > j - i) {
+              min1 = j;
+              min0 = i;
+            }
+            break;
+          }
+        }
+      }
+    }
+
+    if(found) {
+      return s.substring(min0, min1 + 1);
+    } else {
+      return "";
+    }
+  }
+
+  public String minWindow_drona(String s, String t) {
+    HashMap<Character, Integer> need = new HashMap<>();
+    for(int i = 0; i < t.length(); i++) {
+      char curChar = t.charAt(i);
+      need.put(curChar, need.getOrDefault(curChar, 0) + 1);
+    }
+    int uniCharsNeeded = need.size();
+
+    HashMap<Character, Integer> have = new HashMap<>();
+    int uniCharsHave = 0;
+    int minLen = Integer.MAX_VALUE, minStart = 0;
+
+    int b = 0;
+    for(int f = 0; f <s.length(); f++) {
+      char in = s.charAt(f);
+      have.put(in, have.getOrDefault(in, 0) + 1);
+
+      if(need.containsKey(in) && need.get(in) == have.get(in)) {
+        uniCharsHave++;
+      }
+
+      while(uniCharsHave == uniCharsNeeded) {
+        int curLen = f - b + 1;
+        if(curLen < minLen) {
+          minLen = curLen;
+          minStart = b;
+        }
+
+        char out = s.charAt(b);
+        have.put(out, have.get(out) - 1);
+
+        if(need.containsKey(out) && need.get(out) > have.get(out)) {
+          uniCharsHave--;
+        }
+
+        b++;
+      }
+    }
+    return minLen == Integer.MAX_VALUE ? "" :  s.substring(minStart, minStart + minLen);
+  }
 }

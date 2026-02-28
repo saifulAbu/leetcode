@@ -4,6 +4,29 @@ import java.util.*;
 
 public class GroupAnagram_49 {
 
+  public List<List<String>> groupAnagrams_drona(String[] strs) {
+    Map<String, List<String>> map = new HashMap<>();
+    for (String str : strs) {
+      String key = buildKey(str);
+      map.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
+    }
+    return new ArrayList<>(map.values());
+  }
+
+  private String buildKey(String str) {
+    int[] freq = new int[26];
+    for (char c : str.toCharArray()) {
+      freq[c - 'a']++;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+      sb.append((char)(i + 'a'));  // fix: cast to char
+      sb.append(freq[i]);
+      sb.append('#');              // delimiter prevents collision
+    }
+    return sb.toString();
+  }
+
   private String buildKey_2_18(String str) {
     int[] freq = new int[26];
     for(char ch : str.toCharArray()) {
@@ -111,5 +134,32 @@ public class GroupAnagram_49 {
       count[i] = 0;
     }
     return hash.toString();
+  }
+
+  private String buildKey_2_26(String str) {
+    int [] freq = new int[26];
+    for(int i = 0; i < str.length(); i++) {
+      freq[str.charAt(i) - 'a']++;
+    }
+
+    StringBuilder sb = new StringBuilder(str.length());
+    for(int i = 0; i< 26; i++) {
+      sb.append(i + 'a');
+      sb.append(freq[i]);
+      sb.append('#');
+    }
+    return sb.toString();
+  }
+
+  public List<List<String>> groupAnagrams_2_26(String[] strs) {
+    HashMap<String, List<String>> groupAnagramMap = new HashMap<>();
+    for(String str : strs) {
+      String key = buildKey_2_26(str);
+      if(!groupAnagramMap.containsKey(key)) {
+        groupAnagramMap.put(key, new LinkedList<>());
+      }
+      groupAnagramMap.get(key).add(str);
+    }
+    return new LinkedList<>(groupAnagramMap.values());
   }
 }

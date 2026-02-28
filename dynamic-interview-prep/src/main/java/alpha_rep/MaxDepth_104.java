@@ -57,4 +57,12 @@ public class MaxDepth_104 {
     }
     return Integer.max(leftDepth, rightDepth) + 1;
   }
+
+  public int maxDepth_1(TreeNode curNode) {
+    if(curNode == null) {
+      return 0;
+    } else {
+      return Math.max(maxDepth_1(curNode.left), maxDepth_1(curNode.right)) + 1;
+    }
+  }
 }

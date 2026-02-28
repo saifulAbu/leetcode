@@ -1,11 +1,41 @@
 package alpha_rep;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class LongestSubstring_3 {
 
   public int lengthOfLongestSubstring(String s) {
+    /*
+    * we maintain 2 pointers, f and b
+    * f we add one item
+    * we continue removing from b pointer until we remove the duplicate we just added by inserting char at f
+    * take the max size and move on to the next iteration
+    * */
+    int maxSize = 0, len = s.length();
+    HashMap<Character, Integer> freq = new HashMap<>();
+    int b = 0;
+
+    for(int f = 0; f < len; f++) {
+      char in = s.charAt(f);
+      // we might have broke the invariant with in character
+      freq.put(in, freq.getOrDefault(in, 0) + 1);
+      //attempt to fix the invariant here
+      while(freq.get(in) > 1) {
+        char out = s.charAt(b);
+        freq.put(out, freq.get(out) - 1);
+        if(freq.get(out) == 0) {
+          freq.remove(out);
+        }
+        b++;
+      }
+      maxSize = Math.max(maxSize, freq.size());
+    }
+    return maxSize;
+  }
+
+  public int lengthOfLongestSubstring_1(String s) {
     /*
     * s     i
     * 0 1 2 3 4
@@ -56,5 +86,42 @@ public class LongestSubstring_3 {
       max = Math.max(max, i - startNonRepeat + 1);
     }
     return max;
+  }
+
+  public int lengthOfLongestSubstring_1_brute(String s) {
+    int maxSize = 0, len = s.length();
+    HashSet<Character> set = new HashSet<>();
+
+    for(int i = 0; i < len; i++) {
+      set.clear();
+      for(int j = i; j < len; j++) {
+        if(!set.add(s.charAt(j))) {
+          break;
+        }
+        maxSize = Math.max(maxSize, set.size());
+      }
+    }
+    return maxSize;
+  }
+
+  public int lengthOfLongestSubstring_1_twopointer(String s) {
+    int maxSize = 0, len = s.length();
+    HashMap<Character, Integer> freq = new HashMap<>();
+    int b = 0;
+
+    for(int f = 0; f < len; f++) {
+      char in = s.charAt(f);
+      freq.put(in, freq.getOrDefault(in, 0) + 1);
+      while(freq.get(in) > 1) {
+        char out = s.charAt(b);
+        freq.put(out, freq.get(out) - 1);
+        if(freq.get(out) == 0) {
+          freq.remove(out);
+        }
+        b++;
+      }
+      maxSize = Math.max(maxSize, freq.size());
+    }
+    return maxSize;
   }
 }

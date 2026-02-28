@@ -4,6 +4,57 @@ import java.util.*;
 
 public class BinaryTreeLevelOrderTraversal_102 {
 
+  public List<List<Integer>> levelOrder_2(TreeNode root) {
+    List<List<Integer>> result = new LinkedList<>();
+    if(root == null) {
+      return result;
+    }
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    while(!queue.isEmpty()) {
+      int curSize = queue.size();
+      List<Integer> curLevel = new LinkedList<>();
+      for(int i = 0; i < curSize; i++) {
+        TreeNode curNode = queue.poll();
+        curLevel.add(curNode.val);
+        if(curNode.left != null) {
+          queue.offer(curNode.left);
+        }
+        if(curNode.right != null) {
+          queue.offer(curNode.right);
+        }
+      }
+      result.add(curLevel);
+    }
+    return result;
+  }
+
+  public List<List<Integer>> levelOrder_1(TreeNode root) {
+    List<List<Integer>> levelOrder = new LinkedList<>();
+    if(root == null) {
+      return levelOrder;
+    }
+    Queue<TreeNode> q = new LinkedList<>();
+    q.offer(root);
+    while(!q.isEmpty()) {
+      int curQSize = q.size();
+      LinkedList<Integer> curLevel = new LinkedList<>();
+      for(int i = 0; i < curQSize; i++) {
+        TreeNode curNode = q.poll();
+        curLevel.add(curNode.val);
+        if(curNode.left != null) {
+          q.offer(curNode.left);
+        }
+        if(curNode.right != null) {
+          q.offer(curNode.right);
+        }
+      }
+      levelOrder.add(curLevel);
+    }
+    return levelOrder;
+  }
+
   public List<List<Integer>> levelOrder(TreeNode root) {
     /*
     * level order traversal is asked so we will use BFS here

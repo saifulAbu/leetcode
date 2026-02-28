@@ -1,6 +1,7 @@
 package alpha_rep;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class LongestSubStr_340 {
   public int lengthOfLongestSubstringKDistinct(String s, int k) {
@@ -38,6 +39,62 @@ public class LongestSubStr_340 {
       }
 
       maxLen = Math.max(maxLen, i - backPtr + 1);
+    }
+
+    return maxLen;
+  }
+
+  public int lengthOfLongestSubstringKDistinct_1(String s, int k) {
+    char[] charArr = s.toCharArray();
+    int len = charArr.length;
+    HashMap<Character, Integer> freqMap = new HashMap<>();
+    int maxSubstrLen = 0;
+
+    int f = 0, b = 0;
+    for(f = 0; f < len; f++) {
+      char in = charArr[f];
+      freqMap.put(in, freqMap.getOrDefault(in, 0) + 1);
+
+      //restore invariant that we are keeping k distinct between f and b pointers
+      while (freqMap.size() > k && b <= f) {
+        char out = charArr[b];
+        int count = freqMap.get(out);
+        if(count == 1) {
+          freqMap.remove(out);
+        } else {
+          freqMap.put(out, count-1);
+        }
+        b++;
+      }
+
+      int curSize = f - b + 1;
+      maxSubstrLen = Math.max(curSize, maxSubstrLen);
+    }
+    return maxSubstrLen;
+  }
+
+  public int lengthOfLongestSubstringKDistinct_02(String s, int k) {
+    HashMap<Character, Integer> freq = new HashMap<>();
+    int maxLen = 0;
+    int b = 0;
+    for(int f = 0; f < s.length(); f++) {
+      char in = s.charAt(f);
+      int curFreq = freq.getOrDefault(in, 0);
+      freq.put(in, curFreq + 1);
+
+      //maintain invariant
+      while(freq.size() > k) {
+        char out = s.charAt(b);
+        curFreq = freq.get(out);
+        if(curFreq == 1) {
+          freq.remove(out);
+        } else {
+          freq.put(out, curFreq - 1);
+        }
+        b++;
+      }
+
+      maxLen = Math.max(maxLen, (f - b + 1));
     }
 
     return maxLen;
