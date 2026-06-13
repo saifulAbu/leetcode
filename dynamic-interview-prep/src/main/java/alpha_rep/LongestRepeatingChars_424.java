@@ -82,4 +82,23 @@ public class LongestRepeatingChars_424 {
 
     return (e - s + 1 - maxFreq);
   }
+
+  public int characterReplacement(String s, int k) {
+    int[] freq = new int[26];
+    int maxFreq = 0, b = 0, maxLen = 0;
+
+    for (int f = 0; f < s.length(); f++) {
+      maxFreq = Math.max(maxFreq, ++freq[s.charAt(f) - 'A']);
+
+      while ((f - b + 1) - maxFreq > k) {
+        freq[s.charAt(b) - 'A']--;
+        b++;
+      }
+
+      maxLen = Math.max(maxLen, f - b + 1);
+    }
+
+    return maxLen;
+  }
+
 }

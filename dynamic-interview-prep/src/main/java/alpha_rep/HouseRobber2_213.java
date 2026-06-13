@@ -1,6 +1,33 @@
 package alpha_rep;
 
 public class HouseRobber2_213 {
+
+  public int rob_drona(int[] nums) {
+    int n = nums.length;
+    if (n == 0) return 0;
+    if (n == 1) return nums[0];
+
+    return Math.max(
+            robLinear(nums, 0, n - 2),
+            robLinear(nums, 1, n - 1)
+    );
+  }
+
+  private int robLinear(int[] nums, int s, int e) {
+    int prev1 = 0, prev2 = 0;
+
+    for (int i = s; i <= e; i++) {
+      int pick = nums[i] + prev2;
+      int skip = prev1;
+      int cur = Math.max(pick, skip);
+
+      prev2 = prev1;
+      prev1 = cur;
+    }
+
+    return prev1;
+  }
+
   public int rob(int[] nums) {
     /*
     * houses are ordered in circular order in this case
@@ -57,5 +84,44 @@ public class HouseRobber2_213 {
     }
     maxProfit = Math.max(profit[N-1], maxProfit);
     return maxProfit;
+  }
+
+  public int rob_4_10(int[] nums) {
+    int n = nums.length;
+    if (n == 1) return nums[0];
+
+    // Canonical approach: Max of robbing houses [0, n-2] or [1, n-1]
+    return Math.max(robLinear_4_10(nums, 0, n - 2),
+            robLinear_4_10(nums, 1, n - 1));
+  }
+
+  private int robLinear_4_10(int[] nums, int start, int end) {
+    int prev2 = 0; // Represents rob(i-2)
+    int prev1 = 0; // Represents rob(i-1)
+
+    // Ensure the loop includes the 'end' index
+    for (int i = start; i <= end; i++) {
+      int temp = prev1;
+      prev1 = Math.max(nums[i] + prev2, prev1);
+      prev2 = temp;
+    }
+    return prev1;
+  }
+
+  public int rob_0531(int[] nums) {
+    int n = nums.length;
+    if (n == 0) return 0;
+    if (n == 1) return nums[0];
+    return Math.max(rob_linear0531(0, n-2, nums), rob_linear0531(1, n-1, nums));
+  }
+
+  private int rob_linear0531(int s, int e, int[] nums) {
+    int robA = 0, robB = 0;
+    for(int i = s; i <= e; i++) {
+      int robC = Math.max(nums[i] + robA, robB);
+      robA = robB;
+      robB = robC;
+    }
+    return robB;
   }
 }

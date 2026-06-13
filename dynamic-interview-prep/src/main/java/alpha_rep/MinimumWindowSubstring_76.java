@@ -1,8 +1,70 @@
-package array_and_string;
+package alpha_rep;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MinimumWindowSubstring_76 {
+
+  public String minWindow_drona(String s, String t) {
+    if (s.length() < t.length()) {
+      return "";
+    }
+
+    // Frequency map for characters in t
+    Map<Character, Integer> target = new HashMap<>();
+    for (char c : t.toCharArray()) {
+      target.put(c, target.getOrDefault(c, 0) + 1);
+    }
+
+    // Sliding window frequency map
+    Map<Character, Integer> window = new HashMap<>();
+
+    int required = target.size();   // number of distinct chars we must match
+    int formed = 0;                 // number of chars that currently match required freq
+
+    int l = 0, r = 0;
+    int bestLen = Integer.MAX_VALUE;
+    int bestStart = 0;
+
+    while (r < s.length()) {
+      char c = s.charAt(r);
+      window.put(c, window.getOrDefault(c, 0) + 1);
+
+      // If this character's frequency matches the target's frequency, increment formed
+      if (target.containsKey(c) &&
+              window.get(c).intValue() == target.get(c).intValue()) {
+        formed++;
+      }
+
+      // Try to shrink the window while it's valid
+      while (l <= r && formed == required) {
+        int windowLen = r - l + 1;
+        if (windowLen < bestLen) {
+          bestLen = windowLen;
+          bestStart = l;
+        }
+
+        char leftChar = s.charAt(l);
+        window.put(leftChar, window.get(leftChar) - 1);
+
+        // If removing this char breaks the validity, decrement formed
+        if (target.containsKey(leftChar) &&
+                window.get(leftChar).intValue() < target.get(leftChar).intValue()) {
+          formed--;
+        }
+
+        l++;
+      }
+
+      r++;
+    }
+
+    return bestLen == Integer.MAX_VALUE
+            ? ""
+            : s.substring(bestStart, bestStart + bestLen);
+  }
+
+
   static public String minWindow(String s, String t) {
     if (t.length() > s.length()) {
       return "";
@@ -105,44 +167,46 @@ public class MinimumWindowSubstring_76 {
     }
   }
 
-  public String minWindow_drona(String s, String t) {
-    HashMap<Character, Integer> need = new HashMap<>();
-    for(int i = 0; i < t.length(); i++) {
-      char curChar = t.charAt(i);
-      need.put(curChar, need.getOrDefault(curChar, 0) + 1);
+  public String minWindow_0528(String s, String t) {
+    if (t.length() > s.length()) return "";
+
+    HashMap<Character, Integer> target = new HashMap<>();
+    for (char ch : t.toCharArray()) {
+      target.put(ch, target.getOrDefault(ch, 0) + 1);
     }
-    int uniCharsNeeded = need.size();
 
-    HashMap<Character, Integer> have = new HashMap<>();
-    int uniCharsHave = 0;
-    int minLen = Integer.MAX_VALUE, minStart = 0;
+    int need = target.size();
+    int formed = 0;
 
+    HashMap<Character, Integer> window = new HashMap<>();
     int b = 0;
-    for(int f = 0; f <s.length(); f++) {
-      char in = s.charAt(f);
-      have.put(in, have.getOrDefault(in, 0) + 1);
+    int minLen = Integer.MAX_VALUE;
+    int minStart = 0;
 
-      if(need.containsKey(in) && need.get(in) == have.get(in)) {
-        uniCharsHave++;
+    for (int f = 0; f < s.length(); f++) {
+      char ch = s.charAt(f);
+      window.put(ch, window.getOrDefault(ch, 0) + 1);
+
+      if (target.containsKey(ch) && window.get(ch).intValue() == target.get(ch).intValue()) {
+        formed++;
       }
 
-      while(uniCharsHave == uniCharsNeeded) {
-        int curLen = f - b + 1;
-        if(curLen < minLen) {
-          minLen = curLen;
+      while (formed == need) {
+        if (f - b + 1 < minLen) {
+          minLen = f - b + 1;
           minStart = b;
         }
 
         char out = s.charAt(b);
-        have.put(out, have.get(out) - 1);
-
-        if(need.containsKey(out) && need.get(out) > have.get(out)) {
-          uniCharsHave--;
+        if (target.containsKey(out) && window.get(out).intValue() == target.get(out).intValue()) {
+          formed--;
         }
-
+        window.put(out, window.get(out) - 1);
         b++;
       }
     }
-    return minLen == Integer.MAX_VALUE ? "" :  s.substring(minStart, minStart + minLen);
+
+    return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
   }
+
 }

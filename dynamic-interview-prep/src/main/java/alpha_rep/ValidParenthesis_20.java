@@ -1,6 +1,5 @@
 package alpha_rep;
 
-import java.awt.*;
 import java.util.*;
 
 public class ValidParenthesis_20 {
@@ -178,4 +177,22 @@ public class ValidParenthesis_20 {
   }
   /
    */
+
+  public boolean isValid_1(String s) {
+    Stack<Character> stack = new Stack<>();
+    for(char bracket : s.toCharArray()) {
+      if(bracket == '(' || bracket == '{' || bracket == '[') {
+        stack.push(bracket);
+      } else if(!stack.isEmpty()){
+        if(stack.peek() == '(' && bracket == ')' || stack.peek() == '{' && bracket == '}' || stack.peek() == '[' && bracket == ']') {
+          continue;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
+    return stack.isEmpty();
+  }
 }

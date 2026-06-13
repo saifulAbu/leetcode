@@ -1,9 +1,6 @@
 package alpha_rep;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 public class RandomizedSet_380 {
 /*
@@ -61,10 +58,50 @@ public class RandomizedSet_380 {
     }
 }
 
-/**
- * Your RandomizedSet object will be instantiated and called as such:
- * RandomizedSet obj = new RandomizedSet();
- * boolean param_1 = obj.insert(val);
- * boolean param_2 = obj.remove(val);
- * int param_3 = obj.getRandom();
- */
+
+class RandomizedSet_0524 {
+  Map<Integer, Integer> map;
+  List<Integer> list;
+  Random rand;
+
+  public RandomizedSet_0524() {
+    map = new HashMap<>();
+    list = new ArrayList<>();
+    rand = new Random();
+  }
+
+  public boolean insert(int val) {
+    if(map.containsKey(val)) {
+      return false;
+    }
+    list.add(val);
+    map.put(val, list.size()-1);
+    return true;
+  }
+
+  public boolean remove(int val) {
+    if (!map.containsKey(val)) {
+      return false;
+    }
+
+    int idx = map.get(val);
+    int lastIdx = list.size() - 1;
+    int lastElem = list.get(lastIdx);
+
+    // Move last element into idx
+    list.set(idx, lastElem);
+    map.put(lastElem, idx);
+
+    // Remove last element
+    list.remove(lastIdx);
+
+    // Remove val from map
+    map.remove(val);
+
+    return true;
+  }
+
+  public int getRandom() {
+    return list.get(rand.nextInt(list.size()));
+  }
+}

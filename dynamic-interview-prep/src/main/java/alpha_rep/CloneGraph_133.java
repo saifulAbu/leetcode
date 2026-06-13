@@ -1,9 +1,6 @@
-package leetcode;
+package alpha_rep;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class CloneGraph_133 {
   private static class Node {
@@ -20,6 +17,24 @@ public class CloneGraph_133 {
     public Node(int _val, ArrayList<Node> _neighbors) {
       val = _val;
       neighbors = _neighbors;
+    }
+  }
+
+  public Node cloneGraph(Node node) {
+    HashMap<Node, Node> cloneMap = new HashMap<>();
+    cloneMap.put(node, new Node(node.val));
+    dfs_3_2(node, cloneMap);
+
+    return cloneMap.get(node);
+  }
+
+  private void dfs_3_2(Node node, HashMap<Node, Node> cloneMap) {
+    for(Node neighbor : node.neighbors) {
+      if(!cloneMap.containsKey(neighbor)) {
+        cloneMap.put(neighbor, new Node(neighbor.val));
+        dfs_3_2(neighbor, cloneMap);
+      }
+      cloneMap.get(node).neighbors.add(cloneMap.get(neighbor));
     }
   }
 
@@ -52,7 +67,7 @@ public class CloneGraph_133 {
     }
   }
 
-  public Node cloneGraph(Node node) {
+  public Node cloneGraph_0(Node node) {
     // base checks
     if(node == null) {
       return null;
@@ -111,6 +126,25 @@ class CloneGraph_0_133 {
         dfs(neighbor);
       }
       clonedNeighbors.add(graph.get(neighbor.val));
+    }
+  }
+
+  public Node cloneGraph_drona(Node node) {
+    Map<Node, Node> clone = new HashMap<>();
+    dfs_drona(node, clone);
+    return clone.get(node);
+  }
+
+  private void dfs_drona(Node node, Map<Node, Node> cloneMap) {
+    if(cloneMap.containsKey(node)) {
+      return;
+    }
+    Node clone = new Node(node.val);
+    cloneMap.put(node, clone);
+    for(Node neighbor : node.neighbors) {
+      dfs_drona(neighbor, cloneMap);
+      Node neighborClone = cloneMap.get(neighbor);
+      clone.neighbors.add(neighborClone);
     }
   }
 }

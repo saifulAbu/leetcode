@@ -1,4 +1,4 @@
-package linkedlist;
+package alpha_rep;
 
 public class AddTwoNumbers_2 {
   ListNode head = new ListNode(Integer.MIN_VALUE), tail = head;
@@ -66,4 +66,32 @@ public class AddTwoNumbers_2 {
 
     return dh.next;
   }
+
+  public ListNode addTwoNumbers_drona(ListNode l1, ListNode l2) {
+    ListNode dummy = new ListNode(0);
+    ListNode tail = dummy;
+
+    int carry = 0;
+
+    while (l1 != null || l2 != null) {
+      int d1 = (l1 != null) ? l1.val : 0;
+      int d2 = (l2 != null) ? l2.val : 0;
+
+      int sum = d1 + d2 + carry;
+      carry = sum / 10;
+
+      tail.next = new ListNode(sum % 10);
+      tail = tail.next;
+
+      if (l1 != null) l1 = l1.next;
+      if (l2 != null) l2 = l2.next;
+    }
+
+    if (carry > 0) {
+      tail.next = new ListNode(carry);
+    }
+
+    return dummy.next;
+  }
+
 }

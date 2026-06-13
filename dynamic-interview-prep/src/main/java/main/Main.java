@@ -2,8 +2,6 @@ package main;
 
 
 import alpha_rep.*;
-import design.LRUCache_146;
-import interview.TravellingSequence_CaptialOne;
 
 public class Main {
 

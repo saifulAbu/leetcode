@@ -4,7 +4,7 @@ import java.util.*;
 
 public class GroupAnagram_49 {
 
-  public List<List<String>> groupAnagrams_drona(String[] strs) {
+  public List<List<String>> groupAnagrams_1(String[] strs) {
     Map<String, List<String>> map = new HashMap<>();
     for (String str : strs) {
       String key = buildKey(str);
@@ -162,4 +162,108 @@ public class GroupAnagram_49 {
     }
     return new LinkedList<>(groupAnagramMap.values());
   }
+
+  public List<List<String>> groupAnagrams_3_16(String[] strs) {
+    Map<String, List<String>> anagramMap = new HashMap<>();
+    for(String str : strs) {
+      String key = buildKey_3_16(str);
+      anagramMap.computeIfAbsent(key, k -> new ArrayList<>());
+      anagramMap.get(key).add(str);
+    }
+
+    return new ArrayList<>(anagramMap.values());
+  }
+
+  /*
+  * ! avoid the following function, the hashmap used for the frequency will not lead to deterministic key
+  * ! no guarrantee that a, b, c, d, e will come in sequence. they might come out of sequence
+  * !
+  * */
+  private String buildKey_3_16(String str) {
+    Map<Character, Integer> freqs = new HashMap<>();
+    for(char ch : str.toCharArray()) {
+      freqs.put(ch, freqs.getOrDefault(ch, 0) + 1);
+    }
+
+    StringBuilder sb = new StringBuilder();
+    for(char ch : freqs.keySet()) {
+      sb.append(ch);
+      sb.append(':');
+      sb.append(freqs.get(ch));
+      sb.append('#');
+    }
+    return sb.toString();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public List<List<String>> groupAnagrams_0523(String[] strs) {
+    HashMap<String, List<String>> map = new HashMap<>();
+    for(String str : strs) {
+      String key = build_key_0523(str);
+      if(!map.containsKey(key)) {
+        map.put(key, new ArrayList<>());
+      }
+      map.get(key).add(str);
+    }
+    return (List<List<String>>) map.values();
+  }
+
+  private String build_key_0523(String str) {
+    int[] histogram = new int[26];
+    for(int i = 0; i < str.length(); i++) {
+      histogram[str.charAt(i) - 'a']++;
+    }
+    StringBuilder sb = new StringBuilder();
+    for(int count : histogram) {
+      sb.append(count);
+      sb.append("::");
+    }
+    return sb.toString();
+  }
+
+  public List<List<String>> groupAnagrams_drona(String[] strs) {
+    Map<String, List<String>> map = new HashMap<>();
+
+    for (String s : strs) {
+      int[] freq = new int[26];
+      for (char c : s.toCharArray()) {
+        freq[c - 'a']++;
+      }
+
+      StringBuilder key = new StringBuilder();
+      for (int count : freq) {
+        key.append(count).append('#');
+      }
+
+      if (!map.containsKey(key)) {
+        map.put(key.toString(), new ArrayList<String>());
+      }
+      map.get(key).add(s);
+
+    }
+
+    return new ArrayList<>(map.values());
+  }
+
 }

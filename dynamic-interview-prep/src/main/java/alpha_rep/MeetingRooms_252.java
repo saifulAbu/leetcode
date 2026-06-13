@@ -4,6 +4,22 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class MeetingRooms_252 {
+  public boolean canAttendMeetings_drona(int[][] intervals) {
+    // sort based on start time
+    Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+    int[] prev = intervals[0];
+    for(int i = 1; i < intervals.length; i++) {
+      int[] cur = intervals[i];
+      if(prev[1] > cur[0]) {
+        return false;
+      }
+      prev = cur;
+    }
+
+    return true;
+  }
+
   public boolean canAttendMeetings(int[][] intervals) {
     /*
     * [[1, 2], [3, 4], [5, 6]]

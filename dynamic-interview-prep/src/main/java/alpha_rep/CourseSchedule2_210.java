@@ -14,52 +14,55 @@ public class CourseSchedule2_210 {
   * runTopologicalSort
   * */
 
-  int[] findOrder(int numCourses, int[][] prerequisites) {
-    //build graph and in degree
-    List<Integer>[] graph = new List[numCourses];
-    int[] inDegree = new int[numCourses];
-
-    for(int i = 0; i < numCourses; i++) {
-      graph[i] = new LinkedList<>();
+  public int[] findOrder_drona(int numCourses, int[][] prerequisites) {
+    List<List<Integer>> adj = new ArrayList<>();
+    for (int i = 0; i < numCourses; i++) {
+      adj.add(new ArrayList<>());
     }
 
-    for(int[] edge : prerequisites) {
-      int dst = edge[0], src = edge[1];
-      graph[src].add(dst);
-      inDegree[dst]++;
+    int[] indegree = new int[numCourses];
+
+    // Build graph
+    for (int[] p : prerequisites) {
+      int course = p[0];
+      int prereq = p[1];
+      adj.get(prereq).add(course);
+      indegree[course]++;
     }
 
-    Queue<Integer> queue = new LinkedList<>();
-    for(int i = 0; i < numCourses; i++) {
-      if(inDegree[i] == 0) {
-        queue.offer(i);
+    // Queue of all nodes with indegree 0
+    Queue<Integer> q = new LinkedList<>();
+    for (int i = 0; i < numCourses; i++) {
+      if (indegree[i] == 0) {
+        q.offer(i);
       }
     }
 
-    int[] courseOrder = new int[numCourses];
-    int orderedCourseCount = 0;
+    int[] order = new int[numCourses];
+    int idx = 0;
 
-    while(!queue.isEmpty()) {
-      int curCourse = queue.poll();
-      // exceeding course count, one course that has been processed is coming again, might be a cycle
-      if(orderedCourseCount == numCourses) {
-        return new int[0];
-      }
-      courseOrder[orderedCourseCount++] = curCourse;
-      for(int dst : graph[curCourse]) {
-        inDegree[dst]--;
-        if(inDegree[dst] == 0) {
-          queue.add(dst);
+    // BFS Topological Sort
+    while (!q.isEmpty()) {
+      int cur = q.poll();
+      order[idx++] = cur;
+
+      for (int next : adj.get(cur)) {
+        indegree[next]--;
+        if (indegree[next] == 0) {
+          q.offer(next);
         }
       }
     }
 
-    if(orderedCourseCount == numCourses) {
-      return courseOrder;
-    } else {
-      return new int[0];
+    // If we processed all courses, return order
+    if (idx == numCourses) {
+      return order;
     }
+
+    // Cycle detected
+    return new int[0];
   }
+
 
   static public int[] findOrder0(int numCourses, int[][] prerequisites) {
     List<Integer>[] graph = getAdjList(numCourses, prerequisites);

@@ -2,6 +2,7 @@ package alpha_rep;
 
 import java.util.*;
 
+//noted
 public class Sum3_15 {
 
   public List<List<Integer>> threeSum_guru_drona(int[] nums) {
@@ -208,4 +209,74 @@ public class Sum3_15 {
     }
     return res;
   }
+
+  public List<List<Integer>> threeSum_3_17(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+
+    Arrays.sort(nums);
+    int i = 0, n = nums.length;
+    while(i < n - 2) {
+      int j = i + 1, k = n -1;
+      while(j < k) {
+        int curSum = nums[i] + nums[j] + nums[k];
+        if(curSum == 0) {
+          result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+          j++;
+          k--;
+
+          //skip duplicates
+          while(j < k && nums[j-1] == nums[j])
+            j++;
+          while(j < k && nums[k] == nums[k+1])
+            k--;
+        } else if(curSum < 0) {
+          j++;
+        } else {
+          k--;
+        }
+      }
+      i++;
+      while(i < n - 2 && nums[i-1] == nums[i])
+        i++;
+    }
+    return result;
+  }
+
+  public List<List<Integer>> threeSum_0527(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    Arrays.sort(nums);
+
+    int n = nums.length;
+
+    for (int i = 0; i < n - 2; i++) {
+
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
+
+      int l = i + 1;
+      int r = n - 1;
+
+      while (l < r) {
+        int sum = nums[i] + nums[l] + nums[r];
+
+        if (sum < 0) {
+          l++;
+        } else if (sum > 0) {
+          r--;
+        } else {
+          result.add(Arrays.asList(nums[i], nums[l], nums[r]));
+
+          l++;
+          r--;
+
+          while (l < r && nums[l] == nums[l - 1]) l++;
+          while (l < r && nums[r] == nums[r + 1]) r--;
+        }
+      }
+    }
+
+    return result;
+  }
+
 }

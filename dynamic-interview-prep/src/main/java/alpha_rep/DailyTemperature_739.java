@@ -98,11 +98,28 @@ public class DailyTemperature_739 {
     return wait;
   }
 
+  public int[] dailyTemperatures_3(int[] temperatures) {
+    int n = temperatures.length;
+    int [] output = new int[n];
+    Stack<Integer> stack = new Stack<>();
 
+    for(int i = 0; i < n; i++) {
+      if(stack.isEmpty()) {
+        stack.push(i);
+      } else {
+        while(!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {
+          int j = stack.pop();
+          output[j] = i - j;
+        }
+        stack.push(i);
+      }
+    }
+    while(!stack.isEmpty()) {
+      output[stack.pop()] = 0;
+    }
 
-
-
-
+    return output;
+  }
 
 
 

@@ -65,4 +65,10 @@ public class MaxDepth_104 {
       return Math.max(maxDepth_1(curNode.left), maxDepth_1(curNode.right)) + 1;
     }
   }
+
+  public int maxDepth_drona(TreeNode root) {
+    if (root == null) return 0;
+    return 1 + Math.max(maxDepth_drona(root.left), maxDepth_drona(root.right));
+  }
+
 }

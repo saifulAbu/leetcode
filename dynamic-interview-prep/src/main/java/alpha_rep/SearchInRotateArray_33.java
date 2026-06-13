@@ -1,5 +1,6 @@
 package alpha_rep;
 
+//noted
 public class SearchInRotateArray_33 {
   public int search(int[] nums, int target) {
     /*
@@ -48,6 +49,37 @@ public class SearchInRotateArray_33 {
     return -1;
   }
 
+  public int search_1(int[] nums, int target) {
+    int l = 0, h = nums.length -1;
+
+    while(l <= h) {
+      int m = l + (h - l) / 2;
+      int lowVal = nums[l], midVal = nums[m], highVal = nums[h];
+
+      if(midVal == target) {
+        return m;
+      }
+
+      //find which part is sorted
+      if(lowVal <= midVal) {
+        //left part is sorted
+        if(lowVal <= target && target < midVal) {
+          h = m -1;
+        } else {
+          l = m + 1;
+        }
+      } else {
+        //right part is sorted
+        if(midVal < target && target <= highVal) {
+          l = m + 1;
+        } else {
+          h = m - 1;
+        }
+      }
+    }
+    return -1;
+  }
+
 
   public int search_0(int[] nums, int target) {
     int l = 0, h = nums.length - 1;
@@ -73,4 +105,34 @@ public class SearchInRotateArray_33 {
     }
     return -1;
   }
+
+  public int search_drona(int[] nums, int target) {
+    int l = 0, h = nums.length - 1;
+
+    while (l <= h) {
+      int m = l + (h - l) / 2;
+
+      if (nums[m] == target) return m;
+
+      // Left half is sorted
+      if (nums[l] <= nums[m]) {
+        if (nums[l] <= target && target < nums[m]) {
+          h = m - 1;
+        } else {
+          l = m + 1;
+        }
+      }
+      // Right half is sorted
+      else {
+        if (nums[m] < target && target <= nums[h]) {
+          l = m + 1;
+        } else {
+          h = m - 1;
+        }
+      }
+    }
+
+    return -1;
+  }
+
 }

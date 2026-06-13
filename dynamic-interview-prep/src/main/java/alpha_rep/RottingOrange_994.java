@@ -5,6 +5,54 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class RottingOrange_994 {
+  public int orangesRotting_drona(int[][] grid) {
+    int R = grid.length, C = grid[0].length;
+    int fresh = 0;
+
+    Queue<int[]> q = new ArrayDeque<>();
+
+    // collect all rotten oranges and count fresh ones
+    for (int r = 0; r < R; r++) {
+      for (int c = 0; c < C; c++) {
+        if (grid[r][c] == 2) {
+          q.offer(new int[]{r, c});
+        } else if (grid[r][c] == 1) {
+          fresh++;
+        }
+      }
+    }
+
+    if (fresh == 0) return 0;
+
+    int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+    int minutes = 0;
+
+    // multi-source BFS
+    while (!q.isEmpty()) {
+      int size = q.size();
+      for (int i = 0; i < size; i++) {
+        int[] cur = q.poll();
+        int r = cur[0], c = cur[1];
+
+        for (int[] d : dirs) {
+          int nr = r + d[0], nc = c + d[1];
+
+          if (nr >= 0 && nr < R && nc >= 0 && nc < C && grid[nr][nc] == 1) {
+            grid[nr][nc] = 2;
+            fresh--;
+            q.offer(new int[]{nr, nc});
+          }
+        }
+      }
+      minutes++;
+    }
+
+    // subtract one from time, because when all the oranges are rotten, we still do one more pass to empty the q
+    // think what happens if we begin with all oranges rotten? it will still do one pass
+    return fresh == 0 ? minutes - 1 : -1;
+  }
+
+
   public int orangesRotting(int[][] grid) {
     /*
     * t = 0
@@ -147,5 +195,43 @@ public class RottingOrange_994 {
     }
 
     return goodOrangeCount == 0? timeStamp : -1;
+  }
+
+  public int orangesRotting_0530(int[][] grid) {
+    int goodOranges = 0;
+    Queue<int[]> badOrangeQ = new ArrayDeque<>();
+    int R = grid.length, C = grid[0].length;
+
+    for(int r = 0; r < R; r++) {
+      for(int c = 0; c < C; c++) {
+        if(grid[r][c] == 1) {
+          goodOranges++;
+        } else if(grid[r][c] == 2) {
+          badOrangeQ.offer(new int[] {r,c});
+        }
+      }
+    }
+
+    int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    int time = 0;
+    while(!badOrangeQ.isEmpty()) {
+      int curBadCount = badOrangeQ.size();
+      for(int i = 0; i < curBadCount; i++) {
+        int[] curBad = badOrangeQ.poll();
+        for(int[] dir : dirs) {
+          int neighborR = curBad[0] + dir[0], neighborC = curBad[1] + dir[1];
+          if(neighborR < 0 || neighborR >= R || neighborC < 0 || neighborC >= C || grid[neighborR][neighborC] == 0 || grid[neighborR][neighborC] == 2) {
+            continue;
+          }
+          grid[neighborR][neighborC] = 2;
+          goodOranges--;
+          badOrangeQ.offer(new int[] {neighborR, neighborC});
+        }
+      }
+      time++;
+    }
+
+    return goodOranges == 0 ? time-1 : -1;
   }
 }

@@ -2,7 +2,7 @@ package alpha_rep;
 
 public class CycleCheckList_141 {
 
-  public boolean hasCycle(ListNode head) {
+  public boolean hasCycle_drona(ListNode head) {
     /*
     * if there is a cycle, if we have one pointer that moves one step, another pointer that moves 2 step
     * they will eventually meet
@@ -22,15 +22,11 @@ public class CycleCheckList_141 {
 
     ListNode slow = head, fast = head;
 
-    while(slow != null && fast != null) {
+    while (fast != null && fast.next != null) {
       slow = slow.next;
-      fast = fast.next;
-      if(fast != null) {
-        fast = fast.next;
-      } else {
-        break;
-      }
-      if(slow == fast) {
+      fast = fast.next.next;
+
+      if (slow == fast) {
         return true;
       }
     }
@@ -91,7 +87,20 @@ public class CycleCheckList_141 {
     l3.next = l1;
 
     CycleCheckList_141 c = new CycleCheckList_141();
-    System.out.println(c.hasCycle(l0));
 
+  }
+
+  public boolean hasCycle0517(ListNode head) {
+    ListNode slow = head, fast = head;
+
+    while(fast != null || slow != null) {
+      slow = slow.next;
+      fast = fast.next;
+      if(fast == null) {
+        return true;
+      }
+      fast = fast.next;
+    }
+    return false;
   }
 }

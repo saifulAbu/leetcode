@@ -1,10 +1,40 @@
 package alpha_rep;
 
+import array_and_string.NumsSmallerThanCur_1365;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
 class NumberOfIslands_200 {
+
+  public int numIslands_01(char[][] grid) {
+    int R = grid.length, C = grid[0].length;
+    boolean [][] visited = new boolean[R][C];
+    int numIslands = 0;
+
+    for(int r = 0; r < R; r++) {
+      for(int c = 0; c < C; c++) {
+        if(grid[r][c] == '1' && !visited[r][c]) {
+          numIslands++;
+          dfs_3_2(grid, visited, R, C, r, c);
+        }
+      }
+    }
+    return numIslands;
+  }
+
+  private void dfs_3_2(char[][] grid, boolean[][] visited, int R, int C, int r, int c) {
+    int[][] directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+    visited[r][c] = true;
+    for(int[] dir : directions) {
+      int nr = r + dir[0], nc = c + dir[1];
+      if(nr >= 0 && nr < R && nc >= 0 && nc < C && grid[nr][nc] == '1' && !visited[nr][nc]) {
+        dfs_3_2(grid, visited, R, C, nr, nc);
+      }
+    }
+  }
+
 
   public int numIslands(char[][] grid) {
     int R = grid.length, C = grid[0].length;
@@ -312,6 +342,37 @@ class NumberOfIslands_0_200 {
           }
         }
       }
+    }
+  }
+
+
+  int R, C;
+  int [][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+  public int numIslands_drona(char[][] grid) {
+    R = grid.length;
+    C = grid[0].length;
+    int numIsland = 0;
+
+    for(int r = 0; r < R; r++) {
+      for(int c = 0; c < C; c++) {
+        if(grid[r][c] == '1') {
+          numIsland++;
+          dfs(grid, r, c);
+        }
+      }
+    }
+
+    return numIsland;
+  }
+
+  private void dfs(char[][] grid, int r, int c) {
+    if(r < 0 || r >= R || c < 0 || c >= C || grid[r][c] == '0' || grid[r][c] == '2') {
+      return;
+    }
+
+    grid[r][c] = '2';
+    for(int[] dir : dirs) {
+      dfs(grid,r + dir[0], c + dir[1]);
     }
   }
 }

@@ -1,11 +1,54 @@
 package alpha_rep;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class CourseSchedule_207 {
-  public boolean canFinish(int numCourses, int[][] prerequisites) {
+  public boolean canFinish_drona(int numCourses, int[][] prerequisites) {
+    // adjacency list
+    List<List<Integer>> adj = new ArrayList<>();
+    for (int i = 0; i < numCourses; i++) {
+      adj.add(new ArrayList<>());
+    }
+
+    // indegree array
+    int[] indegree = new int[numCourses];
+
+    // build graph
+    for (int[] p : prerequisites) {
+      int course = p[0];
+      int prereq = p[1];
+      adj.get(prereq).add(course);
+      indegree[course]++;
+    }
+
+    // queue of all nodes with indegree 0
+    Queue<Integer> q = new LinkedList<>();
+    for (int i = 0; i < numCourses; i++) {
+      if (indegree[i] == 0) {
+        q.offer(i);
+      }
+    }
+
+    int processed = 0;
+
+    // BFS topological sort
+    while (!q.isEmpty()) {
+      int cur = q.poll();
+      processed++;
+
+      for (int next : adj.get(cur)) {
+        indegree[next]--;
+        if (indegree[next] == 0) {
+          q.offer(next);
+        }
+      }
+    }
+
+    // if we processed all courses, no cycle exists
+    return processed == numCourses;
+  }
+
+  public boolean canFinish_0(int numCourses, int[][] prerequisites) {
     /*
     * we will use topological sorting
     * courseTakenCount = 0;
@@ -71,5 +114,82 @@ public class CourseSchedule_207 {
     }
 
     return totalCourseTaken == numCourses;
+  }
+
+  public boolean canFinish_3_2(int numCourses, int[][] prerequisites) {
+    //create adjacency list
+    ArrayList<Integer>[] adjList = new ArrayList[numCourses];
+    for(int i = 0; i < numCourses; i++) {
+      adjList[i] = new ArrayList<>();
+    }
+
+    int[] indegree = new int[numCourses];
+    for(int[] prereq : prerequisites) {
+      int src = prereq[1], dest = prereq[0];
+      adjList[src].add(dest);
+      indegree[dest]++;
+    }
+
+    Queue<Integer> q = new LinkedList<>();
+    for(int i = 0; i < numCourses; i++) {
+      if(indegree[i] == 0) {
+        q.add(i);
+      }
+    }
+
+    int courseScheduled = 0;
+    while(!q.isEmpty()) {
+      int curCourse = q.poll();
+      courseScheduled++;
+      if(courseScheduled > numCourses) {
+        return false;
+      }
+
+      for(int depCourse : adjList[curCourse]) {
+        indegree[depCourse]--;
+        if(indegree[depCourse] == 0) {
+          q.add(depCourse);
+        }
+      }
+    }
+
+    return courseScheduled == numCourses;
+  }
+
+  public boolean canFinish_0530(int numCourses, int[][] prerequisites) {
+    Map<Integer, List<Integer>> graph = new HashMap<>();
+    for(int i = 0; i < numCourses; i++) {
+      graph.put(i, new ArrayList<>());
+    }
+
+    int[] indegree = new int[numCourses];
+    for(int[] edge : prerequisites) {
+      int src = edge[1];
+      int dst = edge[0];
+      graph.get(src).add(dst);
+      indegree[dst]++;
+    }
+
+    Queue<Integer> q = new ArrayDeque<>();
+    for(int i = 0; i < numCourses; i++) {
+      if(indegree[i] == 0) {
+        q.offer(i);
+      }
+    }
+
+    int processed = 0;
+    while(!q.isEmpty()) {
+      int src = q.poll();
+      processed++;
+
+      for(int dst : graph.get(src)) {
+        indegree[dst]--;
+        if(indegree[dst] == 0) {
+          q.offer(dst);
+        }
+      }
+    }
+
+    return processed == numCourses;
   }
 }

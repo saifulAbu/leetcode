@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ValidAnagram_242 {
-  public boolean isAnagram_drona(String s, String t) {
+  public boolean isAnagram_1(String s, String t) {
     if (s.length() != t.length()) return false;
 
     Map<Character, Integer> freqs = new HashMap<>();
@@ -55,6 +55,24 @@ public class ValidAnagram_242 {
         return false;
       }
     }
+    return true;
+  }
+
+  public boolean isAnagram_drona(String s, String t) {
+    if (s.length() != t.length()) {
+      return false;
+    }
+
+    int[] histogram = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+      histogram[s.charAt(i) - 'a']++;
+      histogram[t.charAt(i) - 'a']--;
+    }
+
+    for (int c : histogram) {
+      if (c != 0) return false;
+    }
+
     return true;
   }
 }

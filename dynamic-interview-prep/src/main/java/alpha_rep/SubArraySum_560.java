@@ -3,6 +3,7 @@ package alpha_rep;
 import java.util.HashMap;
 import java.util.Map;
 
+//noted
 public class SubArraySum_560 {
 
   public int subarraySum_bruteforce_n_2(int[] nums, int k) {
@@ -121,4 +122,50 @@ public class SubArraySum_560 {
     }
     return totalCount;
   }
+
+  public int subarraySum_3_4(int[] nums, int k) {
+    HashMap<Integer, Integer> prefixSumFreq = new HashMap<>();
+    int curSum = 0;
+    int total = 0;
+    prefixSumFreq.put(curSum, 1);
+    for(int i = 0; i < nums.length; i++) {
+      curSum += nums[i];
+      int need = curSum - k;
+      total += prefixSumFreq.getOrDefault(need, 0);
+      prefixSumFreq.put(curSum, prefixSumFreq.getOrDefault(curSum, 0) + 1);
+    }
+    return total;
+  }
+
+  public int subarraySum_3_17(int[] nums, int k) {
+    HashMap<Integer, Integer> prefixSumfreqs = new HashMap<>();
+    int prefixSum = 0;
+    prefixSumfreqs.put(prefixSum, 1);
+
+    int result = 0;
+    for(int num : nums) {
+      prefixSum += num;
+      int prefixSumNeed = prefixSum - k;
+      result += prefixSumfreqs.getOrDefault(prefixSumNeed, 0);
+      prefixSumfreqs.put(prefixSum, prefixSumfreqs.getOrDefault(prefixSum, 0) + 1);
+    }
+
+    return result;
+  }
+
+  public int subarraySum_05_24(int[] nums, int k) {
+    int cumSum = 0;
+    Map<Integer, Integer> sumFreq = new HashMap<>();
+    sumFreq.put(cumSum, 1);
+
+    int totalCount = 0;
+    for(int i = 0; i < nums.length; i++) {
+      cumSum += nums[i];
+      totalCount += sumFreq.getOrDefault(cumSum - k, 0);
+      sumFreq.put(cumSum, sumFreq.getOrDefault(cumSum, 0) + 1);
+    }
+
+    return totalCount;
+  }
+
 }

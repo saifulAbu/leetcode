@@ -337,3 +337,45 @@ class GameEngine {
 
 }
  */
+
+/*
+class Broker {
+  HashMap<String, Topic> topicMap;
+
+  void publishMessage(String topic, String message){
+    if(topicMap.ContainsKey(topic)) {
+      topicMap.get(topic).publish(message);
+    }
+  }
+
+  void createTopic(String topicName) {
+    topicMap.putIfAbsent(new Topic(topicName));
+  }
+
+  void subscribeToTopic(String topic, Subscriber subscriber){
+    if(topicMap.ContainsKey(topic)) {
+      topicMap.get(topic).subscribe(subscriber);
+    }
+  }
+}
+
+class Topic {
+  String topicName;
+  List<Subscriber> subscribers;
+
+  void publish(String message) {
+    for(Subscriber subscriber : subscribers) {
+      subscriber.onMessage(topicName, message);
+    }
+  }
+
+  void subscribe(Subscriber subscriber) {
+    subscribers.add(subscriber);
+  }
+}
+
+class Subscriber {
+  void onMessage(String topic, String message);
+}
+
+ */

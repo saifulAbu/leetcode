@@ -170,4 +170,32 @@ public class BinaryTreeLevelOrderTraversal_102 {
       traverseHelper0(root.right, level + 1, levelOrderMap);
     }
   }
+
+  public List<List<Integer>> levelOrder_drona(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if(root == null) {
+      return result;
+    }
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+
+    while (!queue.isEmpty()) {
+      List<Integer> curLevel = new ArrayList<>();
+      int curSize = queue.size();
+      for(int i = 0; i < curSize; i++) {
+        TreeNode curNode = queue.poll();
+        curLevel.add(curNode.val);
+        if(curNode.left != null) {
+          queue.offer(curNode.left);
+        }
+        if(curNode.right != null) {
+          queue.offer(curNode.right);
+        }
+      }
+      result.add(curLevel);
+    }
+
+    return result;
+  }
 }

@@ -1,7 +1,5 @@
 package alpha_rep;
 
-import java.util.Arrays;
-
 public class MInSizeSubArr_209 {
 
   public int minSubArrayLen(int target, int[] nums) {

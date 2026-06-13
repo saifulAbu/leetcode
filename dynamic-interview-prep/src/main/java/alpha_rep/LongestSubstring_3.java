@@ -6,6 +6,28 @@ import java.util.Map;
 
 public class LongestSubstring_3 {
 
+  public int lengthOfLongestSubstring_drona(String s) {
+    int maxSize = 0, len = s.length();
+    HashMap<Character, Integer> freq = new HashMap<>();
+    int b = 0;
+
+    for(int f = 0; f < len; f++) {
+      char in = s.charAt(f);
+      freq.put(in, freq.getOrDefault(in, 0) + 1);
+      while(freq.get(in) > 1) {
+        char out = s.charAt(b);
+        freq.put(out, freq.get(out) - 1);
+        if(freq.get(out) == 0) {
+          freq.remove(out);
+        }
+        b++;
+      }
+      maxSize = Math.max(maxSize, freq.size());
+    }
+    return maxSize;
+  }
+
+
   public int lengthOfLongestSubstring(String s) {
     /*
     * we maintain 2 pointers, f and b
@@ -124,4 +146,24 @@ public class LongestSubstring_3 {
     }
     return maxSize;
   }
+
+  public int lengthOfLongestSubstring_2(String s) {
+    int[] freq = new int[128];
+    int b = 0, max = 0;
+
+    for (int f = 0; f < s.length(); f++) {
+      char ch = s.charAt(f);
+      freq[ch]++;
+
+      while (freq[ch] > 1) {
+        freq[s.charAt(b)]--;
+        b++;
+      }
+
+      max = Math.max(max, f - b + 1);
+    }
+
+    return max;
+  }
+
 }

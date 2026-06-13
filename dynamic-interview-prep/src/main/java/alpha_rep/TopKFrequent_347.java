@@ -2,9 +2,44 @@ package alpha_rep;
 
 import java.util.*;
 
+//noted
 public class TopKFrequent_347 {
 
-  public int[] topKFrequent_drona(int[] nums, int k) {
+  public int[] topKFrequent_drona_optimal(int[] nums, int k) {
+    // 1. Count frequencies
+    Map<Integer, Integer> freq = new HashMap<>();
+    for (int num : nums) {
+      freq.put(num, freq.getOrDefault(num, 0) + 1);
+    }
+
+    // 2. Create buckets: index = frequency
+    List<Integer>[] buckets = new List[nums.length + 1];
+    for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+      int number = entry.getKey();
+      int count = entry.getValue();
+      if (buckets[count] == null) {
+        buckets[count] = new ArrayList<>();
+      }
+      buckets[count].add(number);
+    }
+
+    // 3. Collect top k from highest frequency down
+    int[] result = new int[k];
+    int idx = 0;
+
+    for (int i = buckets.length - 1; i >= 0 && idx < k; i--) {
+      if (buckets[i] == null) continue;
+      for (int num : buckets[i]) {
+        result[idx++] = num;
+        if (idx == k) break;
+      }
+    }
+
+    return result;
+  }
+
+
+  public int[] topKFrequent_2(int[] nums, int k) {
     Map<Integer, Integer> freqs = new HashMap<>();
     for (int num : nums) {
       freqs.put(num, freqs.getOrDefault(num, 0) + 1);
@@ -135,4 +170,70 @@ public class TopKFrequent_347 {
     }
     return res;
   }
+
+  public int[] topKFrequent_optimal_drona(int[] nums, int k) {
+    //count frequency
+    Map<Integer, Integer> freqs = new HashMap<>();
+    for(int num : nums) {
+      freqs.put(num, freqs.getOrDefault(num, 0) + 1);
+    }
+
+    int n = nums.length;
+    // do bucket sort
+    List<Integer>[] buckets = new List[n + 1]; // 0 through n counts. we will not use 0 index.
+
+    for(int num : freqs.keySet()) {
+      int freq = freqs.get(num);
+      if(buckets[freq] == null){
+        buckets[freq] = new ArrayList<>();
+      }
+      buckets[freq].add(num);
+    }
+
+    int[] result = new int[k];
+    int curSize = 0;
+    for(int i = n; i >= 0 && curSize != k; i--) {
+      if(buckets[i] == null)
+        continue;
+      List<Integer> curBucket = buckets[i];
+
+      for(int num : curBucket) {
+        result[curSize++] = num;
+        if(curSize == k) {
+          break;
+        }
+      }
+    }
+    return result;
+  }
+
+  public int[] topKFrequent_0523(int[] nums, int k) {
+    Map<Integer, Integer> freq = new HashMap<>();
+    for (int n : nums) {
+      freq.put(n, freq.getOrDefault(n, 0) + 1);
+    }
+
+    List<Integer>[] buckets = new List[nums.length + 1];
+    for (int num : freq.keySet()) {
+      int count = freq.get(num);
+      if (buckets[count] == null) {
+        buckets[count] = new ArrayList<>();
+      }
+      buckets[count].add(num);
+    }
+
+    int[] result = new int[k];
+    int idx = 0;
+
+    for (int i = buckets.length - 1; i >= 0 && idx < k; i--) {
+      if (buckets[i] == null) continue;
+      for (int num : buckets[i]) {
+        result[idx++] = num;
+        if (idx == k) break;
+      }
+    }
+
+    return result;
+  }
+
 }

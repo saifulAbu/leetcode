@@ -1,6 +1,6 @@
 package array_and_string;
 
-public class MoveZeros_238 {
+public class MoveZeros_283 {
   public void moveZeroes(int[] nums) {
     for (int i = 0, nextNonZeroToInsert = 0; i < nums.length; i++) {
       if (nums[i] != 0) {

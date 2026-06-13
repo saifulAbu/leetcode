@@ -23,6 +23,28 @@ public class ClimbingStairs_70 {
     return steps[n];
   }
 
+  public int climbStairs_memo_helper(int n) {
+    int[] memo = new int[n+1];
+    memo[0] = 1;
+    memo[1] = 1;
+    return climbStairs_memo_helper(n, memo);
+  }
+
+  public int climbStairs_memo_helper(int n, int[] memo) {
+    if(memo[n] > 0) {
+      return memo[n];
+    }
+    memo[n] = climbStairs_memo_helper(n-1, memo) + climbStairs_memo_helper(n-2, memo);
+    return memo[n];
+  }
+
+  public int climbStairs_brute(int n) {
+    if(n < 3) {
+      return n; // for n = 1, we can do in 1 way, n = 2, we can do 2 ways
+    }
+    return climbStairs_brute(n-1) + climbStairs_brute(n-2);
+  }
+
 
   public int climbStairs_0(int n) {
     int [] steps = new int[n+1];
@@ -32,5 +54,33 @@ public class ClimbingStairs_70 {
       steps[i] = steps[i-1] + steps[i-2];
     }
     return steps[n];
+  }
+
+
+  public int climbStairs_0405(int n) {
+    int[] dp = new int[n+1];
+    dp[0] = 1;
+    dp[1] = 1;
+
+    for(int i = 2; i <=n; i++) {
+      dp[i] = dp[i-1] + dp[i-2];
+    }
+
+    return dp[n];
+  }
+
+  public int climbStairs_drona(int n) {
+    if (n <= 2) return n;
+
+    int a = 1; // ways(1)
+    int b = 2; // ways(2)
+
+    for (int i = 3; i <= n; i++) {
+      int c = a + b; // ways(i) = ways(i-1) + ways(i-2)
+      a = b;
+      b = c;
+    }
+
+    return b; // ways(n)
   }
 }

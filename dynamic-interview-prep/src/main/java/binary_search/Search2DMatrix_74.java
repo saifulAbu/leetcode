@@ -42,4 +42,34 @@ public class Search2DMatrix_74 {
     }
     return searchSpace[l] == target? true : false;
   }
+
+  public boolean searchMatrix_drona(int[][] matrix, int target) {
+    int R = matrix.length;
+    if (R == 0) return false;
+
+    int C = matrix[0].length;
+    if (C == 0) return false;
+
+    int l = 0;
+    int h = R * C - 1;
+
+    while (l <= h) {
+      int m = l + (h - l) / 2;
+      int r = m / C;
+      int c = m % C;
+
+      int val = matrix[r][c];
+
+      if (val == target) {
+        return true;
+      } else if (val < target) {
+        l = m + 1;
+      } else {
+        h = m - 1;
+      }
+    }
+
+    return false;
+  }
+
 }

@@ -34,4 +34,19 @@ public class ReverseLinkedList_206 {
 
     return result.next;
   }
+
+  public ListNode reverseList_1(ListNode head) {
+    ListNode dummyOrig = new ListNode(-1, head);
+    ListNode dummyReversed = new ListNode();
+
+    while(dummyOrig.next != null) {
+      ListNode cur = dummyOrig.next;
+      dummyOrig.next = cur.next;
+
+      cur.next = dummyReversed.next;
+      dummyReversed.next = cur;
+    }
+
+    return dummyReversed.next;
+  }
 }

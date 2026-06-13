@@ -1,8 +1,24 @@
-package binary_search;
+package alpha_rep;
 
 public class BinarySearch_704 {
 
   public int search(int[] nums, int target) {
+    int l = 0, h = nums.length - 1;
+    while(l <= h) {
+      int m = l + (h - l) / 2;
+      int midElem = nums[m];
+      if(midElem < target) {
+        l = m + 1;
+      } else if(target < midElem) {
+        h = m - 1;
+      } else {
+        return m;
+      }
+    }
+    return -1;
+  }
+
+  public int search_1(int[] nums, int target) {
     /*
      * we will apply binary search
      * l = 0, h = len - 1
@@ -43,6 +59,23 @@ public class BinarySearch_704 {
         l = m + 1;
       } else {
         r = m - 1;
+      }
+    }
+    return -1;
+  }
+
+  public int search_drona(int[] nums, int target) {
+    int l = 0;
+    int h = nums.length - 1;
+
+    while(l <= h) {
+      int m = l + (h-l) / 2;
+      if(nums[m] == target) {
+        return m;
+      } else if(nums[m] > target) {
+        h = m - 1;
+      } else {
+        l = m + 1;
       }
     }
     return -1;

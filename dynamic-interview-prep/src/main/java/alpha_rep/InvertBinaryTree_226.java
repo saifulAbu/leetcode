@@ -31,4 +31,16 @@ public class InvertBinaryTree_226 {
     root.left = invertTree(right);
     return root;
   }
+
+  public TreeNode invertTree_drona(TreeNode root) {
+    if (root == null) return null;
+
+    TreeNode left = invertTree_drona(root.left);
+    TreeNode right = invertTree_drona(root.right);
+
+    root.left = right;
+    root.right = left;
+
+    return root;
+  }
 }

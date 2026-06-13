@@ -1,8 +1,6 @@
-package stack_queue;
+package alpha_rep;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Stack;
+import java.util.*;
 
 public class EvaluatePolishNotation_150 {
 
@@ -77,4 +75,38 @@ public class EvaluatePolishNotation_150 {
     }
     return stack.pop();
   }
+
+  public int evalRPN_drona(String[] tokens) {
+    Deque<Integer> stack = new ArrayDeque<>();
+    Set<String> ops = Set.of("+", "-", "*", "/");
+
+    for (String token : tokens) {
+
+      if (!ops.contains(token)) {
+        stack.push(Integer.parseInt(token));
+        continue;
+      }
+
+      int b = stack.pop();
+      int a = stack.pop();
+
+      switch (token) {
+        case "+":
+          stack.push(a + b);
+          break;
+        case "-":
+          stack.push(a - b);
+          break;
+        case "*":
+          stack.push(a * b);
+          break;
+        case "/":
+          stack.push(a / b); // truncates toward zero
+          break;
+      }
+    }
+
+    return stack.pop();
+  }
+
 }

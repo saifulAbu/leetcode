@@ -90,4 +90,21 @@ public class ContainerWithMostWater_11 {
     return maxArea;
   }
 
+  public int maxArea_0527(int[] height) {
+    int f = 0, b = height.length - 1;
+    int max  = 0;
+    while(f < b) {
+      int cur = Math.min(height[f], height[b]) * (b-f);
+      if(cur > max) {
+        max = cur;
+      }
+      if(height[b] > height[f]) {
+        f++;
+      } else {
+        b--;
+      }
+    }
+    return max;
+  }
+
 }

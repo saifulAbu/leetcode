@@ -1,4 +1,4 @@
-package hash;
+package alpha_rep;
 
 //https://leetcode.com/problems/two-sum/
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class TwoSum_1 {
       map.put(nums[i], i);
     }
 
-    return null;
+    return new int[0]; //return an empty array
   }
 
   public int[] twoSum_0(int[] nums, int target) {
@@ -56,6 +56,22 @@ public class TwoSum_1 {
       }
     }
 
+    return res;
+  }
+
+  public int[] twoSum_drona(int[] nums, int target) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int[] res = new int[2];
+
+    for(int i = 0; i < nums.length; i++) {
+      int cur = nums[i];
+      if(map.containsKey(target - cur)) {
+        res[0] = map.get(target - cur);
+        res[1] = i;
+        break;
+      }
+      map.put(nums[i], i);
+    }
     return res;
   }
 }

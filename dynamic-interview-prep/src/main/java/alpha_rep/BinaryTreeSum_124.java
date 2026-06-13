@@ -1,4 +1,4 @@
-package leetcode;
+package alpha_rep;
 
 public class BinaryTreeSum_124 {
   int maxSum = Integer.MIN_VALUE;
@@ -25,26 +25,25 @@ public class BinaryTreeSum_124 {
     return oneSided;
   }
 
-  public static void main(String args[]) {
-    TreeNode n0 = new TreeNode(2);
+  private int max_drona = Integer.MIN_VALUE;
 
-    TreeNode n1 = new TreeNode(2);
-    TreeNode n2 = new TreeNode(2);
+  public int maxPathSum_drona(TreeNode root) {
+    maxGain_drona(root);
+    return max_drona;
+  }
 
-    TreeNode n3 = new TreeNode(-1);
-    TreeNode n4 = new TreeNode(-2);
-    TreeNode n5 = new TreeNode(-1);
-    TreeNode n6 = new TreeNode(-2);
+  private int maxGain_drona(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
 
-    n0.left = n1;
-    n0.right = n2;
+    int leftGain = Math.max(0, maxGain_drona(root.left));
+    int rightGain = Math.max(0, maxGain_drona(root.right));
 
-    n1.left = n3;
-    n1.right = n4;
-    n2.left = n5;
-    n2.right = n6;
+    int curGain = root.val + leftGain + rightGain;
 
-    BinaryTreeSum_124 bts = new BinaryTreeSum_124();
-    System.out.println(bts.maxPathSum(n0));
+    max_drona = Math.max(max_drona, curGain);
+
+    return root.val + Math.max(leftGain, rightGain);
   }
 }

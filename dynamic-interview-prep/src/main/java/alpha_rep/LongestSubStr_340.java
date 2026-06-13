@@ -1,7 +1,6 @@
 package alpha_rep;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class LongestSubStr_340 {
   public int lengthOfLongestSubstringKDistinct(String s, int k) {
@@ -39,6 +38,29 @@ public class LongestSubStr_340 {
       }
 
       maxLen = Math.max(maxLen, i - backPtr + 1);
+    }
+
+    return maxLen;
+  }
+
+  public int lengthOfLongestSubstringKDistinct_3_4(String s, int k) {
+
+    HashMap<Character, Integer> freq = new HashMap<>();
+    int maxLen = 0;
+
+    int b = 0;
+    for(int f = 0; f < s.length(); f++) {
+      char in = s.charAt(f);
+      freq.put(in, freq.getOrDefault(in, 0) + 1);
+      while(freq.size() > k) {
+        char out = s.charAt(b);
+        freq.put(out, freq.get(out) - 1);
+        if(freq.get(out) == 0) {
+          freq.remove(out);
+        }
+        b++;
+      }
+      maxLen = Math.max((f-b+1), maxLen);
     }
 
     return maxLen;
