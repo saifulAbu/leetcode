@@ -52,71 +52,62 @@ public class Sum3_15 {
 
   public List<List<Integer>> threeSum(int[] nums) {
     /*
-    * first sort the array. we will use a few pointers.
-    *  p0 p1                      p3
-    *  0  1  2  3  4  5  6  7  8  9
-    * -3 -3 -2 -2 -1  0  0  1  1  5
-    *
-    *  we will start p0 = 0, p1 = p0 + 1, p2 = len - 1
-    *  max value of p0 can be 7, len is 10, so p0 < len - 2
-    *  we sum up sum = arr[p0] + arr[p1] + arr[p2].
-    *  if sum < 0, we move p1 forward to increase the sum
-    *  if sum > 0, we move p2 backward to decrease sum
-    *  if sum == 0, we move p1 forward skipping all the duplicates.
-    *     in past, we found lets say, -3, -2, 5 combination, next we will have -3, -1, 4, this guarantees that our tuples
-    *     will never contain dups
-    *  we stop the inner loop when p1 >= p2
-    *  we move forward p0 and skip all the dups
-    *
-    *  complexity: timeComplexity:
-    *   we are sorting and we have two for loops
-    *     O(n * n) + O(n * log(n))
-    * */
+     * first sort the array. we will use a few pointers.
+     * p0 p1 p3
+     * 0 1 2 3 4 5 6 7 8 9
+     * -3 -3 -2 -2 -1 0 0 1 1 5
+     *
+     * we will start p0 = 0, p1 = p0 + 1, p2 = len - 1
+     * max value of p0 can be 7, len is 10, so p0 < len - 2
+     * we sum up sum = arr[p0] + arr[p1] + arr[p2].
+     * if sum < 0, we move p1 forward to increase the sum
+     * if sum > 0, we move p2 backward to decrease sum
+     * if sum == 0, we move p1 forward skipping all the duplicates.
+     * in past, we found lets say, -3, -2, 5 combination, next we will have -3, -1,
+     * 4, this guarantees that our tuples
+     * will never contain dups
+     * we stop the inner loop when p1 >= p2
+     * we move forward p0 and skip all the dups
+     *
+     * complexity: timeComplexity:
+     * we are sorting and we have two for loops
+     * O(n * n) + O(n * log(n))
+     */
     List<List<Integer>> triplets = new LinkedList<>();
-    if(nums.length < 3) {
+    if (nums.length < 3) {
       return triplets;
     }
 
     Arrays.sort(nums);
     int p0 = 0, LEN = nums.length;
-    while(p0 < LEN - 2) {
+    while (p0 < LEN - 2) {
       int p1 = p0 + 1, p2 = LEN - 1;
 
-      while(p1 < p2) {
+      while (p1 < p2) {
         int curSum = nums[p0] + nums[p1] + nums[p2];
-        if(curSum > 0) {
+        if (curSum > 0) {
           p2--;
         } else if (curSum < 0) {
           p1++;
         } else {
           triplets.add(Arrays.asList(nums[p0], nums[p1], nums[p2]));
 
-          //move forward p1 so that we can skip all the dups
+          // move forward p1 so that we can skip all the dups
           p1++;
-          while(p1 < LEN - 1 && nums[p1] == nums[p1 - 1]) {
+          while (p1 < LEN - 1 && nums[p1] == nums[p1 - 1]) {
             p1++;
           }
         }
-      }// end of inner loop for advancing p1 and p2
+      } // end of inner loop for advancing p1 and p2
 
-      //advance p0 and skip all the dups
+      // advance p0 and skip all the dups
       p0++;
-      while(p0 < LEN - 2 && nums[p0] == nums[p0 - 1]) {
+      while (p0 < LEN - 2 && nums[p0] == nums[p0 - 1]) {
         p0++;
       }
     }
     return triplets;
   }
-
-
-
-
-
-
-
-
-
-
 
   public List<List<Integer>> threeSum_1(int[] nums) {
     List<List<Integer>> res = new LinkedList<>();
@@ -136,8 +127,8 @@ public class Sum3_15 {
           res.add(list);
           do {
             p1++;
-          }  while (p1 < len - 1 && nums[p1] == nums[p1 - 1]);
-        } else if (sum < 0){
+          } while (p1 < len - 1 && nums[p1] == nums[p1 - 1]);
+        } else if (sum < 0) {
           p1++;
         } else {
           p2--;
@@ -157,7 +148,7 @@ public class Sum3_15 {
       return res;
     }
     Arrays.sort(nums);
-    //special case 3 zeros
+    // special case 3 zeros
     int zeroCount = 0;
     for (int i : nums) {
       if (i == 0) {
@@ -168,7 +159,7 @@ public class Sum3_15 {
       res.add(Arrays.asList(0, 0, 0));
     }
     Map<Integer, Integer> map = new HashMap<>();
-    //add number to map if negative latest index, if positive earliest
+    // add number to map if negative latest index, if positive earliest
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] < 0) {
         map.put(nums[i], i);
@@ -183,7 +174,7 @@ public class Sum3_15 {
     int hi = nums.length - 1;
     while (low < hi) {
       int sum = nums[low] + nums[hi];
-      int target = sum * -1 ;
+      int target = sum * -1;
       if (map.containsKey(target)) {
         int targetIndex = map.get(target);
         if (targetIndex != low && targetIndex != hi) {
@@ -215,28 +206,28 @@ public class Sum3_15 {
 
     Arrays.sort(nums);
     int i = 0, n = nums.length;
-    while(i < n - 2) {
-      int j = i + 1, k = n -1;
-      while(j < k) {
+    while (i < n - 2) {
+      int j = i + 1, k = n - 1;
+      while (j < k) {
         int curSum = nums[i] + nums[j] + nums[k];
-        if(curSum == 0) {
+        if (curSum == 0) {
           result.add(Arrays.asList(nums[i], nums[j], nums[k]));
           j++;
           k--;
 
-          //skip duplicates
-          while(j < k && nums[j-1] == nums[j])
+          // skip duplicates
+          while (j < k && nums[j - 1] == nums[j])
             j++;
-          while(j < k && nums[k] == nums[k+1])
+          while (j < k && nums[k] == nums[k + 1])
             k--;
-        } else if(curSum < 0) {
+        } else if (curSum < 0) {
           j++;
         } else {
           k--;
         }
       }
       i++;
-      while(i < n - 2 && nums[i-1] == nums[i])
+      while (i < n - 2 && nums[i - 1] == nums[i])
         i++;
     }
     return result;
@@ -270,12 +261,49 @@ public class Sum3_15 {
           l++;
           r--;
 
-          while (l < r && nums[l] == nums[l - 1]) l++;
-          while (l < r && nums[r] == nums[r + 1]) r--;
+          while (l < r && nums[l] == nums[l - 1])
+            l++;
+          while (l < r && nums[r] == nums[r + 1])
+            r--;
         }
       }
     }
 
+    return result;
+  }
+
+  public List<List<Integer>> threeSum_0615(int[] nums) {
+    Arrays.sort(nums);
+    int n = nums.length;
+    int i = 0;
+    List<List<Integer>> result = new ArrayList<>();
+    while (i < n - 2) {
+      int j = i + 1, k = n - 1;
+      while (j < k) {
+        int curSum = nums[i] + nums[j] + nums[k];
+        if (curSum == 0) {
+          result.add(new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[k])));
+          j++;
+          k--;
+          while (j < k && nums[j - 1] == nums[j]) {
+            j++;
+          }
+
+          while (j < k && nums[k] == nums[k + 1]) {
+            k--;
+          }
+        } else if (curSum < 0) {
+          j++;
+        } else {
+          k--;
+        }
+      }
+
+      i++;
+      while (i < n - 2 && nums[i - 1] == nums[i]) {
+        i++;
+      }
+    }
     return result;
   }
 

@@ -1,7 +1,5 @@
 package alpha_rep;
 
-import array_and_string.NumsSmallerThanCur_1365;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -349,6 +347,9 @@ class NumberOfIslands_0_200 {
   int R, C;
   int [][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
   public int numIslands_drona(char[][] grid) {
+    if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
     R = grid.length;
     C = grid[0].length;
     int numIsland = 0;
@@ -373,6 +374,31 @@ class NumberOfIslands_0_200 {
     grid[r][c] = '2';
     for(int[] dir : dirs) {
       dfs(grid,r + dir[0], c + dir[1]);
+    }
+  }
+
+  public int numIslands_0613(char[][] grid) {
+    R = grid.length;
+    C = grid[0].length;
+
+    int numIsland = 0;
+    for(int r = 0; r < R; r++){
+      for(int c = 0; c < C; c++) {
+        if (grid[r][c] == '1') {
+          numIsland++;
+          dfs_0613(grid, r, c);
+        }
+      }
+    }
+    return numIsland;
+  }
+  private void dfs_0613(char[][] grid, int r, int c) {
+    if(r < 0 || r >= R || c < 0 || c >= C || grid[r][c] != '1') {
+      return;
+    }
+    grid[r][c] = '2';
+    for(int[] dir : dirs) {
+      dfs_0613(grid, r + dir[0], c + dir[1]);
     }
   }
 }

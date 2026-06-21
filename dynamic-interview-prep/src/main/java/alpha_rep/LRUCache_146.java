@@ -171,3 +171,87 @@ class LRUCache_drona {
     }
   }
 }
+
+class LRUCache_0613 {
+  static class DoublyLinkedList {
+    static class Node {
+      int key;
+      int val;
+      Node next, prev;
+
+      Node(int key, int val) {
+        this.key = key;
+        this.val = val;
+      }
+    }
+
+    Node head, tail;
+    DoublyLinkedList() {
+      head = new Node(0, 0);
+      tail = new Node(0, 0);
+
+      head.next = tail;
+      tail.prev = head;
+    }
+
+    void insertFront(Node node){
+      node.next = head.next;
+      node.prev = head;
+      head.next.prev = node;
+      head.next = node;
+    }
+
+    void removeNode(Node node) {
+      node.prev.next = node.next;
+      node.next.prev = node.prev;
+    }
+
+    Node removeTail() {
+      if(tail.prev == head) {
+        return null;
+      }
+      Node lastNode = tail.prev;
+      removeNode(lastNode);
+      return lastNode;
+    }
+   } 
+
+   DoublyLinkedList dll;
+   Map<Integer, DoublyLinkedList.Node> map;
+   int capacity, size;
+
+   LRUCache_0613 (int capacity) {
+    dll = new DoublyLinkedList();
+    map = new HashMap<>();
+    this.capacity = capacity;
+    size = 0;
+   }
+
+   void put(int key, int value) {
+    if(map.containsKey(key)) {
+      DoublyLinkedList.Node n = map.get(key);
+      n.val = value;
+      dll.removeNode(n);
+      dll.insertFront(n);
+      return;
+    }
+    if(size == capacity) {
+      map.remove(dll.removeTail().key);
+      size--;
+    }
+    DoublyLinkedList.Node n = new DoublyLinkedList.Node(key, value);
+    map.put(key, n);
+    dll.insertFront(n);
+    size++;
+   }
+
+   int get(int key) {
+    if(!map.containsKey(key)){
+      return -1;
+    }
+    DoublyLinkedList.Node n = map.get(key);
+    dll.removeNode(n);
+    dll.insertFront(n);
+    return n.val;
+   }
+}

@@ -122,4 +122,8 @@ public class AllOne_432 {
       if (tail.prev == head) return "";
       return tail.prev.set.iterator().next();
     }
+
+    public String getsomeString() {
+      return "okay";
+    }
   }

@@ -7,20 +7,21 @@ import java.util.PriorityQueue;
 public class MeetingRoom2_253 {
   public int minMeetingRooms_drona(int[][] intervals) {
     /*
-     My initial idea:
-       - Sort intervals by start time.
-       - Greedily fill one room at a time by adding all non-conflicting intervals.
-       - Move conflicting intervals to a new list and repeat.
-       - This works but is O(n^2) because we rebuild rooms repeatedly.
-
-     How this leads to the optimal solution:
-       - For each room, I only need to track the end time of the last meeting.
-       - Instead of building rooms one by one, keep all room end-times in a min-heap.
-       - For each new meeting, reuse the room that frees up earliest (heap top),
-         or allocate a new room if none are free.
-       - Heap size = number of rooms needed.
-       - This reduces the complexity to O(n log n).
-    */
+     * My initial idea:
+     * - Sort intervals by start time.
+     * - Greedily fill one room at a time by adding all non-conflicting intervals.
+     * - Move conflicting intervals to a new list and repeat.
+     * - This works but is O(n^2) because we rebuild rooms repeatedly.
+     * 
+     * How this leads to the optimal solution:
+     * - For each room, I only need to track the end time of the last meeting.
+     * - Instead of building rooms one by one, keep all room end-times in a
+     * min-heap.
+     * - For each new meeting, reuse the room that frees up earliest (heap top),
+     * or allocate a new room if none are free.
+     * - Heap size = number of rooms needed.
+     * - This reduces the complexity to O(n log n).
+     */
 
     Arrays.sort(intervals, (i0, i1) -> i0[0] - i1[0]);
 
@@ -35,7 +36,6 @@ public class MeetingRoom2_253 {
 
     return roomEndTime.size();
   }
-
 
   public int minMeetingRooms_1(int[][] intervals) {
     Arrays.sort(intervals, new Comparator<int[]>() {
@@ -60,17 +60,33 @@ public class MeetingRoom2_253 {
 
   public int minMeetingRooms_2(int[][] intervals) {
     Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-    PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> a- b);
+    PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> a - b);
 
-    for(int[] interval : intervals) {
+    for (int[] interval : intervals) {
       int earliestEndTime = pq.peek();
       // we can reuse this room
-      if(interval[0] > earliestEndTime) {
+      if (interval[0] > earliestEndTime) {
         pq.poll();
       }
       pq.offer(interval[1]);
     }
 
+    return pq.size();
+  }
+
+  public int minMeetingRooms_0613(int[][] intervals) {
+    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> Integer.compare(a, b));
+    for (int[] interval : intervals) {
+      if (pq.isEmpty()) {
+        pq.offer(interval[1]);
+      } else {
+        if (pq.peek() <= interval[0]) {
+          pq.poll();
+        }
+        pq.offer(interval[1]);
+      }
+    }
     return pq.size();
   }
 }

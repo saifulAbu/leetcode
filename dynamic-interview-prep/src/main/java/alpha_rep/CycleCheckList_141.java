@@ -4,21 +4,22 @@ public class CycleCheckList_141 {
 
   public boolean hasCycle_drona(ListNode head) {
     /*
-    * if there is a cycle, if we have one pointer that moves one step, another pointer that moves 2 step
-    * they will eventually meet
-    *
-    *        1
-    *      /   \
-    *    2        4
-    *      \    /
-    *        3
-    *
-    * if we start a fast pointer from 2, i it will go back and forth in 2 and 4
-    * [slow, fast]
-    * [1, 4], [4, 2], [3, 4], [4, 4]*
-    *
-    * at one point it will match
-    * */
+     * if there is a cycle, if we have one pointer that moves one step, another
+     * pointer that moves 2 step
+     * they will eventually meet
+     *
+     * 1
+     * / \
+     * 2 4
+     * \ /
+     * 3
+     *
+     * if we start a fast pointer from 2, i it will go back and forth in 2 and 4
+     * [slow, fast]
+     * [1, 4], [4, 2], [3, 4], [4, 4]*
+     *
+     * at one point it will match
+     */
 
     ListNode slow = head, fast = head;
 
@@ -35,22 +36,22 @@ public class CycleCheckList_141 {
   }
 
   public boolean hasCycle_0(ListNode head) {
-    if(head == null) {
+    if (head == null) {
       return false;
     }
 
     ListNode slowtPtr = head;
     ListNode fastPtr = slowtPtr.next;
 
-    while(slowtPtr != null && fastPtr != null) {
-      if(slowtPtr == fastPtr) {
+    while (slowtPtr != null && fastPtr != null) {
+      if (slowtPtr == fastPtr) {
         return true;
       }
       slowtPtr = slowtPtr.next;
 
-      //fastPrt moves 2 leap forward
+      // fastPrt moves 2 leap forward
       fastPtr = fastPtr.next;
-      if(fastPtr == null) {
+      if (fastPtr == null) {
         break;
       }
       fastPtr = fastPtr.next;
@@ -62,13 +63,13 @@ public class CycleCheckList_141 {
     ListNode slowPointer = head;
     ListNode fastPointer = head;
 
-    while(slowPointer != null && fastPointer != null) {
+    while (slowPointer != null && fastPointer != null) {
       slowPointer = slowPointer.next;
       fastPointer = fastPointer.next;
-      if(fastPointer != null) {
+      if (fastPointer != null) {
         fastPointer = fastPointer.next;
       }
-      if(slowPointer != null && slowPointer == fastPointer) {
+      if (slowPointer != null && slowPointer == fastPointer) {
         return true;
       }
     }
@@ -93,14 +94,30 @@ public class CycleCheckList_141 {
   public boolean hasCycle0517(ListNode head) {
     ListNode slow = head, fast = head;
 
-    while(fast != null || slow != null) {
+    while (fast != null || slow != null) {
       slow = slow.next;
       fast = fast.next;
-      if(fast == null) {
+      if (fast == null) {
         return true;
       }
       fast = fast.next;
     }
+    return false;
+  }
+
+  public boolean hasCycle_0621(ListNode head) {
+    // Your cycle detection architecture here
+    ListNode fast = head, slow = head;
+
+    while (fast != null && fast.next != null) { // Structural boundary
+      slow = slow.next;
+      fast = fast.next.next;
+
+      if (slow == fast) {
+        return true;
+      }
+    }
+
     return false;
   }
 }

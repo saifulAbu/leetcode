@@ -49,4 +49,28 @@ public class ReverseLinkedList_206 {
 
     return dummyReversed.next;
   }
+
+  public ListNode reverseList_0621(ListNode head) {
+    ListNode dummyHead = new ListNode(-1);
+    while (head != null) {
+      ListNode cur = head;
+      head = head.next;
+      cur.next = dummyHead.next;
+      dummyHead.next = cur;
+    }
+        
+    return dummyHead.next;
+  }
+
+    public ListNode reverseList_0621_2(ListNode head) {
+    ListNode newHead = null;
+    while (head != null) {
+      ListNode cur = head;
+      head = head.next;
+      cur.next = newHead;
+      newHead = cur;
+    }
+        
+    return newHead;
+  }
 }

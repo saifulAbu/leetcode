@@ -168,4 +168,20 @@ public class SubArraySum_560 {
     return totalCount;
   }
 
+  public int subarraySum_06_13(int[] nums, int k) {
+    Map<Integer, Integer> sumFreq = new HashMap<>();
+   
+    int curSum = 0;
+    sumFreq.put(curSum, 1);
+    int totalCount = 0;
+
+    for(int num : nums) {
+      curSum += num;
+      totalCount += sumFreq.getOrDefault(curSum - k, 0);
+      sumFreq.put(curSum, sumFreq.getOrDefault(curSum, 0) + 1);
+    }
+
+    return totalCount;
+  }
+
 }

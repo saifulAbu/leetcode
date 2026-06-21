@@ -4,9 +4,9 @@ public class MergeTwoSortedList_21 {
 
   public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     ListNode head = new ListNode(), tail = head;
-    while(l1 != null && l2 != null) {
+    while (l1 != null && l2 != null) {
       ListNode nodeToAdd = null;
-      if(l1.val < l2.val) {
+      if (l1.val < l2.val) {
         nodeToAdd = l1;
         l1 = l1.next;
       } else {
@@ -18,7 +18,7 @@ public class MergeTwoSortedList_21 {
     }
 
     ListNode remaining = l1;
-    if(l1 == null) {
+    if (l1 == null) {
       remaining = l2;
     }
     tail.next = remaining;
@@ -26,40 +26,12 @@ public class MergeTwoSortedList_21 {
     return head.next;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   public ListNode mergeTwoLists_01(ListNode l1, ListNode l2) {
     ListNode head = new ListNode(Integer.MIN_VALUE), tail = head;
 
-    while(l1 != null && l2 != null) {
+    while (l1 != null && l2 != null) {
       ListNode cur;
-      if(l1.val <= l2.val) {
+      if (l1.val <= l2.val) {
         cur = l1;
         l1 = l1.next;
       } else {
@@ -72,7 +44,7 @@ public class MergeTwoSortedList_21 {
     }
 
     ListNode remaining = l1;
-    if(remaining == null) {
+    if (remaining == null) {
       remaining = l2;
     }
     tail.next = remaining;
@@ -84,7 +56,7 @@ public class MergeTwoSortedList_21 {
     ListNode head = new ListNode(Integer.MIN_VALUE);
     ListNode tail = head;
 
-    while(l1 != null && l2 != null) {
+    while (l1 != null && l2 != null) {
       if (l1.val > l2.val) {
         ListNode temp = l1;
         l1 = l2;
@@ -98,7 +70,7 @@ public class MergeTwoSortedList_21 {
       tail = tail.next;
     }
 
-    if(l1 == null) {
+    if (l1 == null) {
       l1 = l2;
     }
     tail.next = l1;
@@ -117,9 +89,9 @@ public class MergeTwoSortedList_21 {
   public ListNode mergeTwoLists_02(ListNode list1, ListNode list2) {
     ListNode dummy3 = new ListNode(), tail = dummy3;
 
-    while(list1 != null && list2.next != null) {
+    while (list1 != null && list2.next != null) {
       ListNode cur;
-      if(list1.next.val > list2.next.val) {
+      if (list1.next.val > list2.next.val) {
         cur = list2.next;
         list2 = list2.next;
       } else {
@@ -130,7 +102,7 @@ public class MergeTwoSortedList_21 {
       tail = cur;
     }
 
-    if(list1 == null) {
+    if (list1 == null) {
       tail.next = list2;
     } else {
       tail.next = list1;
@@ -139,4 +111,28 @@ public class MergeTwoSortedList_21 {
     return dummy3.next;
   }
 
+  public ListNode mergeTwoLists_0621(ListNode list1, ListNode list2) {
+    ListNode dummy = new ListNode(-1), tail = dummy;
+
+    while (list1 != null && list2 != null) {
+      ListNode cur = null;
+      if (list1.val < list2.val) {
+        cur = list1;
+        list1 = list1.next;
+      } else {
+        cur = list2;
+        list2 = list2.next;
+      }
+      tail.next = cur;
+      tail = cur;
+    }
+
+    if (list2 != null) {
+      tail.next = list2;
+    } else {
+      tail.next = list1;
+    }
+
+    return dummy.next;
+  }
 }
