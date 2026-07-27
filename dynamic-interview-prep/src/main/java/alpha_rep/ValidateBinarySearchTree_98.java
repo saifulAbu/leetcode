@@ -94,6 +94,21 @@ public class ValidateBinarySearchTree_98 {
     return isValidBSTHelper_drona(min, cur.val, cur.left) && isValidBSTHelper_drona(cur.val, max, cur.right);
   }
 
+  public boolean isValidBST_0714(TreeNode root) {
+    return dfs_0714(root, null, null);
+  }
+
+  private boolean dfs_0714(TreeNode root, Integer lowLimit, Integer highLimit) {
+    if(root == null) {
+      return true;
+    }
+    int val = root.val;
+    if(lowLimit != null && val <= lowLimit || highLimit != null && val >= highLimit) {
+      return false;
+    }
+    return dfs_0714(root.left, lowLimit, val) && dfs_0714(root.right, val, highLimit);
+  }
+
 }
 
 

@@ -2,6 +2,7 @@ package alpha_rep;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.DoubleBinaryOperator;
 
 //public class LRUCache_146 {
 class LRUCache_146 {
@@ -254,4 +255,162 @@ class LRUCache_0613 {
     dll.insertFront(n);
     return n.val;
    }
+}
+
+
+class LRUCache_0714 {
+
+    int capacity = 0;
+    Map<Integer, DoublyLinkedList.Node> nodeMap;
+    DoublyLinkedList dll;
+
+    public LRUCache_0714(int capacity) {
+        this.capacity = capacity;
+        nodeMap = new HashMap<>();
+        dll = new DoublyLinkedList();
+    
+    }
+    
+    public int get(int key) {
+        if (!nodeMap.containsKey(key)) {
+          return -1;
+        }
+        DoublyLinkedList.Node node = nodeMap.get(key);
+        dll.removeNode(node);
+        dll.insertToFront(node);
+        return node.val;
+    }
+    
+    public void put(int key, int value) {
+      // check if key exists, update, node and re insert to the dll
+      // if does not exist, check cur capacity, if size == n, remove the last node, create node, insert to front
+
+      if(nodeMap.containsKey(key)) {
+        DoublyLinkedList.Node node = nodeMap.get(key);
+        node.val = value;
+        dll.removeNode(node);
+        dll.insertToFront(node);
+      } else {
+        if (nodeMap.size() == capacity) {
+          DoublyLinkedList.Node last = dll.removeFromEnd();
+          nodeMap.remove(last.key);
+        }
+        DoublyLinkedList.Node node = new DoublyLinkedList.Node();
+        node.key = key;
+        node.val =value;
+        nodeMap.put(key, node);
+        dll.insertToFront(node);
+      }
+    }
+
+    static class DoublyLinkedList {
+      static class Node {
+        Node next, prev;
+        int val;
+        int key;
+      }
+      Node head, tail;
+      DoublyLinkedList() {
+        head = new Node();
+        tail = new Node();
+        head.next = tail;
+        tail.prev = head;
+      }
+
+      void removeNode(Node n) {
+        n.prev.next = n.next;
+        n.next.prev = n.prev;
+      }
+
+      void insertToFront(Node n) {
+        n.next = head.next;
+        n.prev = head;
+        head.next.prev = n;
+        head.next = n;
+      } 
+
+      Node removeFromEnd() {
+        Node last = tail.prev;
+        removeNode(last);
+        return last;
+      }
+    }
+}
+
+class LRUCache_0727 {
+  int capacity;
+  Map<Integer, LRUCache_0727.DoublyLinkedList.Node> nodeMap = new HashMap<>();
+  LRUCache_0727.DoublyLinkedList dll = new LRUCache_0727.DoublyLinkedList();
+
+  LRUCache_0727(int capacity) {
+    this.capacity = capacity; 
+  }
+  int get(int k) {
+    if(!nodeMap.containsKey(k)) {
+      return -1;
+    }
+
+    LRUCache_0727.DoublyLinkedList.Node n = nodeMap.get(k);
+    dll.removeNode(n);
+    dll.insertToFront(n);
+    return n.val;
+  }
+
+  void put(int k, int v) {
+    LRUCache_0727.DoublyLinkedList.Node n;
+    if(nodeMap.containsKey(k)) {
+      n = nodeMap.get(k);
+      n.key = k;
+      n.val = v;
+      dll.removeNode(n);
+    } else {
+      n = new LRUCache_0727.DoublyLinkedList.Node(k, v);
+      nodeMap.put(k, n);
+      if(nodeMap.size() > capacity) {
+        LRUCache_0727.DoublyLinkedList.Node tail = dll.removeFromTail();
+        nodeMap.remove(tail.key);
+      }
+    }
+    dll.insertToFront(n);
+
+  }
+
+  static class DoublyLinkedList {
+    static class Node {
+      Node next, prev;
+      int key, val;
+      Node(int k, int v) {
+        key = k;
+        val = v;
+      }
+    }
+
+    Node head, tail;
+    DoublyLinkedList() {
+      head = new Node(0, 0);
+      tail = new Node(0, 0);
+      head.next = tail;
+      tail.prev = head;
+    }
+    
+    void removeNode(Node n) {
+      n.next.prev = n.prev;
+      n.prev.next = n.next;
+    }
+
+    void insertToFront(Node n) {
+      n.prev = head;
+      n.next = head.next;
+      
+      head.next.prev = n;
+      head.next = n;
+    }
+
+    Node removeFromTail() {
+      Node n = tail.prev;
+      removeNode(n);
+
+      return n;
+    }
+  }
 }

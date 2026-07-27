@@ -1,7 +1,8 @@
-package walmart_mar_26;
+package alpha_rep;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class FruitInBasket_904 {
   public int totalFruit_bruteForce(int[] fruits) {
@@ -44,6 +45,22 @@ public class FruitInBasket_904 {
     }
 
     return maxFruit;
+  }
+
+  public int totalFruit_bruteForce_0701(int[] fruits) {
+    int max = 0;
+    for(int i = 0; i < fruits.length; i++) {
+      Set<Integer> basket = new HashSet<>();
+      for(int j = i; j < fruits.length; j++) {
+        basket.add(fruits[j]);
+        if(basket.size() > 2) {
+          break;
+        }
+        max = Math.max(max, j - i + 1);
+      }
+    }
+
+    return max;
   }
 
 }

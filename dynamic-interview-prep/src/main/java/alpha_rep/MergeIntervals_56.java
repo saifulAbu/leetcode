@@ -163,4 +163,25 @@ public class MergeIntervals_56 {
     }
     return mergedList.toArray(new int[mergedList.size()][2]); 
   }
+
+  public int[][] merge_0714(int[][] intervals) {
+    // compare 2 elements of the intervals
+    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+    List<int[]> mergedList = new ArrayList<>();
+    mergedList.add(intervals[0]);
+
+    for(int i = 1; i < intervals.length; i++) {
+      int[] curInterval = intervals[i];
+      int[] prevInterval = mergedList.getLast();
+      if(curInterval[0] <= prevInterval[1]) {
+        //merge
+        prevInterval[1] = Math.max(curInterval[1], prevInterval[1]);
+      } else {
+        mergedList.add(curInterval);
+      }
+    }
+
+    return mergedList.toArray(new int[mergedList.size()][2]);
+  }
 }

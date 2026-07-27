@@ -59,7 +59,7 @@ public class CarPool_1094 {
     return true;
   }
 
-  public boolean carPooling_drona(int[][] trips, int capacity) {
+  public boolean carPooling_drona_1(int[][] trips, int capacity) {
     // Min-Heap sorted by location (timestamp).
     // Tie-breaker: sort by passenger change ascending (drop-offs before pick-ups).
     PriorityQueue<int[]> pq = new PriorityQueue<>(
@@ -89,4 +89,56 @@ public class CarPool_1094 {
 
     return true;
   }
+
+
+  //[numPassengers_i, from_i, to_i]
+  public boolean carPooling_0714(int[][] trips, int capacity) {
+    PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
+      @Override
+      public int compare(int[] a, int [] b) {
+        if(a[0] == b[0]) {
+          return Integer.compare(a[1], b[1]);
+        }
+        return Integer.compare(a[0], b[0]);
+      }
+    });
+
+    for(int[] trip : trips) {
+      pq.add(new int[] {trip[1], trip[0]});
+      pq.add(new int[] {trip[2], -trip[0]});
+    }
+
+    int curCapacity  = 0;
+    while (!pq.isEmpty()) {
+      curCapacity += pq.poll()[1];
+      if (curCapacity > capacity) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public boolean carPooling_drona_bucket(int[][] trips, int capacity) {
+    // Since the max coordinate is 1000, we can use an array of size 1001
+    int[] timeline = new int[1001];
+    
+    for (int[] trip : trips) {
+        int passengers = trip[0];
+        int start = trip[1];
+        int end = trip[2];
+        
+        timeline[start] += passengers; // Pick-up
+        timeline[end] -= passengers;   // Drop-off
+    }
+    
+    int curCapacity = 0;
+    for (int passengerChange : timeline) {
+        curCapacity += passengerChange;
+        if (curCapacity > capacity) {
+            return false;
+        }
+    }
+    
+    return true;
+}
 }

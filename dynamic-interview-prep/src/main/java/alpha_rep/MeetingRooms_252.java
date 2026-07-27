@@ -78,4 +78,17 @@ public class MeetingRooms_252 {
     }
     return true;
   }
+
+  public boolean canAttendMeetings_0714(int[][] intervals) {
+    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    
+    for(int i = 1; i < intervals.length; i++) {
+      int[] prev = intervals[i-1];
+      int[] cur = intervals[i];
+      if(prev[1] > cur[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

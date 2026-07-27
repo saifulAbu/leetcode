@@ -401,4 +401,31 @@ class NumberOfIslands_0_200 {
       dfs_0613(grid, r + dir[0], c + dir[1]);
     }
   }
+
+   public int numIslands_0714(char[][] grid) {
+    int count = 0;
+
+    for(int r = 0; r < grid.length; r++) {
+      for(int c = 0; c < grid[0].length; c++) {
+        if (grid[r][c] == '1') {
+          count++;
+          dfs_0714(grid, r, c);
+        }
+      }
+    }
+
+    return count;
+   }
+
+   //keep call stack minimal
+   private void dfs_0714(char[][] grid, int r, int c) {
+    if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != '1') {
+        return;
+    }
+    grid[r][c] = '0'; // Or '2'
+    dfs(grid, r + 1, c);
+    dfs(grid, r - 1, c);
+    dfs(grid, r, c + 1);
+    dfs(grid, r, c - 1);
+}
 }

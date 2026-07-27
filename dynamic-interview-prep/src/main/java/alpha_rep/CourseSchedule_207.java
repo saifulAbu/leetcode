@@ -228,4 +228,42 @@ public class CourseSchedule_207 {
 
     return processed == numCourses;
   }
+
+  public boolean canFinish_0714(int numCourses, int[][] prerequisites) {
+    int[] indegree = new int[numCourses];
+    List<Integer>[] graph = new List[numCourses];
+    for(int i = 0; i < numCourses; i++) {
+      graph[i] = new ArrayList<>();
+    }
+
+    // build graph and indegree
+    for(int[] edge : prerequisites) {
+      int dst = edge[0];
+      int src = edge[1];
+      graph[src].add(dst);
+      indegree[dst]++;
+    }
+
+    // run bfs to see if we can process all the courses
+    int processed = 0;
+    Queue<Integer> q = new LinkedList<>();
+    for(int i  = 0; i < numCourses; i++) {
+      if(indegree[i] == 0) {
+        q.add(i);
+      }
+    }
+
+    while (!q.isEmpty() && processed != numCourses) {
+      int src = q.poll();
+      for(int dst : graph[src]) {
+        indegree[dst]--;
+        if (indegree[dst] == 0) {
+          q.add(dst);
+        }
+      }
+      processed++;
+    }
+
+    return processed == numCourses;
+  }
 }

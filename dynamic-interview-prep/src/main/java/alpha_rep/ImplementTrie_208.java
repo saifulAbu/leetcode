@@ -1,6 +1,7 @@
 package alpha_rep;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ImplementTrie_208 {
 
@@ -146,30 +147,6 @@ public class ImplementTrie_208 {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class ImplementTrie_0_208 {
   static int R = 26;
   private static class TrieNode {
@@ -251,5 +228,60 @@ class ImplementTrie_0_208 {
 
   static public void print(String str) {
     System.out.println(str);
+  }
+}
+
+class ImplementTrie_0727 {
+  static class TrieNode {
+    boolean isWord = false;
+    Map<Character, TrieNode> charMap = new HashMap<>();
+  }
+
+  TrieNode root = new TrieNode();
+  ImplementTrie_0727() {
+
+  }
+
+  void insert(String word) {
+    insertHelper(root, word, 0);
+  }
+
+  void insertHelper(TrieNode node, String word, int idx) {
+    if(idx == word.length()) {
+      node.isWord = true;
+      return;
+    }
+
+    char cur = word.charAt(idx);
+    TrieNode nextLvl;
+    if(node.charMap.containsKey(cur)) {
+      nextLvl = node.charMap.get(cur);
+    } else {
+      nextLvl = new TrieNode();
+      node.charMap.put(cur, nextLvl);
+    }
+
+    insertHelper(nextLvl, word, idx+1);
+  }
+
+  boolean search(String word) {
+    TrieNode leaf = getLeaf(word);
+    return leaf != null && leaf.isWord;
+  }
+
+  boolean startsWith(String prefix) {
+    TrieNode leaf = getLeaf(word);
+    return leaf != null;
+  }
+
+  TrieNode getLeaf(String word) {
+    TrieNode cur = root;
+    for(int i = 0; i < word.length(); i++) {
+      cur = cur.charMap.get(word.charAt(i));
+      if(cur == null) {
+        return null;
+      }
+    }
+    return cur;
   }
 }

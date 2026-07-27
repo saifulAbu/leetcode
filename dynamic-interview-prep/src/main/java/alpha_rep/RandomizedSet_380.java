@@ -105,3 +105,39 @@ class RandomizedSet_0524 {
     return list.get(rand.nextInt(list.size()));
   }
 }
+
+class RandomizedSet_0727 {
+  List<Integer> vals = new ArrayList<>();
+  Map<Integer, Integer> map = new HashMap<>();
+  Random random = new Random();
+
+  boolean insert(int val) {
+    if(map.containsKey(val)) {
+      return false;
+    }
+
+    map.put(val, vals.size());
+    vals.addLast(val);
+    return true;
+  }
+
+  boolean remove(int val) {
+    if(!map.containsKey(val)) {
+      return false;
+    }
+    
+    int idx = map.get(val);
+    int lastElem = vals.get(vals.size() - 1);
+    vals.set(idx, lastElem);
+    vals.removeLast();
+
+    map.put(lastElem, idx);
+    map.remove(val);
+
+    return true;
+  }
+  
+  int getRandom() {
+    return vals.get(random.nextInt(vals.size()));
+  }
+}
